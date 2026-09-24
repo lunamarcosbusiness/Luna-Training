@@ -8,267 +8,270 @@
 <title>Luna Training</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
-    }
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
 
-    :root {
-        --bg: #0b0b0c;
-        --card: #171719;
-        --card2: #202024;
-        --text: #ffffff;
-        --muted: #9d9da5;
-        --border: #2b2b30;
-        --accent: #ffffff;
-        --success: #63d471;
-        --danger: #ff5d5d;
-    }
+:root {
+    --bg: #0b0b0c;
+    --card: #171719;
+    --card2: #202024;
+    --text: #ffffff;
+    --muted: #9d9da5;
+    --border: #2b2b30;
+    --accent: #ffffff;
+    --success: #63d471;
+    --danger: #ff5d5d;
+}
 
-    body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-                     "Segoe UI", sans-serif;
-        background: var(--bg);
-        color: var(--text);
-        padding-bottom: 100px;
-    }
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+                 "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding-bottom: 100px;
+}
 
-    .app {
-        max-width: 600px;
-        margin: auto;
-        padding: 24px 18px;
-    }
+.app {
+    max-width: 600px;
+    margin: auto;
+    padding: 24px 18px;
+}
 
-    h1 {
-        font-size: 30px;
-        margin: 0;
-    }
+h1 {
+    font-size: 30px;
+    margin: 0;
+}
 
-    h2 {
-        margin-top: 0;
-        font-size: 22px;
-    }
+h2 {
+    margin-top: 0;
+    font-size: 22px;
+}
 
-    h3 {
-        margin: 0 0 8px;
-    }
+h3 {
+    margin: 0 0 8px;
+}
 
-    .muted {
-        color: var(--muted);
-    }
+.muted {
+    color: var(--muted);
+}
 
-    .header {
-        margin: 12px 0 25px;
-    }
+.header {
+    margin: 12px 0 25px;
+}
 
-    .card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        padding: 18px;
-        margin-bottom: 14px;
-    }
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 14px;
+}
 
-    .hero {
-        padding: 24px 20px;
-    }
+.hero {
+    padding: 24px 20px;
+}
 
-    .hero-type {
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        color: var(--muted);
-        margin-bottom: 8px;
-    }
+.hero-type {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
 
-    .hero-title {
-        font-size: 30px;
-        font-weight: 800;
-        margin-bottom: 5px;
-    }
+.hero-title {
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
 
-    button {
-        border: none;
-        border-radius: 13px;
-        padding: 14px;
-        font-size: 16px;
-        font-weight: 700;
-        cursor: pointer;
-    }
+button {
+    border: none;
+    border-radius: 13px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
 
-    .primary {
-        width: 100%;
-        background: var(--accent);
-        color: #000;
-        margin-top: 18px;
-    }
+.primary {
+    width: 100%;
+    background: var(--accent);
+    color: #000;
+    margin-top: 18px;
+}
 
-    .secondary {
-        background: var(--card2);
-        color: white;
-        border: 1px solid var(--border);
-    }
+.secondary {
+    background: var(--card2);
+    color: white;
+    border: 1px solid var(--border);
+}
 
-    .danger {
-        background: var(--danger);
-        color: white;
-    }
+.danger {
+    background: var(--danger);
+    color: white;
+}
 
-    .week {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 5px;
-    }
+.week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
 
-    .day {
-        text-align: center;
-        background: var(--card2);
-        padding: 10px 2px;
-        border-radius: 10px;
-        font-size: 11px;
-    }
+.day {
+    text-align: center;
+    background: var(--card2);
+    padding: 10px 2px;
+    border-radius: 10px;
+    font-size: 11px;
+}
 
-    .day.active {
-        background: white;
-        color: black;
-    }
+.day.active {
+    background: white;
+    color: black;
+}
 
-    .exercise {
-        margin-bottom: 18px;
-    }
+.exercise {
+    margin-bottom: 18px;
+}
 
-    .exercise-title {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+.exercise-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-    .set-row {
-        display: grid;
-        grid-template-columns: 35px 1fr 1fr 45px;
-        gap: 7px;
-        align-items: center;
-        margin-top: 8px;
-    }
+.set-row {
+    display: grid;
+    grid-template-columns: 35px 1fr 1fr 45px;
+    gap: 7px;
+    align-items: center;
+    margin-top: 8px;
+}
 
-    input {
-        width: 100%;
-        background: var(--card2);
-        border: 1px solid var(--border);
-        color: white;
-        padding: 11px 8px;
-        border-radius: 10px;
-        font-size: 16px;
-        text-align: center;
-    }
+input {
+    width: 100%;
+    background: var(--card2);
+    border: 1px solid var(--border);
+    color: white;
+    padding: 11px 8px;
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: center;
+}
 
-    .check {
-        height: 42px;
-        padding: 0;
-        background: var(--card2);
-        color: white;
-    }
+label {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 6px;
+}
 
-    .check.done {
-        background: var(--success);
-        color: black;
-    }
+.check {
+    height: 42px;
+    padding: 0;
+    background: var(--card2);
+    color: white;
+}
 
-    .timer {
-        font-size: 44px;
-        font-weight: 800;
-        text-align: center;
-        margin: 20px 0;
-        font-variant-numeric: tabular-nums;
-    }
+.check.done {
+    background: var(--success);
+    color: black;
+}
 
-    .timer-buttons {
-        display: flex;
-        gap: 8px;
-    }
+.timer {
+    font-size: 44px;
+    font-weight: 800;
+    text-align: center;
+    margin: 20px 0;
+    font-variant-numeric: tabular-nums;
+}
 
-    .timer-buttons button {
-        flex: 1;
-    }
+.timer-buttons {
+    display: flex;
+    gap: 8px;
+}
 
-    .history-item {
-        border-bottom: 1px solid var(--border);
-        padding: 12px 0;
-    }
+.timer-buttons button {
+    flex: 1;
+}
 
-    .history-item:last-child {
-        border-bottom: none;
-    }
+.history-item {
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+}
 
-    .stat-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-    }
+.history-item:last-child {
+    border-bottom: none;
+}
 
-    .stat {
-        background: var(--card2);
-        border-radius: 14px;
-        padding: 15px;
-    }
+.stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
 
-    .stat-value {
-        font-size: 25px;
-        font-weight: 800;
-    }
+.stat {
+    background: var(--card2);
+    border-radius: 14px;
+    padding: 15px;
+}
 
-    nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(15,15,16,.96);
-        border-top: 1px solid var(--border);
-        display: flex;
-        justify-content: center;
-        padding-bottom: env(safe-area-inset-bottom);
-    }
+.stat-value {
+    font-size: 25px;
+    font-weight: 800;
+}
 
-    .nav-inner {
-        width: 100%;
-        max-width: 600px;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-    }
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15,15,16,.96);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    padding-bottom: env(safe-area-inset-bottom);
+}
 
-    nav button {
-        background: transparent;
-        color: var(--muted);
-        font-size: 12px;
-        padding: 14px 3px;
-    }
+.nav-inner {
+    width: 100%;
+    max-width: 600px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
 
-    nav button.active {
-        color: white;
-    }
+nav button {
+    background: transparent;
+    color: var(--muted);
+    font-size: 12px;
+    padding: 14px 3px;
+}
 
-    .page {
-        display: none;
-    }
+nav button.active {
+    color: white;
+}
 
-    .page.active {
-        display: block;
-    }
+.page {
+    display: none;
+}
 
-    .progression {
-        background: rgba(99,212,113,.12);
-        border: 1px solid rgba(99,212,113,.35);
-        padding: 12px;
-        border-radius: 12px;
-        margin-top: 8px;
-        color: #9bea9f;
-        font-size: 14px;
-    }
+.page.active {
+    display: block;
+}
 
-    .walk-icon {
-        font-size: 45px;
-    }
+.walk-icon {
+    font-size: 45px;
+}
+
+.manual-divider {
+    text-align: center;
+    color: var(--muted);
+    margin: 8px 0 16px;
+    font-size: 13px;
+}
 </style>
 </head>
 
@@ -281,102 +284,210 @@
         <h1>Luna Training</h1>
     </div>
 
+
     <!-- HOME -->
+
     <section id="home" class="page active">
 
         <div class="card hero">
+
             <div id="todayType" class="hero-type"></div>
+
             <div id="todayTitle" class="hero-title"></div>
+
             <div id="todayDescription" class="muted"></div>
-            <button id="startToday" class="primary">START</button>
+
+            <button id="startToday" class="primary">
+                START
+            </button>
+
         </div>
 
+
         <h2>This Week</h2>
+
         <div class="week" id="weekDisplay"></div>
 
         <br>
 
+
         <div class="stat-grid">
+
             <div class="stat">
                 <div class="muted">Workouts</div>
-                <div id="workoutCount" class="stat-value">0</div>
+                <div id="workoutCount" class="stat-value">
+                    0
+                </div>
             </div>
 
             <div class="stat">
                 <div class="muted">Chico Walks</div>
-                <div id="walkCount" class="stat-value">0</div>
+                <div id="walkCount" class="stat-value">
+                    0
+                </div>
             </div>
+
         </div>
 
     </section>
+
 
 
     <!-- WORKOUT -->
+
     <section id="workout" class="page">
-        <h2 id="workoutTitle">Workout</h2>
+
+        <h2 id="workoutTitle">
+            Workout
+        </h2>
 
         <div id="exerciseContainer"></div>
 
+
         <div class="card">
+
             <h3>Rest Timer</h3>
-            <div id="restTimer" class="timer">01:30</div>
+
+            <div id="restTimer" class="timer">
+                01:30
+            </div>
 
             <div class="timer-buttons">
-                <button class="secondary" onclick="startRest(60)">60 sec</button>
-                <button class="secondary" onclick="startRest(90)">90 sec</button>
-                <button class="secondary" onclick="startRest(120)">2 min</button>
+
+                <button class="secondary"
+                        onclick="startRest(60)">
+                    60 sec
+                </button>
+
+                <button class="secondary"
+                        onclick="startRest(90)">
+                    90 sec
+                </button>
+
+                <button class="secondary"
+                        onclick="startRest(120)">
+                    2 min
+                </button>
+
             </div>
+
         </div>
 
-        <button class="primary" onclick="finishWorkout()">
+
+        <button class="primary"
+                onclick="finishWorkout()">
+
             FINISH WORKOUT
+
         </button>
+
     </section>
 
 
-    <!-- WALK -->
+
+    <!-- CHICO WALK -->
+
     <section id="walk" class="page">
 
-        <div class="card hero" style="text-align:center">
-            <div class="walk-icon">🐕</div>
-            <h2>Walk Chico</h2>
-            <div class="muted">Goal: 30–45 minutes</div>
 
-            <div id="walkTimer" class="timer">00:00</div>
+        <div class="card hero"
+             style="text-align:center">
+
+            <div class="walk-icon">
+                🐕
+            </div>
+
+            <h2>Walk Chico</h2>
+
+            <div class="muted">
+                Goal: 30–45 minutes
+            </div>
+
+
+            <div id="walkTimer"
+                 class="timer">
+
+                00:00
+
+            </div>
+
 
             <button id="walkButton"
                     class="primary"
                     onclick="toggleWalk()">
+
                 START WALK
+
             </button>
+
         </div>
 
+
+        <div class="manual-divider">
+
+            OR LOG YOUR WALK MANUALLY
+
+        </div>
+
+
         <div class="card">
-            <h3>Distance</h3>
-            <p class="muted">Optional — enter when you're finished.</p>
+
+            <h3>Walk Stats</h3>
+
+            <p class="muted">
+                Enter the numbers from your Apple Watch
+                or another tracker.
+            </p>
+
+
+            <label class="muted">
+                Duration
+            </label>
+
+            <input id="manualWalkMinutes"
+                   type="number"
+                   step="1"
+                   min="1"
+                   placeholder="Minutes — Example: 35">
+
+
+            <label class="muted">
+                Distance
+            </label>
+
             <input id="walkDistance"
                    type="number"
                    step=".01"
-                   placeholder="Miles">
+                   min="0"
+                   placeholder="Miles — Example: 1.75">
+
 
             <button class="primary"
                     onclick="saveWalk()">
-                SAVE WALK
+
+                SAVE CHICO WALK 🐕
+
             </button>
+
         </div>
 
     </section>
 
 
+
     <!-- PROGRESS -->
+
     <section id="progress" class="page">
 
         <h2>Progress</h2>
 
+
         <div class="card">
+
             <h3>Body Weight</h3>
 
             <div style="display:flex; gap:8px;">
+
                 <input id="bodyWeight"
                        type="number"
                        step=".1"
@@ -384,28 +495,61 @@
 
                 <button class="secondary"
                         onclick="saveWeight()">
+
                     Save
+
                 </button>
+
             </div>
+
         </div>
+
 
         <div class="stat-grid">
-            <div class="stat">
-                <div class="muted">Lifts Completed</div>
-                <div id="progressLifts" class="stat-value">0</div>
-            </div>
 
             <div class="stat">
-                <div class="muted">Miles w/ Chico</div>
-                <div id="progressMiles" class="stat-value">0</div>
+
+                <div class="muted">
+                    Lifts Completed
+                </div>
+
+                <div id="progressLifts"
+                     class="stat-value">
+
+                    0
+
+                </div>
+
             </div>
+
+
+            <div class="stat">
+
+                <div class="muted">
+                    Miles w/ Chico
+                </div>
+
+                <div id="progressMiles"
+                     class="stat-value">
+
+                    0
+
+                </div>
+
+            </div>
+
         </div>
+
 
         <br>
 
+
         <div class="card">
+
             <h3>History</h3>
+
             <div id="history"></div>
+
         </div>
 
     </section>
@@ -413,265 +557,564 @@
 </div>
 
 
+
+<!-- NAVIGATION -->
+
 <nav>
+
 <div class="nav-inner">
-    <button onclick="showPage('home')" id="nav-home" class="active">
+
+
+    <button onclick="showPage('home')"
+            id="nav-home"
+            class="active">
+
         🏠<br>Today
+
     </button>
 
-    <button onclick="openLift()" id="nav-workout">
+
+    <button onclick="openLift()"
+            id="nav-workout">
+
         🏋️<br>Lift
+
     </button>
 
-    <button onclick="showPage('walk')" id="nav-walk">
+
+    <button onclick="showPage('walk')"
+            id="nav-walk">
+
         🐕<br>Chico
+
     </button>
 
-    <button onclick="showPage('progress')" id="nav-progress">
+
+    <button onclick="showPage('progress')"
+            id="nav-progress">
+
         📈<br>Progress
+
     </button>
+
+
 </div>
+
 </nav>
+
 
 
 <script>
 
-/* -----------------------------
-   PROGRAM
------------------------------ */
+
+/* ============================
+   WORKOUT PROGRAM
+============================ */
+
 
 const program = {
 
+
     push: {
+
         title: "Push",
+
         exercises: [
+
             ["Barbell Bench Press",3,6,10],
+
             ["Incline Dumbbell Press",3,8,12],
+
             ["Shoulder Press",3,8,12],
+
             ["Lateral Raises",2,12,15],
+
             ["Cable Tricep Pushdowns",2,10,15]
+
         ]
+
     },
+
 
     pull: {
+
         title: "Pull",
+
         exercises: [
+
             ["Barbell Row",3,6,10],
+
             ["Cable Lat Pulldown",3,8,12],
+
             ["One-Arm Dumbbell Row",2,10,12],
+
             ["Rear-Delt Fly",2,12,15],
+
             ["Dumbbell Curls",3,10,15]
+
         ]
+
     },
 
+
     legs: {
+
         title: "Legs + Core",
+
         exercises: [
+
             ["Barbell Squat",3,6,10],
+
             ["Romanian Deadlift",3,8,12],
+
             ["Dumbbell Walking Lunges",2,10,12],
+
             ["Calf Raises",2,15,20],
+
             ["Plank",2,30,60]
+
         ]
+
     }
 
 };
 
 
+
+/* ============================
+   WEEKLY SCHEDULE
+============================ */
+
+
 const schedule = [
-    {short:"SUN", type:"rest", title:"Rest"},
-    {short:"MON", type:"push", title:"Push"},
-    {short:"TUE", type:"walk", title:"Chico"},
-    {short:"WED", type:"pull", title:"Pull"},
-    {short:"THU", type:"walk", title:"Chico"},
-    {short:"FRI", type:"legs", title:"Legs"},
-    {short:"SAT", type:"walk", title:"Chico"}
+
+    {
+        short:"SUN",
+        type:"rest",
+        title:"Rest"
+    },
+
+    {
+        short:"MON",
+        type:"push",
+        title:"Push"
+    },
+
+    {
+        short:"TUE",
+        type:"walk",
+        title:"Chico"
+    },
+
+    {
+        short:"WED",
+        type:"pull",
+        title:"Pull"
+    },
+
+    {
+        short:"THU",
+        type:"walk",
+        title:"Chico"
+    },
+
+    {
+        short:"FRI",
+        type:"legs",
+        title:"Legs"
+    },
+
+    {
+        short:"SAT",
+        type:"walk",
+        title:"Chico"
+    }
+
 ];
 
 
-/* -----------------------------
+
+/* ============================
    STORAGE
------------------------------ */
+============================ */
+
 
 function loadData(key, fallback = []) {
-    return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback));
+
+    return JSON.parse(
+        localStorage.getItem(key)
+        || JSON.stringify(fallback)
+    );
+
 }
+
 
 function saveData(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
+
+    localStorage.setItem(
+        key,
+        JSON.stringify(data)
+    );
+
 }
 
 
-/* -----------------------------
+
+/* ============================
    NAVIGATION
------------------------------ */
+============================ */
+
 
 function showPage(page) {
 
+
     document.querySelectorAll(".page")
-        .forEach(p => p.classList.remove("active"));
+        .forEach(p =>
+            p.classList.remove("active")
+        );
+
 
     document.getElementById(page)
         .classList.add("active");
 
+
     document.querySelectorAll("nav button")
-        .forEach(b => b.classList.remove("active"));
+        .forEach(b =>
+            b.classList.remove("active")
+        );
 
-    const nav = document.getElementById("nav-" + page);
 
-    if(nav) nav.classList.add("active");
+    const nav =
+        document.getElementById(
+            "nav-" + page
+        );
+
+
+    if(nav)
+        nav.classList.add("active");
+
 
     if(page === "progress")
         updateProgress();
+
 }
 
 
-/* -----------------------------
+
+/* ============================
    HOME
------------------------------ */
+============================ */
+
 
 function buildHome() {
 
-    const day = new Date().getDay();
-    const today = schedule[day];
 
-    document.getElementById("todayType").innerText =
+    const day =
+        new Date().getDay();
+
+
+    const today =
+        schedule[day];
+
+
+    document.getElementById(
+        "todayType"
+    ).innerText =
+
         today.short + " • TODAY";
 
-    document.getElementById("todayTitle").innerText =
+
+    document.getElementById(
+        "todayTitle"
+    ).innerText =
+
         today.type === "walk"
         ? "🐕 Walk Chico"
         : today.title;
 
+
+
     let description = "";
 
+
     if(today.type === "walk")
-        description = "30–45 minute walk";
+
+        description =
+            "30–45 minute walk";
+
 
     else if(today.type === "rest")
-        description = "Recovery day";
+
+        description =
+            "Recovery day";
+
 
     else
-        description = "30–45 minute bodybuilding session";
 
-    document.getElementById("todayDescription").innerText =
-        description;
+        description =
+            "30–45 minute bodybuilding session";
 
-    const start = document.getElementById("startToday");
+
+
+    document.getElementById(
+        "todayDescription"
+    ).innerText = description;
+
+
+
+    const start =
+        document.getElementById(
+            "startToday"
+        );
+
+
 
     if(today.type === "walk") {
 
-        start.innerText = "START WALK";
 
-        start.onclick = () => showPage("walk");
+        start.innerText =
+            "START WALK";
+
+
+        start.onclick = () =>
+            showPage("walk");
 
     }
 
+
     else if(today.type === "rest") {
 
-        start.innerText = "RECOVERY DAY";
+
+        start.innerText =
+            "RECOVERY DAY";
+
 
         start.onclick = null;
 
     }
 
+
     else {
 
-        start.innerText = "START WORKOUT";
 
-        start.onclick = () => startWorkout(today.type);
+        start.innerText =
+            "START WORKOUT";
+
+
+        start.onclick = () =>
+            startWorkout(
+                today.type
+            );
 
     }
 
 
-    const week = document.getElementById("weekDisplay");
+
+    const week =
+        document.getElementById(
+            "weekDisplay"
+        );
+
 
     week.innerHTML = "";
 
-    schedule.forEach((d,i) => {
-
-        const div = document.createElement("div");
-
-        div.className =
-            "day" + (i === day ? " active" : "");
-
-        div.innerHTML =
-            `<strong>${d.short}</strong><br>${d.title}`;
-
-        week.appendChild(div);
-
-    });
 
 
-    const history = loadData("lunaHistory");
+    schedule.forEach(
+        (d,i) => {
 
-    document.getElementById("workoutCount").innerText =
-        history.filter(x => x.type === "lift").length;
 
-    document.getElementById("walkCount").innerText =
-        history.filter(x => x.type === "walk").length;
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+
+                "day"
+                +
+                (
+                    i === day
+                    ? " active"
+                    : ""
+                );
+
+
+            div.innerHTML =
+
+                `<strong>${d.short}</strong>
+                 <br>
+                 ${d.title}`;
+
+
+            week.appendChild(div);
+
+        }
+    );
+
+
+
+    const history =
+        loadData(
+            "lunaHistory"
+        );
+
+
+    document.getElementById(
+        "workoutCount"
+    ).innerText =
+
+        history.filter(
+            x =>
+                x.type === "lift"
+        ).length;
+
+
+
+    document.getElementById(
+        "walkCount"
+    ).innerText =
+
+        history.filter(
+            x =>
+                x.type === "walk"
+        ).length;
+
 }
 
 
-/* -----------------------------
-   WORKOUT
------------------------------ */
+
+/* ============================
+   START WORKOUT
+============================ */
+
 
 let currentWorkout = null;
 
+
+
 function openLift() {
 
-    const day = new Date().getDay();
+
+    const day =
+        new Date().getDay();
+
 
     let type =
-        day === 1 ? "push" :
-        day === 3 ? "pull" :
-        day === 5 ? "legs" :
-        "push";
+
+        day === 1
+        ? "push"
+
+        : day === 3
+        ? "pull"
+
+        : day === 5
+        ? "legs"
+
+        : "push";
+
 
     startWorkout(type);
+
 }
+
 
 
 function startWorkout(type) {
 
+
     currentWorkout = type;
+
 
     showPage("workout");
 
-    const workout = program[type];
 
-    document.getElementById("workoutTitle").innerText =
+    const workout =
+        program[type];
+
+
+    document.getElementById(
+        "workoutTitle"
+    ).innerText =
         workout.title;
 
+
+
     const container =
-        document.getElementById("exerciseContainer");
+        document.getElementById(
+            "exerciseContainer"
+        );
+
 
     container.innerHTML = "";
 
-    workout.exercises.forEach((exercise, exerciseIndex) => {
 
-        const [name, sets, min, max] = exercise;
 
-        const previous = getPreviousExercise(name);
+    workout.exercises.forEach(
+        (
+            exercise,
+            exerciseIndex
+        ) => {
 
-        const card = document.createElement("div");
 
-        card.className = "card exercise";
+        const [
+            name,
+            sets,
+            min,
+            max
+        ] = exercise;
+
+
+
+        const previous =
+            getPreviousExercise(
+                name
+            );
+
+
+
+        const card =
+            document.createElement(
+                "div"
+            );
+
+
+        card.className =
+            "card exercise";
+
+
 
         let previousText =
+
             previous
+
             ? `Last: ${previous}`
+
             : "No previous workout";
+
+
 
         let rows = "";
 
-        for(let set = 1; set <= sets; set++) {
+
+
+        for(
+            let set = 1;
+            set <= sets;
+            set++
+        ) {
+
 
             rows += `
+
                 <div class="set-row">
 
-                    <strong>${set}</strong>
+
+                    <strong>
+                        ${set}
+                    </strong>
+
 
                     <input
                         class="weight"
@@ -680,6 +1123,7 @@ function startWorkout(type) {
                         type="number"
                         placeholder="lb">
 
+
                     <input
                         class="reps"
                         data-exercise="${exerciseIndex}"
@@ -687,405 +1131,1038 @@ function startWorkout(type) {
                         type="number"
                         placeholder="reps">
 
+
                     <button
                         class="check"
                         onclick="completeSet(this)">
+
                         ✓
+
                     </button>
 
+
                 </div>
+
             `;
+
         }
 
+
+
         card.innerHTML = `
+
+
             <div class="exercise-title">
-                <h3>${name}</h3>
-                <span class="muted">${sets} × ${min}-${max}</span>
+
+
+                <h3>
+                    ${name}
+                </h3>
+
+
+                <span class="muted">
+
+                    ${sets} ×
+                    ${min}-${max}
+
+                </span>
+
+
             </div>
+
 
             <div class="muted"
                  style="font-size:13px;">
-                 ${previousText}
+
+                ${previousText}
+
             </div>
 
+
             ${rows}
+
         `;
 
-        container.appendChild(card);
+
+
+        container.appendChild(
+            card
+        );
 
     });
+
 }
+
+
+
+/* ============================
+   SET COMPLETION
+============================ */
 
 
 function completeSet(button) {
 
-    button.classList.toggle("done");
 
-    if(button.classList.contains("done"))
+    button.classList.toggle(
+        "done"
+    );
+
+
+    if(
+        button.classList.contains(
+            "done"
+        )
+    )
+
         startRest(90);
+
 }
 
 
-/* -----------------------------
+
+/* ============================
    REST TIMER
------------------------------ */
+============================ */
+
 
 let restInterval;
 
+
+
 function startRest(seconds) {
 
-    clearInterval(restInterval);
 
-    let remaining = seconds;
+    clearInterval(
+        restInterval
+    );
 
-    displayRest(remaining);
 
-    restInterval = setInterval(() => {
+    let remaining =
+        seconds;
 
-        remaining--;
 
-        displayRest(remaining);
+    displayRest(
+        remaining
+    );
 
-        if(remaining <= 0) {
 
-            clearInterval(restInterval);
+    restInterval =
+        setInterval(
+            () => {
 
-            if(navigator.vibrate)
-                navigator.vibrate([200,100,200]);
 
-        }
+                remaining--;
 
-    },1000);
+
+                displayRest(
+                    remaining
+                );
+
+
+                if(
+                    remaining <= 0
+                ) {
+
+
+                    clearInterval(
+                        restInterval
+                    );
+
+
+                    if(
+                        navigator.vibrate
+                    )
+
+                        navigator.vibrate(
+                            [
+                                200,
+                                100,
+                                200
+                            ]
+                        );
+
+                }
+
+
+            },
+            1000
+        );
+
 }
+
 
 
 function displayRest(seconds) {
 
-    const min = Math.floor(seconds / 60);
-    const sec = seconds % 60;
 
-    document.getElementById("restTimer").innerText =
+    const min =
+        Math.floor(
+            seconds / 60
+        );
+
+
+    const sec =
+        seconds % 60;
+
+
+    document.getElementById(
+        "restTimer"
+    ).innerText =
+
         `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
+
 }
 
 
-/* -----------------------------
-   SAVE WORKOUT
------------------------------ */
+
+/* ============================
+   FINISH WORKOUT
+============================ */
+
 
 function finishWorkout() {
 
-    if(!currentWorkout) return;
 
-    const workout = program[currentWorkout];
+    if(!currentWorkout)
+        return;
+
+
+
+    const workout =
+        program[
+            currentWorkout
+        ];
+
+
 
     const results = [];
 
-    workout.exercises.forEach((exercise,index) => {
 
-        const [name,,min,max] = exercise;
+
+    workout.exercises.forEach(
+        (
+            exercise,
+            index
+        ) => {
+
+
+        const [
+            name,
+            ,
+            min,
+            max
+        ] = exercise;
+
+
 
         const weights =
+
             document.querySelectorAll(
+
                 `.weight[data-exercise="${index}"]`
+
             );
 
+
+
         const reps =
+
             document.querySelectorAll(
+
                 `.reps[data-exercise="${index}"]`
+
             );
+
+
 
         const sets = [];
 
-        weights.forEach((input,i) => {
 
-            if(input.value || reps[i].value) {
+
+        weights.forEach(
+            (
+                input,
+                i
+            ) => {
+
+
+            if(
+                input.value
+                ||
+                reps[i].value
+            ) {
+
 
                 sets.push({
-                    weight: Number(input.value),
-                    reps: Number(reps[i].value)
+
+                    weight:
+                        Number(
+                            input.value
+                        ),
+
+                    reps:
+                        Number(
+                            reps[i].value
+                        )
+
                 });
 
             }
 
         });
 
+
+
         results.push({
+
             name,
             min,
             max,
             sets
+
         });
 
     });
 
 
-    const history = loadData("lunaHistory");
+
+    const history =
+        loadData(
+            "lunaHistory"
+        );
+
+
 
     history.unshift({
-        type: "lift",
-        workout: currentWorkout,
-        title: workout.title,
-        date: new Date().toISOString(),
-        exercises: results
+
+
+        type:
+            "lift",
+
+
+        workout:
+            currentWorkout,
+
+
+        title:
+            workout.title,
+
+
+        date:
+            new Date()
+            .toISOString(),
+
+
+        exercises:
+            results
+
+
     });
 
-    saveData("lunaHistory",history);
 
-    alert("Workout saved 💪");
+
+    saveData(
+        "lunaHistory",
+        history
+    );
+
+
+
+    alert(
+        "Workout saved 💪"
+    );
+
+
 
     buildHome();
 
-    showPage("home");
+
+    showPage(
+        "home"
+    );
+
 }
 
 
-/* -----------------------------
+
+/* ============================
    PREVIOUS PERFORMANCE
------------------------------ */
+============================ */
+
 
 function getPreviousExercise(name) {
 
-    const history = loadData("lunaHistory");
 
-    for(const workout of history) {
+    const history =
+        loadData(
+            "lunaHistory"
+        );
 
-        if(workout.type !== "lift")
+
+    for(
+        const workout
+        of history
+    ) {
+
+
+        if(
+            workout.type
+            !==
+            "lift"
+        )
+
             continue;
 
+
+
         const exercise =
-            workout.exercises?.find(
-                x => x.name === name
+
+            workout.exercises
+            ?.find(
+
+                x =>
+                    x.name
+                    ===
+                    name
+
             );
 
-        if(exercise && exercise.sets.length) {
+
+
+        if(
+            exercise
+            &&
+            exercise.sets.length
+        ) {
+
 
             return exercise.sets
-                .map(s => `${s.weight}×${s.reps}`)
+
+                .map(
+
+                    s =>
+                        `${s.weight}×${s.reps}`
+
+                )
+
                 .join(", ");
 
         }
+
     }
 
+
     return null;
+
 }
 
 
-/* -----------------------------
+
+/* ============================
    CHICO WALK TIMER
------------------------------ */
+============================ */
+
 
 let walkSeconds = 0;
+
 let walkInterval = null;
+
 let walking = false;
+
+
 
 function toggleWalk() {
 
+
     const button =
-        document.getElementById("walkButton");
+
+        document.getElementById(
+            "walkButton"
+        );
+
+
 
     if(!walking) {
 
+
         walking = true;
 
-        button.innerText = "STOP WALK";
 
-        button.classList.add("danger");
+        button.innerText =
+            "STOP WALK";
 
-        walkInterval = setInterval(() => {
 
-            walkSeconds++;
+        button.classList.add(
+            "danger"
+        );
 
-            updateWalkTimer();
 
-        },1000);
+        walkInterval =
+
+            setInterval(
+                () => {
+
+
+                    walkSeconds++;
+
+
+                    updateWalkTimer();
+
+
+                },
+                1000
+            );
 
     }
+
 
     else {
 
+
         walking = false;
 
-        clearInterval(walkInterval);
 
-        button.innerText = "RESUME WALK";
+        clearInterval(
+            walkInterval
+        );
 
-        button.classList.remove("danger");
+
+        button.innerText =
+            "RESUME WALK";
+
+
+        button.classList.remove(
+            "danger"
+        );
 
     }
+
 }
+
 
 
 function updateWalkTimer() {
 
-    const min = Math.floor(walkSeconds / 60);
-    const sec = walkSeconds % 60;
 
-    document.getElementById("walkTimer").innerText =
+    const min =
+
+        Math.floor(
+            walkSeconds / 60
+        );
+
+
+    const sec =
+
+        walkSeconds % 60;
+
+
+
+    document.getElementById(
+        "walkTimer"
+    ).innerText =
+
         `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
+
 }
+
+
+
+/* ============================
+   SAVE CHICO WALK
+============================ */
 
 
 function saveWalk() {
 
-    if(walkSeconds === 0) {
-        alert("Start your walk first.");
-        return;
-    }
 
-    clearInterval(walkInterval);
+    const manualMinutes =
 
-    walking = false;
+        Number(
+
+            document.getElementById(
+                "manualWalkMinutes"
+            ).value
+            ||
+            0
+
+        );
+
+
 
     const distance =
-        Number(document.getElementById("walkDistance").value || 0);
 
-    const history = loadData("lunaHistory");
+        Number(
+
+            document.getElementById(
+                "walkDistance"
+            ).value
+            ||
+            0
+
+        );
+
+
+
+    let duration =
+        walkSeconds;
+
+
+
+    /*
+       If you manually enter minutes,
+       Luna Training uses those minutes
+       instead of the timer.
+    */
+
+
+    if(
+        manualMinutes > 0
+    ) {
+
+        duration =
+            manualMinutes * 60;
+
+    }
+
+
+
+    if(
+        duration === 0
+    ) {
+
+
+        alert(
+
+            "Enter your walk time or use the walk timer first."
+
+        );
+
+
+        return;
+
+    }
+
+
+
+    clearInterval(
+        walkInterval
+    );
+
+
+    walking =
+        false;
+
+
+
+    const history =
+
+        loadData(
+            "lunaHistory"
+        );
+
+
 
     history.unshift({
-        type: "walk",
-        title: "Walk Chico",
-        date: new Date().toISOString(),
-        duration: walkSeconds,
-        distance
+
+
+        type:
+            "walk",
+
+
+        title:
+            "Walk Chico",
+
+
+        date:
+            new Date()
+            .toISOString(),
+
+
+        duration:
+            duration,
+
+
+        distance:
+            distance
+
+
     });
 
-    saveData("lunaHistory",history);
 
-    walkSeconds = 0;
+
+    saveData(
+        "lunaHistory",
+        history
+    );
+
+
+
+    /*
+       Reset walk screen
+    */
+
+
+    walkSeconds =
+        0;
+
 
     updateWalkTimer();
 
-    document.getElementById("walkDistance").value = "";
 
-    document.getElementById("walkButton").innerText =
+
+    document.getElementById(
+        "manualWalkMinutes"
+    ).value = "";
+
+
+
+    document.getElementById(
+        "walkDistance"
+    ).value = "";
+
+
+
+    const button =
+
+        document.getElementById(
+            "walkButton"
+        );
+
+
+    button.innerText =
         "START WALK";
 
-    alert("Chico walk saved 🐕");
+
+    button.classList.remove(
+        "danger"
+    );
+
+
+
+    alert(
+        "Chico walk saved 🐕"
+    );
+
+
 
     buildHome();
 
-    showPage("home");
+
+    showPage(
+        "home"
+    );
+
 }
 
 
-/* -----------------------------
+
+/* ============================
    BODY WEIGHT
------------------------------ */
+============================ */
+
 
 function saveWeight() {
 
+
     const value =
-        Number(document.getElementById("bodyWeight").value);
 
-    if(!value) return;
+        Number(
 
-    const weights = loadData("lunaWeights");
+            document.getElementById(
+                "bodyWeight"
+            ).value
+
+        );
+
+
+
+    if(!value)
+        return;
+
+
+
+    const weights =
+
+        loadData(
+            "lunaWeights"
+        );
+
+
 
     weights.unshift({
-        weight: value,
-        date: new Date().toISOString()
+
+
+        weight:
+            value,
+
+
+        date:
+            new Date()
+            .toISOString()
+
+
     });
 
-    saveData("lunaWeights",weights);
 
-    document.getElementById("bodyWeight").value = "";
+
+    saveData(
+        "lunaWeights",
+        weights
+    );
+
+
+
+    document.getElementById(
+        "bodyWeight"
+    ).value = "";
+
+
 
     updateProgress();
+
 }
 
 
-/* -----------------------------
+
+/* ============================
    PROGRESS
------------------------------ */
+============================ */
+
 
 function updateProgress() {
 
-    const history = loadData("lunaHistory");
 
-    const lifts =
-        history.filter(x => x.type === "lift");
+    const history =
 
-    const walks =
-        history.filter(x => x.type === "walk");
-
-    const miles =
-        walks.reduce(
-            (sum,w) => sum + (w.distance || 0),
-            0
+        loadData(
+            "lunaHistory"
         );
 
-    document.getElementById("progressLifts").innerText =
+
+
+    const lifts =
+
+        history.filter(
+
+            x =>
+                x.type
+                ===
+                "lift"
+
+        );
+
+
+
+    const walks =
+
+        history.filter(
+
+            x =>
+                x.type
+                ===
+                "walk"
+
+        );
+
+
+
+    const miles =
+
+        walks.reduce(
+
+            (
+                sum,
+                walk
+            ) =>
+
+                sum
+                +
+                (
+                    walk.distance
+                    ||
+                    0
+                ),
+
+            0
+
+        );
+
+
+
+    document.getElementById(
+        "progressLifts"
+    ).innerText =
+
         lifts.length;
 
-    document.getElementById("progressMiles").innerText =
+
+
+    document.getElementById(
+        "progressMiles"
+    ).innerText =
+
         miles.toFixed(1);
 
 
+
     const container =
-        document.getElementById("history");
 
-    container.innerHTML = "";
+        document.getElementById(
+            "history"
+        );
 
-    if(history.length === 0) {
+
+    container.innerHTML =
+        "";
+
+
+
+    if(
+        history.length
+        ===
+        0
+    ) {
+
 
         container.innerHTML =
-            `<div class="muted">No workouts yet.</div>`;
+
+            `<div class="muted">
+                No workouts yet.
+             </div>`;
+
 
         return;
+
     }
 
 
-    history.slice(0,20).forEach(item => {
 
-        const div =
-            document.createElement("div");
+    history
+    .slice(0,20)
+    .forEach(
 
-        div.className = "history-item";
+        item => {
 
-        const date =
-            new Date(item.date)
+
+            const div =
+
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "history-item";
+
+
+
+            const date =
+
+                new Date(
+                    item.date
+                )
+
                 .toLocaleDateString();
 
-        let detail = "";
 
-        if(item.type === "walk") {
 
-            detail =
-                `${Math.round(item.duration/60)} min`;
+            let detail = "";
 
-            if(item.distance)
-                detail += ` • ${item.distance} mi`;
+
+
+            if(
+                item.type
+                ===
+                "walk"
+            ) {
+
+
+                detail =
+
+                    `${Math.round(
+                        item.duration
+                        /
+                        60
+                    )} min`;
+
+
+
+                if(
+                    item.distance
+                )
+
+                    detail +=
+
+                        ` • ${item.distance} mi`;
+
+            }
+
+
+            else {
+
+
+                detail =
+
+                    item.exercises
+
+                    .filter(
+
+                        e =>
+                            e.sets.length
+
+                    )
+
+                    .length
+
+                    +
+
+                    " exercises";
+
+            }
+
+
+
+            div.innerHTML = `
+
+
+                <strong>
+
+                    ${item.title}
+
+                </strong>
+
+
+                <div class="muted">
+
+                    ${date}
+                    •
+                    ${detail}
+
+                </div>
+
+            `;
+
+
+
+            container.appendChild(
+                div
+            );
 
         }
 
-        else {
+    );
 
-            detail =
-                item.exercises
-                    .filter(e => e.sets.length)
-                    .length + " exercises";
-
-        }
-
-        div.innerHTML = `
-            <strong>${item.title}</strong>
-            <div class="muted">
-                ${date} • ${detail}
-            </div>
-        `;
-
-        container.appendChild(div);
-
-    });
 }
 
 
-/* -----------------------------
+
+/* ============================
    START APP
------------------------------ */
+============================ */
+
 
 buildHome();
+
 
 </script>
 
