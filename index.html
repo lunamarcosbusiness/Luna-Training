@@ -142,6 +142,7 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
 }
 
 .set-row {
@@ -213,6 +214,13 @@ label {
     gap: 10px;
 }
 
+.weight-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 16px;
+}
+
 .stat {
     background: var(--card2);
     border-radius: 14px;
@@ -222,6 +230,35 @@ label {
 .stat-value {
     font-size: 25px;
     font-weight: 800;
+}
+
+.weight-stat-value {
+    font-size: 20px;
+    font-weight: 800;
+    margin-top: 4px;
+}
+
+.chart-container {
+    width: 100%;
+    height: 250px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.walk-icon {
+    font-size: 45px;
+}
+
+.manual-divider {
+    text-align: center;
+    color: var(--muted);
+    margin: 8px 0 16px;
+    font-size: 13px;
+}
+
+.delete-button {
+    padding: 8px 11px;
+    font-size: 12px;
 }
 
 nav {
@@ -260,17 +297,6 @@ nav button.active {
 
 .page.active {
     display: block;
-}
-
-.walk-icon {
-    font-size: 45px;
-}
-
-.manual-divider {
-    text-align: center;
-    color: var(--muted);
-    margin: 8px 0 16px;
-    font-size: 13px;
 }
 </style>
 </head>
@@ -315,16 +341,12 @@ nav button.active {
 
             <div class="stat">
                 <div class="muted">Workouts</div>
-                <div id="workoutCount" class="stat-value">
-                    0
-                </div>
+                <div id="workoutCount" class="stat-value">0</div>
             </div>
 
             <div class="stat">
                 <div class="muted">Chico Walks</div>
-                <div id="walkCount" class="stat-value">
-                    0
-                </div>
+                <div id="walkCount" class="stat-value">0</div>
             </div>
 
         </div>
@@ -376,9 +398,7 @@ nav button.active {
 
         <button class="primary"
                 onclick="finishWorkout()">
-
             FINISH WORKOUT
-
         </button>
 
     </section>
@@ -388,7 +408,6 @@ nav button.active {
     <!-- CHICO WALK -->
 
     <section id="walk" class="page">
-
 
         <div class="card hero"
              style="text-align:center">
@@ -403,30 +422,22 @@ nav button.active {
                 Goal: 30–45 minutes
             </div>
 
-
             <div id="walkTimer"
                  class="timer">
-
                 00:00
-
             </div>
-
 
             <button id="walkButton"
                     class="primary"
                     onclick="toggleWalk()">
-
                 START WALK
-
             </button>
 
         </div>
 
 
         <div class="manual-divider">
-
             OR LOG YOUR WALK MANUALLY
-
         </div>
 
 
@@ -435,10 +446,8 @@ nav button.active {
             <h3>Walk Stats</h3>
 
             <p class="muted">
-                Enter the numbers from your Apple Watch
-                or another tracker.
+                Enter your walk manually or use numbers from your Apple Watch.
             </p>
-
 
             <label class="muted">
                 Duration
@@ -464,9 +473,7 @@ nav button.active {
 
             <button class="primary"
                     onclick="saveWalk()">
-
                 SAVE CHICO WALK 🐕
-
             </button>
 
         </div>
@@ -482,28 +489,110 @@ nav button.active {
         <h2>Progress</h2>
 
 
+        <!-- WEIGHT ENTRY -->
+
         <div class="card">
 
             <h3>Body Weight</h3>
+
+            <p class="muted">
+                Log your weight and Luna Training will track the trend.
+            </p>
 
             <div style="display:flex; gap:8px;">
 
                 <input id="bodyWeight"
                        type="number"
                        step=".1"
-                       placeholder="Weight">
+                       placeholder="Weight (lb)">
 
                 <button class="secondary"
                         onclick="saveWeight()">
-
                     Save
-
                 </button>
+
+            </div>
+
+
+            <div class="weight-stats">
+
+                <div class="stat">
+                    <div class="muted">
+                        Current
+                    </div>
+                    <div id="currentWeight"
+                         class="weight-stat-value">
+                        --
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="muted">
+                        Starting
+                    </div>
+                    <div id="startingWeight"
+                         class="weight-stat-value">
+                        --
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="muted">
+                        Change
+                    </div>
+                    <div id="weightChange"
+                         class="weight-stat-value">
+                        --
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="muted">
+                        Goal
+                    </div>
+                    <div class="weight-stat-value">
+                        250 lb
+                    </div>
+                </div>
 
             </div>
 
         </div>
 
+
+
+        <!-- WEIGHT GRAPH -->
+
+        <div class="card">
+
+            <h3>Weight Progress</h3>
+
+            <div class="muted">
+                Weight trend over time
+            </div>
+
+            <div id="weightChart"
+                 class="chart-container">
+            </div>
+
+        </div>
+
+
+
+        <!-- WEIGH IN HISTORY -->
+
+        <div class="card">
+
+            <h3>Recent Weigh-Ins</h3>
+
+            <div id="weightHistory">
+            </div>
+
+        </div>
+
+
+
+        <!-- TRAINING STATS -->
 
         <div class="stat-grid">
 
@@ -515,9 +604,7 @@ nav button.active {
 
                 <div id="progressLifts"
                      class="stat-value">
-
                     0
-
                 </div>
 
             </div>
@@ -531,9 +618,7 @@ nav button.active {
 
                 <div id="progressMiles"
                      class="stat-value">
-
                     0
-
                 </div>
 
             </div>
@@ -544,9 +629,11 @@ nav button.active {
         <br>
 
 
+        <!-- WORKOUT HISTORY -->
+
         <div class="card">
 
-            <h3>History</h3>
+            <h3>Training History</h3>
 
             <div id="history"></div>
 
@@ -564,39 +651,26 @@ nav button.active {
 
 <div class="nav-inner">
 
-
     <button onclick="showPage('home')"
             id="nav-home"
             class="active">
-
         🏠<br>Today
-
     </button>
-
 
     <button onclick="openLift()"
             id="nav-workout">
-
         🏋️<br>Lift
-
     </button>
-
 
     <button onclick="showPage('walk')"
             id="nav-walk">
-
         🐕<br>Chico
-
     </button>
-
 
     <button onclick="showPage('progress')"
             id="nav-progress">
-
         📈<br>Progress
-
     </button>
-
 
 </div>
 
@@ -606,31 +680,22 @@ nav button.active {
 
 <script>
 
-
 /* ============================
    WORKOUT PROGRAM
 ============================ */
 
-
 const program = {
-
 
     push: {
 
         title: "Push",
 
         exercises: [
-
             ["Barbell Bench Press",3,6,10],
-
             ["Incline Dumbbell Press",3,8,12],
-
             ["Shoulder Press",3,8,12],
-
             ["Lateral Raises",2,12,15],
-
             ["Cable Tricep Pushdowns",2,10,15]
-
         ]
 
     },
@@ -641,17 +706,11 @@ const program = {
         title: "Pull",
 
         exercises: [
-
             ["Barbell Row",3,6,10],
-
             ["Cable Lat Pulldown",3,8,12],
-
             ["One-Arm Dumbbell Row",2,10,12],
-
             ["Rear-Delt Fly",2,12,15],
-
             ["Dumbbell Curls",3,10,15]
-
         ]
 
     },
@@ -662,17 +721,11 @@ const program = {
         title: "Legs + Core",
 
         exercises: [
-
             ["Barbell Squat",3,6,10],
-
             ["Romanian Deadlift",3,8,12],
-
             ["Dumbbell Walking Lunges",2,10,12],
-
             ["Calf Raises",2,15,20],
-
             ["Plank",2,30,60]
-
         ]
 
     }
@@ -685,50 +738,15 @@ const program = {
    WEEKLY SCHEDULE
 ============================ */
 
-
 const schedule = [
 
-    {
-        short:"SUN",
-        type:"rest",
-        title:"Rest"
-    },
-
-    {
-        short:"MON",
-        type:"push",
-        title:"Push"
-    },
-
-    {
-        short:"TUE",
-        type:"walk",
-        title:"Chico"
-    },
-
-    {
-        short:"WED",
-        type:"pull",
-        title:"Pull"
-    },
-
-    {
-        short:"THU",
-        type:"walk",
-        title:"Chico"
-    },
-
-    {
-        short:"FRI",
-        type:"legs",
-        title:"Legs"
-    },
-
-    {
-        short:"SAT",
-        type:"walk",
-        title:"Chico"
-    }
+    {short:"SUN", type:"rest", title:"Rest"},
+    {short:"MON", type:"push", title:"Push"},
+    {short:"TUE", type:"walk", title:"Chico"},
+    {short:"WED", type:"pull", title:"Pull"},
+    {short:"THU", type:"walk", title:"Chico"},
+    {short:"FRI", type:"legs", title:"Legs"},
+    {short:"SAT", type:"walk", title:"Chico"}
 
 ];
 
@@ -738,13 +756,22 @@ const schedule = [
    STORAGE
 ============================ */
 
-
 function loadData(key, fallback = []) {
 
-    return JSON.parse(
-        localStorage.getItem(key)
-        || JSON.stringify(fallback)
-    );
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(key)
+            || JSON.stringify(fallback)
+        );
+
+    }
+
+    catch {
+
+        return fallback;
+
+    }
 
 }
 
@@ -764,9 +791,7 @@ function saveData(key, data) {
    NAVIGATION
 ============================ */
 
-
 function showPage(page) {
-
 
     document.querySelectorAll(".page")
         .forEach(p =>
@@ -805,9 +830,7 @@ function showPage(page) {
    HOME
 ============================ */
 
-
 function buildHome() {
-
 
     const day =
         new Date().getDay();
@@ -820,18 +843,15 @@ function buildHome() {
     document.getElementById(
         "todayType"
     ).innerText =
-
         today.short + " • TODAY";
 
 
     document.getElementById(
         "todayTitle"
     ).innerText =
-
         today.type === "walk"
         ? "🐕 Walk Chico"
         : today.title;
-
 
 
     let description = "";
@@ -855,11 +875,10 @@ function buildHome() {
             "30–45 minute bodybuilding session";
 
 
-
     document.getElementById(
         "todayDescription"
-    ).innerText = description;
-
+    ).innerText =
+        description;
 
 
     const start =
@@ -868,13 +887,12 @@ function buildHome() {
         );
 
 
-
     if(today.type === "walk") {
-
 
         start.innerText =
             "START WALK";
 
+        start.disabled = false;
 
         start.onclick = () =>
             showPage("walk");
@@ -884,10 +902,10 @@ function buildHome() {
 
     else if(today.type === "rest") {
 
-
         start.innerText =
             "RECOVERY DAY";
 
+        start.disabled = true;
 
         start.onclick = null;
 
@@ -896,10 +914,10 @@ function buildHome() {
 
     else {
 
-
         start.innerText =
             "START WORKOUT";
 
+        start.disabled = false;
 
         start.onclick = () =>
             startWorkout(
@@ -907,7 +925,6 @@ function buildHome() {
             );
 
     }
-
 
 
     const week =
@@ -919,10 +936,8 @@ function buildHome() {
     week.innerHTML = "";
 
 
-
     schedule.forEach(
         (d,i) => {
-
 
             const div =
                 document.createElement(
@@ -931,7 +946,6 @@ function buildHome() {
 
 
             div.className =
-
                 "day"
                 +
                 (
@@ -942,7 +956,6 @@ function buildHome() {
 
 
             div.innerHTML =
-
                 `<strong>${d.short}</strong>
                  <br>
                  ${d.title}`;
@@ -954,7 +967,6 @@ function buildHome() {
     );
 
 
-
     const history =
         loadData(
             "lunaHistory"
@@ -964,21 +976,16 @@ function buildHome() {
     document.getElementById(
         "workoutCount"
     ).innerText =
-
         history.filter(
-            x =>
-                x.type === "lift"
+            x => x.type === "lift"
         ).length;
-
 
 
     document.getElementById(
         "walkCount"
     ).innerText =
-
         history.filter(
-            x =>
-                x.type === "walk"
+            x => x.type === "walk"
         ).length;
 
 }
@@ -986,16 +993,13 @@ function buildHome() {
 
 
 /* ============================
-   START WORKOUT
+   WORKOUT
 ============================ */
-
 
 let currentWorkout = null;
 
 
-
 function openLift() {
-
 
     const day =
         new Date().getDay();
@@ -1023,7 +1027,6 @@ function openLift() {
 
 function startWorkout(type) {
 
-
     currentWorkout = type;
 
 
@@ -1040,7 +1043,6 @@ function startWorkout(type) {
         workout.title;
 
 
-
     const container =
         document.getElementById(
             "exerciseContainer"
@@ -1050,158 +1052,131 @@ function startWorkout(type) {
     container.innerHTML = "";
 
 
-
     workout.exercises.forEach(
         (
             exercise,
             exerciseIndex
         ) => {
 
-
-        const [
-            name,
-            sets,
-            min,
-            max
-        ] = exercise;
-
+            const [
+                name,
+                sets,
+                min,
+                max
+            ] = exercise;
 
 
-        const previous =
-            getPreviousExercise(
-                name
-            );
+            const previous =
+                getPreviousExercise(
+                    name
+                );
 
 
-
-        const card =
-            document.createElement(
-                "div"
-            );
-
-
-        card.className =
-            "card exercise";
+            const card =
+                document.createElement(
+                    "div"
+                );
 
 
-
-        let previousText =
-
-            previous
-
-            ? `Last: ${previous}`
-
-            : "No previous workout";
+            card.className =
+                "card exercise";
 
 
+            let previousText =
 
-        let rows = "";
+                previous
 
+                ? `Last: ${previous}`
 
-
-        for(
-            let set = 1;
-            set <= sets;
-            set++
-        ) {
+                : "No previous workout";
 
 
-            rows += `
-
-                <div class="set-row">
+            let rows = "";
 
 
-                    <strong>
-                        ${set}
-                    </strong>
+            for(
+                let set = 1;
+                set <= sets;
+                set++
+            ) {
+
+                rows += `
+
+                    <div class="set-row">
+
+                        <strong>
+                            ${set}
+                        </strong>
+
+                        <input
+                            class="weight"
+                            data-exercise="${exerciseIndex}"
+                            data-set="${set}"
+                            type="number"
+                            placeholder="lb">
+
+                        <input
+                            class="reps"
+                            data-exercise="${exerciseIndex}"
+                            data-set="${set}"
+                            type="number"
+                            placeholder="reps">
+
+                        <button
+                            class="check"
+                            onclick="completeSet(this)">
+                            ✓
+                        </button>
+
+                    </div>
+
+                `;
+
+            }
 
 
-                    <input
-                        class="weight"
-                        data-exercise="${exerciseIndex}"
-                        data-set="${set}"
-                        type="number"
-                        placeholder="lb">
+            card.innerHTML = `
 
+                <div class="exercise-title">
 
-                    <input
-                        class="reps"
-                        data-exercise="${exerciseIndex}"
-                        data-set="${set}"
-                        type="number"
-                        placeholder="reps">
+                    <h3>
+                        ${name}
+                    </h3>
 
-
-                    <button
-                        class="check"
-                        onclick="completeSet(this)">
-
-                        ✓
-
-                    </button>
-
+                    <span class="muted">
+                        ${sets} × ${min}-${max}
+                    </span>
 
                 </div>
 
+                <div class="muted"
+                     style="font-size:13px;">
+
+                    ${previousText}
+
+                </div>
+
+                ${rows}
+
             `;
 
+
+            container.appendChild(
+                card
+            );
+
         }
-
-
-
-        card.innerHTML = `
-
-
-            <div class="exercise-title">
-
-
-                <h3>
-                    ${name}
-                </h3>
-
-
-                <span class="muted">
-
-                    ${sets} ×
-                    ${min}-${max}
-
-                </span>
-
-
-            </div>
-
-
-            <div class="muted"
-                 style="font-size:13px;">
-
-                ${previousText}
-
-            </div>
-
-
-            ${rows}
-
-        `;
-
-
-
-        container.appendChild(
-            card
-        );
-
-    });
+    );
 
 }
 
 
 
 /* ============================
-   SET COMPLETION
+   COMPLETE SET
 ============================ */
 
-
 function completeSet(button) {
-
 
     button.classList.toggle(
         "done"
@@ -1212,9 +1187,11 @@ function completeSet(button) {
         button.classList.contains(
             "done"
         )
-    )
+    ) {
 
         startRest(90);
+
+    }
 
 }
 
@@ -1224,13 +1201,10 @@ function completeSet(button) {
    REST TIMER
 ============================ */
 
-
 let restInterval;
 
 
-
 function startRest(seconds) {
-
 
     clearInterval(
         restInterval
@@ -1250,7 +1224,6 @@ function startRest(seconds) {
         setInterval(
             () => {
 
-
                 remaining--;
 
 
@@ -1263,7 +1236,6 @@ function startRest(seconds) {
                     remaining <= 0
                 ) {
 
-
                     clearInterval(
                         restInterval
                     );
@@ -1271,18 +1243,15 @@ function startRest(seconds) {
 
                     if(
                         navigator.vibrate
-                    )
+                    ) {
 
                         navigator.vibrate(
-                            [
-                                200,
-                                100,
-                                200
-                            ]
+                            [200,100,200]
                         );
 
-                }
+                    }
 
+                }
 
             },
             1000
@@ -1293,7 +1262,6 @@ function startRest(seconds) {
 
 
 function displayRest(seconds) {
-
 
     const min =
         Math.floor(
@@ -1308,7 +1276,6 @@ function displayRest(seconds) {
     document.getElementById(
         "restTimer"
     ).innerText =
-
         `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
 
 }
@@ -1319,13 +1286,10 @@ function displayRest(seconds) {
    FINISH WORKOUT
 ============================ */
 
-
 function finishWorkout() {
-
 
     if(!currentWorkout)
         return;
-
 
 
     const workout =
@@ -1334,9 +1298,7 @@ function finishWorkout() {
         ];
 
 
-
     const results = [];
-
 
 
     workout.exercises.forEach(
@@ -1345,85 +1307,72 @@ function finishWorkout() {
             index
         ) => {
 
-
-        const [
-            name,
-            ,
-            min,
-            max
-        ] = exercise;
-
+            const [
+                name,
+                ,
+                min,
+                max
+            ] = exercise;
 
 
-        const weights =
+            const weights =
+                document.querySelectorAll(
+                    `.weight[data-exercise="${index}"]`
+                );
 
-            document.querySelectorAll(
 
-                `.weight[data-exercise="${index}"]`
+            const reps =
+                document.querySelectorAll(
+                    `.reps[data-exercise="${index}"]`
+                );
 
+
+            const sets = [];
+
+
+            weights.forEach(
+                (
+                    input,
+                    i
+                ) => {
+
+                    if(
+                        input.value
+                        ||
+                        reps[i].value
+                    ) {
+
+                        sets.push({
+
+                            weight:
+                                Number(
+                                    input.value
+                                ),
+
+                            reps:
+                                Number(
+                                    reps[i].value
+                                )
+
+                        });
+
+                    }
+
+                }
             );
 
 
+            results.push({
 
-        const reps =
+                name,
+                min,
+                max,
+                sets
 
-            document.querySelectorAll(
+            });
 
-                `.reps[data-exercise="${index}"]`
-
-            );
-
-
-
-        const sets = [];
-
-
-
-        weights.forEach(
-            (
-                input,
-                i
-            ) => {
-
-
-            if(
-                input.value
-                ||
-                reps[i].value
-            ) {
-
-
-                sets.push({
-
-                    weight:
-                        Number(
-                            input.value
-                        ),
-
-                    reps:
-                        Number(
-                            reps[i].value
-                        )
-
-                });
-
-            }
-
-        });
-
-
-
-        results.push({
-
-            name,
-            min,
-            max,
-            sets
-
-        });
-
-    });
-
+        }
+    );
 
 
     const history =
@@ -1432,33 +1381,25 @@ function finishWorkout() {
         );
 
 
-
     history.unshift({
-
 
         type:
             "lift",
 
-
         workout:
             currentWorkout,
 
-
         title:
             workout.title,
-
 
         date:
             new Date()
             .toISOString(),
 
-
         exercises:
             results
 
-
     });
-
 
 
     saveData(
@@ -1467,11 +1408,9 @@ function finishWorkout() {
     );
 
 
-
     alert(
         "Workout saved 💪"
     );
-
 
 
     buildHome();
@@ -1489,9 +1428,7 @@ function finishWorkout() {
    PREVIOUS PERFORMANCE
 ============================ */
 
-
 function getPreviousExercise(name) {
-
 
     const history =
         loadData(
@@ -1504,7 +1441,6 @@ function getPreviousExercise(name) {
         of history
     ) {
 
-
         if(
             workout.type
             !==
@@ -1514,19 +1450,12 @@ function getPreviousExercise(name) {
             continue;
 
 
-
         const exercise =
-
             workout.exercises
             ?.find(
-
                 x =>
-                    x.name
-                    ===
-                    name
-
+                    x.name === name
             );
-
 
 
         if(
@@ -1535,14 +1464,11 @@ function getPreviousExercise(name) {
             exercise.sets.length
         ) {
 
-
             return exercise.sets
 
                 .map(
-
                     s =>
                         `${s.weight}×${s.reps}`
-
                 )
 
                 .join(", ");
@@ -1559,9 +1485,8 @@ function getPreviousExercise(name) {
 
 
 /* ============================
-   CHICO WALK TIMER
+   CHICO WALK
 ============================ */
-
 
 let walkSeconds = 0;
 
@@ -1570,20 +1495,15 @@ let walkInterval = null;
 let walking = false;
 
 
-
 function toggleWalk() {
 
-
     const button =
-
         document.getElementById(
             "walkButton"
         );
 
 
-
     if(!walking) {
-
 
         walking = true;
 
@@ -1598,16 +1518,12 @@ function toggleWalk() {
 
 
         walkInterval =
-
             setInterval(
                 () => {
 
-
                     walkSeconds++;
 
-
                     updateWalkTimer();
-
 
                 },
                 1000
@@ -1617,7 +1533,6 @@ function toggleWalk() {
 
 
     else {
-
 
         walking = false;
 
@@ -1643,24 +1558,19 @@ function toggleWalk() {
 
 function updateWalkTimer() {
 
-
     const min =
-
         Math.floor(
             walkSeconds / 60
         );
 
 
     const sec =
-
         walkSeconds % 60;
-
 
 
     document.getElementById(
         "walkTimer"
     ).innerText =
-
         `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
 
 }
@@ -1671,48 +1581,30 @@ function updateWalkTimer() {
    SAVE CHICO WALK
 ============================ */
 
-
 function saveWalk() {
 
-
     const manualMinutes =
-
         Number(
-
             document.getElementById(
                 "manualWalkMinutes"
             ).value
             ||
             0
-
         );
 
 
-
     const distance =
-
         Number(
-
             document.getElementById(
                 "walkDistance"
             ).value
             ||
             0
-
         );
-
 
 
     let duration =
         walkSeconds;
-
-
-
-    /*
-       If you manually enter minutes,
-       Luna Training uses those minutes
-       instead of the timer.
-    */
 
 
     if(
@@ -1725,23 +1617,17 @@ function saveWalk() {
     }
 
 
-
     if(
         duration === 0
     ) {
 
-
         alert(
-
             "Enter your walk time or use the walk timer first."
-
         );
-
 
         return;
 
     }
-
 
 
     clearInterval(
@@ -1753,53 +1639,37 @@ function saveWalk() {
         false;
 
 
-
     const history =
-
         loadData(
             "lunaHistory"
         );
 
 
-
     history.unshift({
-
 
         type:
             "walk",
 
-
         title:
             "Walk Chico",
-
 
         date:
             new Date()
             .toISOString(),
 
-
         duration:
             duration,
-
 
         distance:
             distance
 
-
     });
-
 
 
     saveData(
         "lunaHistory",
         history
     );
-
-
-
-    /*
-       Reset walk screen
-    */
 
 
     walkSeconds =
@@ -1809,11 +1679,9 @@ function saveWalk() {
     updateWalkTimer();
 
 
-
     document.getElementById(
         "manualWalkMinutes"
     ).value = "";
-
 
 
     document.getElementById(
@@ -1821,9 +1689,7 @@ function saveWalk() {
     ).value = "";
 
 
-
     const button =
-
         document.getElementById(
             "walkButton"
         );
@@ -1838,11 +1704,9 @@ function saveWalk() {
     );
 
 
-
     alert(
         "Chico walk saved 🐕"
     );
-
 
 
     buildHome();
@@ -1857,52 +1721,50 @@ function saveWalk() {
 
 
 /* ============================
-   BODY WEIGHT
+   SAVE BODY WEIGHT
 ============================ */
-
 
 function saveWeight() {
 
-
     const value =
-
         Number(
-
             document.getElementById(
                 "bodyWeight"
             ).value
-
         );
 
 
+    if(
+        !value
+        ||
+        value <= 0
+    ) {
 
-    if(!value)
+        alert(
+            "Enter your weight first."
+        );
+
         return;
 
+    }
 
 
     const weights =
-
         loadData(
             "lunaWeights"
         );
 
 
-
     weights.unshift({
-
 
         weight:
             value,
-
 
         date:
             new Date()
             .toISOString()
 
-
     });
-
 
 
     saveData(
@@ -1911,11 +1773,9 @@ function saveWeight() {
     );
 
 
-
     document.getElementById(
         "bodyWeight"
     ).value = "";
-
 
 
     updateProgress();
@@ -1925,51 +1785,662 @@ function saveWeight() {
 
 
 /* ============================
-   PROGRESS
+   WEIGHT TRACKER
 ============================ */
 
+function updateWeightTracker() {
+
+    const weights =
+        loadData(
+            "lunaWeights"
+        );
+
+
+    const currentDisplay =
+        document.getElementById(
+            "currentWeight"
+        );
+
+
+    const startingDisplay =
+        document.getElementById(
+            "startingWeight"
+        );
+
+
+    const changeDisplay =
+        document.getElementById(
+            "weightChange"
+        );
+
+
+    const historyDisplay =
+        document.getElementById(
+            "weightHistory"
+        );
+
+
+    const chart =
+        document.getElementById(
+            "weightChart"
+        );
+
+
+    if(
+        weights.length === 0
+    ) {
+
+        currentDisplay.innerText =
+            "--";
+
+
+        startingDisplay.innerText =
+            "--";
+
+
+        changeDisplay.innerText =
+            "--";
+
+
+        historyDisplay.innerHTML =
+
+            `<div class="muted">
+                No weigh-ins yet.
+            </div>`;
+
+
+        chart.innerHTML =
+
+            `<div class="muted"
+                  style="
+                    text-align:center;
+                    padding-top:95px;
+                  ">
+
+                Add your first weigh-in to start your graph.
+
+            </div>`;
+
+
+        return;
+
+    }
+
+
+    const current =
+        Number(
+            weights[0].weight
+        );
+
+
+    const starting =
+        Number(
+            weights[
+                weights.length - 1
+            ].weight
+        );
+
+
+    const change =
+        current - starting;
+
+
+    currentDisplay.innerText =
+        current.toFixed(1)
+        +
+        " lb";
+
+
+    startingDisplay.innerText =
+        starting.toFixed(1)
+        +
+        " lb";
+
+
+    if(
+        change > 0
+    ) {
+
+        changeDisplay.innerText =
+            "+"
+            +
+            change.toFixed(1)
+            +
+            " lb";
+
+    }
+
+    else {
+
+        changeDisplay.innerText =
+            change.toFixed(1)
+            +
+            " lb";
+
+    }
+
+
+    historyDisplay.innerHTML =
+        "";
+
+
+    weights
+        .slice(0,10)
+        .forEach(
+            (
+                entry,
+                index
+            ) => {
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                div.className =
+                    "history-item";
+
+
+                const date =
+                    new Date(
+                        entry.date
+                    )
+                    .toLocaleDateString();
+
+
+                div.innerHTML = `
+
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                        gap:10px;
+                    ">
+
+                        <div>
+
+                            <strong>
+                                ${Number(entry.weight).toFixed(1)} lb
+                            </strong>
+
+                            <div class="muted">
+                                ${date}
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="secondary delete-button"
+                            onclick="deleteWeight(${index})">
+
+                            Delete
+
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                historyDisplay.appendChild(
+                    div
+                );
+
+            }
+        );
+
+
+    drawWeightChart(
+        weights
+    );
+
+}
+
+
+
+/* ============================
+   DELETE WEIGHT
+============================ */
+
+function deleteWeight(index) {
+
+    const weights =
+        loadData(
+            "lunaWeights"
+        );
+
+
+    if(
+        !confirm(
+            "Delete this weigh-in?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    weights.splice(
+        index,
+        1
+    );
+
+
+    saveData(
+        "lunaWeights",
+        weights
+    );
+
+
+    updateProgress();
+
+}
+
+
+
+/* ============================
+   DRAW WEIGHT GRAPH
+============================ */
+
+function drawWeightChart(weights) {
+
+    const chart =
+        document.getElementById(
+            "weightChart"
+        );
+
+
+    if(!chart)
+        return;
+
+
+    const data =
+        [...weights]
+        .reverse();
+
+
+    if(
+        data.length === 0
+    )
+        return;
+
+
+    const width =
+        500;
+
+
+    const height =
+        230;
+
+
+    const paddingLeft =
+        45;
+
+
+    const paddingRight =
+        20;
+
+
+    const paddingTop =
+        25;
+
+
+    const paddingBottom =
+        35;
+
+
+    const goalWeight =
+        250;
+
+
+    const values =
+        data.map(
+            item =>
+                Number(
+                    item.weight
+                )
+        );
+
+
+    const minWeight =
+        Math.floor(
+            Math.min(
+                ...values,
+                goalWeight
+            )
+            -
+            5
+        );
+
+
+    const maxWeight =
+        Math.ceil(
+            Math.max(
+                ...values,
+                goalWeight
+            )
+            +
+            5
+        );
+
+
+    function getX(index) {
+
+        if(
+            data.length === 1
+        ) {
+
+            return (
+                paddingLeft
+                +
+                width
+                -
+                paddingRight
+            ) / 2;
+
+        }
+
+
+        return paddingLeft
+            +
+            (
+                index
+                *
+                (
+                    width
+                    -
+                    paddingLeft
+                    -
+                    paddingRight
+                )
+                /
+                (
+                    data.length - 1
+                )
+            );
+
+    }
+
+
+    function getY(weight) {
+
+        return height
+            -
+            paddingBottom
+            -
+            (
+                (
+                    weight
+                    -
+                    minWeight
+                )
+                /
+                (
+                    maxWeight
+                    -
+                    minWeight
+                )
+                *
+                (
+                    height
+                    -
+                    paddingTop
+                    -
+                    paddingBottom
+                )
+            );
+
+    }
+
+
+    const points =
+        data.map(
+            (
+                item,
+                index
+            ) =>
+
+                `${getX(index)},${getY(Number(item.weight))}`
+
+        )
+        .join(" ");
+
+
+    const circles =
+        data.map(
+            (
+                item,
+                index
+            ) => `
+
+                <circle
+
+                    cx="${getX(index)}"
+
+                    cy="${getY(Number(item.weight))}"
+
+                    r="5"
+
+                    fill="white"
+
+                />
+
+            `
+        )
+        .join("");
+
+
+    const goalY =
+        getY(
+            goalWeight
+        );
+
+
+    const topLabel =
+        maxWeight;
+
+
+    const middleLabel =
+        (
+            (
+                maxWeight
+                +
+                minWeight
+            )
+            /
+            2
+        )
+        .toFixed(0);
+
+
+    const bottomLabel =
+        minWeight;
+
+
+    const current =
+        data[
+            data.length - 1
+        ];
+
+
+    const currentX =
+        getX(
+            data.length - 1
+        );
+
+
+    const currentY =
+        getY(
+            Number(
+                current.weight
+            )
+        );
+
+
+    chart.innerHTML = `
+
+        <svg
+            viewBox="0 0 ${width} ${height}"
+            width="100%"
+            height="100%"
+            preserveAspectRatio="none">
+
+
+            <!-- GRID -->
+
+            <line
+                x1="${paddingLeft}"
+                y1="${paddingTop}"
+                x2="${width-paddingRight}"
+                y2="${paddingTop}"
+                stroke="#2b2b30"
+                stroke-width="1"
+            />
+
+            <line
+                x1="${paddingLeft}"
+                y1="${(height-paddingBottom+paddingTop)/2}"
+                x2="${width-paddingRight}"
+                y2="${(height-paddingBottom+paddingTop)/2}"
+                stroke="#2b2b30"
+                stroke-width="1"
+            />
+
+            <line
+                x1="${paddingLeft}"
+                y1="${height-paddingBottom}"
+                x2="${width-paddingRight}"
+                y2="${height-paddingBottom}"
+                stroke="#2b2b30"
+                stroke-width="1"
+            />
+
+
+            <!-- Y LABELS -->
+
+            <text
+                x="5"
+                y="${paddingTop+5}"
+                fill="#9d9da5"
+                font-size="12">
+                ${topLabel}
+            </text>
+
+            <text
+                x="5"
+                y="${(height-paddingBottom+paddingTop)/2+5}"
+                fill="#9d9da5"
+                font-size="12">
+                ${middleLabel}
+            </text>
+
+            <text
+                x="5"
+                y="${height-paddingBottom+5}"
+                fill="#9d9da5"
+                font-size="12">
+                ${bottomLabel}
+            </text>
+
+
+            <!-- GOAL LINE -->
+
+            <line
+                x1="${paddingLeft}"
+                y1="${goalY}"
+                x2="${width-paddingRight}"
+                y2="${goalY}"
+                stroke="#63d471"
+                stroke-width="2"
+                stroke-dasharray="7 7"
+            />
+
+
+            <text
+                x="${paddingLeft+5}"
+                y="${goalY-7}"
+                fill="#63d471"
+                font-size="12">
+                Goal 250
+            </text>
+
+
+            <!-- WEIGHT TREND -->
+
+            <polyline
+                points="${points}"
+                fill="none"
+                stroke="white"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+
+
+            ${circles}
+
+
+            <!-- CURRENT WEIGHT LABEL -->
+
+            <text
+                x="${currentX}"
+                y="${Math.max(currentY-12,14)}"
+                fill="white"
+                font-size="13"
+                font-weight="bold"
+                text-anchor="middle">
+
+                ${Number(current.weight).toFixed(1)}
+
+            </text>
+
+
+        </svg>
+
+    `;
+
+}
+
+
+
+/* ============================
+   PROGRESS PAGE
+============================ */
 
 function updateProgress() {
 
+    updateWeightTracker();
+
 
     const history =
-
         loadData(
             "lunaHistory"
         );
 
 
-
     const lifts =
-
         history.filter(
-
             x =>
                 x.type
                 ===
                 "lift"
-
         );
 
 
-
     const walks =
-
         history.filter(
-
             x =>
                 x.type
                 ===
                 "walk"
-
         );
 
 
-
     const miles =
-
         walks.reduce(
-
             (
                 sum,
                 walk
@@ -1978,35 +2449,30 @@ function updateProgress() {
                 sum
                 +
                 (
-                    walk.distance
+                    Number(
+                        walk.distance
+                    )
                     ||
                     0
                 ),
 
             0
-
         );
-
 
 
     document.getElementById(
         "progressLifts"
     ).innerText =
-
         lifts.length;
-
 
 
     document.getElementById(
         "progressMiles"
     ).innerText =
-
         miles.toFixed(1);
 
 
-
     const container =
-
         document.getElementById(
             "history"
         );
@@ -2016,19 +2482,15 @@ function updateProgress() {
         "";
 
 
-
     if(
-        history.length
-        ===
-        0
+        history.length === 0
     ) {
-
 
         container.innerHTML =
 
             `<div class="muted">
-                No workouts yet.
-             </div>`;
+                No training history yet.
+            </div>`;
 
 
         return;
@@ -2036,121 +2498,94 @@ function updateProgress() {
     }
 
 
-
     history
-    .slice(0,20)
-    .forEach(
+        .slice(0,20)
+        .forEach(
+            item => {
 
-        item => {
-
-
-            const div =
-
-                document.createElement(
-                    "div"
-                );
+                const div =
+                    document.createElement(
+                        "div"
+                    );
 
 
-            div.className =
-                "history-item";
+                div.className =
+                    "history-item";
 
 
-
-            const date =
-
-                new Date(
-                    item.date
-                )
-
-                .toLocaleDateString();
+                const date =
+                    new Date(
+                        item.date
+                    )
+                    .toLocaleDateString();
 
 
-
-            let detail = "";
-
-
-
-            if(
-                item.type
-                ===
-                "walk"
-            ) {
-
-
-                detail =
-
-                    `${Math.round(
-                        item.duration
-                        /
-                        60
-                    )} min`;
-
+                let detail =
+                    "";
 
 
                 if(
-                    item.distance
-                )
+                    item.type
+                    ===
+                    "walk"
+                ) {
 
-                    detail +=
+                    detail =
+                        `${Math.round(
+                            item.duration / 60
+                        )} min`;
 
-                        ` • ${item.distance} mi`;
+
+                    if(
+                        item.distance
+                    ) {
+
+                        detail +=
+                            ` • ${item.distance} mi`;
+
+                    }
+
+                }
+
+
+                else {
+
+                    detail =
+                        item.exercises
+
+                        .filter(
+                            e =>
+                                e.sets.length
+                        )
+
+                        .length
+
+                        +
+
+                        " exercises";
+
+                }
+
+
+                div.innerHTML = `
+
+                    <strong>
+                        ${item.title}
+                    </strong>
+
+                    <div class="muted">
+                        ${date} • ${detail}
+                    </div>
+
+                `;
+
+
+                container.appendChild(
+                    div
+                );
 
             }
-
-
-            else {
-
-
-                detail =
-
-                    item.exercises
-
-                    .filter(
-
-                        e =>
-                            e.sets.length
-
-                    )
-
-                    .length
-
-                    +
-
-                    " exercises";
-
-            }
-
-
-
-            div.innerHTML = `
-
-
-                <strong>
-
-                    ${item.title}
-
-                </strong>
-
-
-                <div class="muted">
-
-                    ${date}
-                    •
-                    ${detail}
-
-                </div>
-
-            `;
-
-
-
-            container.appendChild(
-                div
-            );
-
-        }
-
-    );
+        );
 
 }
 
@@ -2160,9 +2595,7 @@ function updateProgress() {
    START APP
 ============================ */
 
-
 buildHome();
-
 
 </script>
 
