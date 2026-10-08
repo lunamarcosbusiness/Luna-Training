@@ -2,14 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <meta name="theme-color" content="#0b0b0c">
-
 <title>Luna Training</title>
 
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-
 :root{
  --bg:#0b0b0c;
  --card:#171719;
@@ -19,26 +17,19 @@
  --border:#2b2b30;
  --success:#63d471;
  --danger:#ff5d5d;
+ --warning:#ffb84d;
 }
-
 body{
  margin:0;
  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
  background:var(--bg);
  color:var(--text);
- padding-bottom:105px;
+ padding-bottom:110px;
 }
-
-.app{
- max-width:600px;
- margin:auto;
- padding:24px 18px;
-}
-
+.app{max-width:600px;margin:auto;padding:24px 18px}
 h1{font-size:30px;margin:0}
 h2{font-size:22px;margin-top:0}
 h3{margin:0 0 8px}
-
 .muted{color:var(--muted)}
 .header{margin:12px 0 25px}
 
@@ -51,7 +42,6 @@ h3{margin:0 0 8px}
 }
 
 .hero{padding:24px 20px}
-
 .hero-type{
  font-size:13px;
  font-weight:700;
@@ -59,12 +49,7 @@ h3{margin:0 0 8px}
  color:var(--muted);
  margin-bottom:8px;
 }
-
-.hero-title{
- font-size:30px;
- font-weight:800;
- margin-bottom:5px;
-}
+.hero-title{font-size:30px;font-weight:800;margin-bottom:5px}
 
 button{
  border:none;
@@ -74,29 +59,10 @@ button{
  font-weight:700;
  cursor:pointer;
 }
-
-.primary{
- width:100%;
- background:#fff;
- color:#000;
- margin-top:18px;
-}
-
-.secondary{
- background:var(--card2);
- color:#fff;
- border:1px solid var(--border);
-}
-
-.danger{
- background:var(--danger);
- color:#fff;
-}
-
-.small-button{
- padding:8px 11px;
- font-size:12px;
-}
+.primary{width:100%;background:#fff;color:#000;margin-top:18px}
+.secondary{background:var(--card2);color:#fff;border:1px solid var(--border)}
+.danger{background:var(--danger);color:#fff}
+.small-button{padding:8px 11px;font-size:12px}
 
 input{
  width:100%;
@@ -108,21 +74,13 @@ input{
  font-size:16px;
  text-align:center;
 }
-
-label{
- display:block;
- margin-top:14px;
- margin-bottom:6px;
-}
-
-/* WEEK */
+label{display:block;margin-top:14px;margin-bottom:6px}
 
 .week{
  display:grid;
  grid-template-columns:repeat(7,1fr);
  gap:5px;
 }
-
 .day{
  text-align:center;
  background:var(--card2);
@@ -133,49 +91,22 @@ label{
  cursor:pointer;
  color:#fff;
 }
-
 .day.today{border:1px solid #fff}
+.day-date{font-size:10px;margin-top:3px;opacity:.7}
+.day.done{box-shadow:inset 0 -3px 0 var(--success)}
 
-.day.selected{
- background:#fff;
- color:#000;
-}
-
-.day-date{
- font-size:10px;
- margin-top:3px;
- opacity:.7;
-}
-
-.day.done{
- box-shadow:inset 0 -3px 0 var(--success);
-}
-
-/* STATS */
-
-.stat-grid,
-.stat-grid-4{
+.stat-grid,.stat-grid-4{
  display:grid;
  grid-template-columns:1fr 1fr;
  gap:10px;
 }
-
 .stat{
  background:var(--card2);
  border-radius:14px;
  padding:15px;
 }
-
-.stat-value{
- font-size:25px;
- font-weight:800;
-}
-
-.stat-small{
- font-size:19px;
- font-weight:800;
- margin-top:4px;
-}
+.stat-value{font-size:25px;font-weight:800}
+.stat-small{font-size:19px;font-weight:800;margin-top:4px}
 
 .goal-row{
  display:grid;
@@ -184,17 +115,13 @@ label{
  margin-top:10px;
 }
 
-/* WORKOUT */
-
 .exercise{margin-bottom:18px}
-
-.exercise-title{
+.exercise-title,.strength-top,.history-header{
  display:flex;
  justify-content:space-between;
  gap:10px;
  align-items:center;
 }
-
 .set-row{
  display:grid;
  grid-template-columns:35px 1fr 1fr 45px;
@@ -202,18 +129,13 @@ label{
  align-items:center;
  margin-top:8px;
 }
-
 .check{
  height:42px;
  padding:0;
  background:var(--card2);
  color:#fff;
 }
-
-.check.done{
- background:var(--success);
- color:#000;
-}
+.check.done{background:var(--success);color:#000}
 
 .workout-date{
  background:var(--card2);
@@ -229,14 +151,8 @@ label{
  margin:20px 0;
  font-variant-numeric:tabular-nums;
 }
-
-.timer-buttons{
- display:flex;
- gap:8px;
-}
-
+.timer-buttons{display:flex;gap:8px}
 .timer-buttons button{flex:1}
-
 .walk-icon{font-size:45px}
 
 .manual-divider{
@@ -258,14 +174,8 @@ label{
  user-select:none;
  -webkit-user-select:none;
 }
-
 .strength-chart{height:190px}
-
-.chart svg{
- display:block;
- width:100%;
- height:100%;
-}
+.chart svg{display:block;width:100%;height:100%}
 
 .chart-tooltip{
  position:absolute;
@@ -283,76 +193,117 @@ label{
  white-space:nowrap;
  display:none;
 }
-
 .chart-tooltip.show{display:block}
-
-.tooltip-value{
- font-size:14px;
- font-weight:800;
-}
-
-.tooltip-date{
- color:#555;
- font-size:11px;
- margin-top:2px;
-}
-
+.tooltip-value{font-size:14px;font-weight:800}
+.tooltip-date{color:#555;font-size:11px;margin-top:2px}
 .chart-help{
  font-size:11px;
  color:var(--muted);
  margin-top:7px;
  text-align:center;
 }
+.strength-number{font-size:27px;font-weight:800}
 
-.strength-top{
+/* NUTRITION */
+
+.date-nav{
+ display:grid;
+ grid-template-columns:50px 1fr 50px;
+ align-items:center;
+ gap:8px;
+}
+.date-nav-title{text-align:center}
+.date-nav-title strong{font-size:17px}
+
+.progress-label{
  display:flex;
  justify-content:space-between;
- align-items:flex-start;
- gap:10px;
+ align-items:center;
+ margin-bottom:7px;
 }
+.progress-track{
+ width:100%;
+ height:13px;
+ background:var(--card2);
+ border-radius:20px;
+ overflow:hidden;
+}
+.progress-fill{
+ height:100%;
+ border-radius:20px;
+ background:var(--success);
+ width:0%;
+ transition:width .25s ease;
+}
+.progress-fill.calories{background:var(--warning)}
 
-.strength-number{
- font-size:27px;
+.nutrition-big{
+ font-size:30px;
  font-weight:800;
 }
+.nutrition-unit{
+ font-size:13px;
+ color:var(--muted);
+}
 
-/* HISTORY */
+.food-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:9px;
+}
+.food-grid .full{grid-column:1/-1}
 
-.history-card{cursor:pointer}
+.food-entry{
+ padding:13px 0;
+ border-bottom:1px solid var(--border);
+}
+.food-entry:last-child{border-bottom:none}
+.food-top{
+ display:flex;
+ justify-content:space-between;
+ gap:12px;
+ align-items:flex-start;
+}
+.food-name{font-weight:800;font-size:16px}
+.food-macros{
+ color:var(--muted);
+ margin-top:4px;
+ font-size:13px;
+}
 
-.history-header{
+.history-day{
+ background:var(--card2);
+ border-radius:14px;
+ padding:14px;
+ margin-top:9px;
+ cursor:pointer;
+}
+.history-day-top{
  display:flex;
  justify-content:space-between;
  align-items:center;
  gap:10px;
 }
-
-.history-title{
- font-size:18px;
- font-weight:800;
+.history-day-stats{
+ color:var(--muted);
+ margin-top:5px;
+ font-size:13px;
 }
 
+/* HISTORY */
+
+.history-card{cursor:pointer}
+.history-title{font-size:18px;font-weight:800}
 .history-detail{
  display:none;
  margin-top:15px;
  border-top:1px solid var(--border);
  padding-top:15px;
 }
-
 .history-detail.open{display:block}
-
 .history-exercise{margin-bottom:15px}
-
-.history-sets{
- color:var(--muted);
- line-height:1.6;
-}
-
-.history-actions{
- margin-top:15px;
- display:flex;
- gap:8px;
-}
+.history-sets{color:var(--muted);line-height:1.6}
+.history-actions{margin-top:15px;display:flex;gap:8px}
 
 .data-buttons{
  display:grid;
@@ -360,20 +311,9 @@ label{
  gap:8px;
  margin-top:15px;
 }
-
-.backup-note{
- font-size:12px;
- margin-top:12px;
- line-height:1.5;
-}
-
+.backup-note{font-size:12px;margin-top:12px;line-height:1.5}
 .section-title{margin-top:26px}
-
-.empty{
- color:var(--muted);
- text-align:center;
- padding:25px 10px;
-}
+.empty{color:var(--muted);text-align:center;padding:25px 10px}
 
 .draft-banner{
  background:var(--card2);
@@ -383,7 +323,6 @@ label{
  margin-bottom:14px;
  display:none;
 }
-
 .draft-banner.show{display:block}
 
 /* NAV */
@@ -400,23 +339,19 @@ nav{
  padding-bottom:env(safe-area-inset-bottom);
  z-index:100;
 }
-
 .nav-inner{
  width:100%;
  max-width:600px;
  display:grid;
- grid-template-columns:repeat(5,1fr);
+ grid-template-columns:repeat(6,1fr);
 }
-
 nav button{
  background:transparent;
  color:var(--muted);
- font-size:11px;
- padding:13px 2px;
+ font-size:10px;
+ padding:13px 1px;
 }
-
 nav button.active{color:#fff}
-
 .page{display:none}
 .page.active{display:block}
 </style>
@@ -431,7 +366,7 @@ nav button.active{color:#fff}
  <h1>Luna Training</h1>
 </div>
 
-<!-- HOME -->
+<!-- TODAY -->
 
 <section id="home" class="page active">
 
@@ -439,26 +374,18 @@ nav button.active{color:#fff}
   <div id="todayType" class="hero-type"></div>
   <div id="todayTitle" class="hero-title"></div>
   <div id="todayDescription" class="muted"></div>
-
-  <button id="startToday" class="primary">
-   START
-  </button>
+  <button id="startToday" class="primary">START</button>
  </div>
 
  <div id="homeDraftBanner" class="draft-banner">
   <strong>🏋️ Workout in progress</strong>
-
   <div id="homeDraftText" class="muted" style="margin-top:4px"></div>
-
-  <button class="secondary"
-          style="width:100%;margin-top:10px"
-          onclick="openLift()">
+  <button class="secondary" style="width:100%;margin-top:10px" onclick="openLift()">
    RESUME WORKOUT
   </button>
  </div>
 
  <h2>This Week</h2>
-
  <div class="muted" style="margin:-8px 0 12px;font-size:13px">
   Tap any day to log that day's training.
  </div>
@@ -481,7 +408,6 @@ nav button.active{color:#fff}
 
 </section>
 
-
 <!-- WORKOUT -->
 
 <section id="workout" class="page">
@@ -489,16 +415,12 @@ nav button.active{color:#fff}
  <h2 id="workoutTitle">Workout</h2>
 
  <div class="workout-date">
-  <div class="muted" style="font-size:12px">
-   LOGGING FOR
-  </div>
-
+  <div class="muted" style="font-size:12px">LOGGING FOR</div>
   <strong id="selectedWorkoutDate">--</strong>
  </div>
 
  <div id="workoutDraftNotice" class="draft-banner">
   <strong>Workout saved automatically</strong>
-
   <div class="muted" style="margin-top:4px">
    You can leave this page and come back without losing your entries.
   </div>
@@ -508,390 +430,310 @@ nav button.active{color:#fff}
 
  <div class="card">
   <h3>Rest Timer</h3>
-
-  <div id="restTimer" class="timer">
-   01:30
-  </div>
+  <div id="restTimer" class="timer">01:30</div>
 
   <div class="timer-buttons">
-   <button class="secondary" onclick="startRest(60)">
-    60 sec
-   </button>
-
-   <button class="secondary" onclick="startRest(90)">
-    90 sec
-   </button>
-
-   <button class="secondary" onclick="startRest(120)">
-    2 min
-   </button>
+   <button class="secondary" onclick="startRest(60)">60 sec</button>
+   <button class="secondary" onclick="startRest(90)">90 sec</button>
+   <button class="secondary" onclick="startRest(120)">2 min</button>
   </div>
  </div>
 
- <button class="primary" onclick="finishWorkout()">
-  FINISH WORKOUT
- </button>
-
- <button class="secondary"
-         style="width:100%;margin-top:10px"
-         onclick="cancelWorkout()">
+ <button class="primary" onclick="finishWorkout()">FINISH WORKOUT</button>
+ <button class="secondary" style="width:100%;margin-top:10px" onclick="cancelWorkout()">
   CANCEL WORKOUT
  </button>
 
 </section>
 
-
-<!-- WALK -->
+<!-- CHICO -->
 
 <section id="walk" class="page">
 
  <div class="card hero" style="text-align:center">
-
   <div class="walk-icon">🐕</div>
-
   <h2>Walk Chico</h2>
-
-  <div class="muted">
-   Goal: 30–45 minutes
-  </div>
-
-  <div id="walkLoggingDate"
-       style="margin-top:10px;font-weight:700">
-  </div>
-
-  <div id="walkTimer" class="timer">
-   00:00
-  </div>
-
-  <button id="walkButton"
-          class="primary"
-          onclick="toggleWalk()">
-   START WALK
-  </button>
-
+  <div class="muted">Goal: 30–45 minutes</div>
+  <div id="walkLoggingDate" style="margin-top:10px;font-weight:700"></div>
+  <div id="walkTimer" class="timer">00:00</div>
+  <button id="walkButton" class="primary" onclick="toggleWalk()">START WALK</button>
  </div>
 
- <div class="manual-divider">
-  OR LOG YOUR WALK MANUALLY
- </div>
+ <div class="manual-divider">OR LOG YOUR WALK MANUALLY</div>
 
  <div class="card">
-
   <h3>Walk Stats</h3>
 
   <label class="muted">Duration</label>
-
-  <input id="manualWalkMinutes"
-         type="number"
-         min="1"
-         inputmode="numeric"
+  <input id="manualWalkMinutes" type="number" min="1" inputmode="numeric"
          placeholder="Minutes — Example: 35">
 
   <label class="muted">Distance</label>
-
-  <input id="walkDistance"
-         type="number"
-         step=".01"
-         min="0"
-         inputmode="decimal"
+  <input id="walkDistance" type="number" step=".01" min="0" inputmode="decimal"
          placeholder="Miles — Example: 1.75">
 
-  <button class="primary" onclick="saveWalk()">
-   SAVE CHICO WALK 🐕
-  </button>
-
+  <button class="primary" onclick="saveWalk()">SAVE CHICO WALK 🐕</button>
  </div>
 
 </section>
 
+<!-- NUTRITION -->
+
+<section id="nutrition" class="page">
+
+ <h2>Nutrition 🍽️</h2>
+
+ <div class="card">
+
+  <div class="date-nav">
+
+   <button class="secondary" onclick="changeNutritionDate(-1)">‹</button>
+
+   <div class="date-nav-title">
+    <strong id="nutritionDateTitle">Today</strong>
+    <div id="nutritionDateSub" class="muted" style="font-size:12px"></div>
+   </div>
+
+   <button class="secondary" onclick="changeNutritionDate(1)">›</button>
+
+  </div>
+
+ </div>
+
+ <div class="stat-grid">
+
+  <div class="stat">
+   <div class="muted">Calories</div>
+   <div id="dailyCalories" class="nutrition-big">0</div>
+   <div id="calorieGoalLabel" class="nutrition-unit">of 2,200</div>
+  </div>
+
+  <div class="stat">
+   <div class="muted">Protein</div>
+   <div id="dailyProtein" class="nutrition-big">0g</div>
+   <div id="proteinGoalLabel" class="nutrition-unit">of 200g</div>
+  </div>
+
+ </div>
+
+ <div class="card" style="margin-top:14px">
+
+  <div class="progress-label">
+   <strong>Calories</strong>
+   <span id="calorieRemaining" class="muted"></span>
+  </div>
+
+  <div class="progress-track">
+   <div id="calorieProgress" class="progress-fill calories"></div>
+  </div>
+
+  <div class="progress-label" style="margin-top:18px">
+   <strong>Protein</strong>
+   <span id="proteinRemaining" class="muted"></span>
+  </div>
+
+  <div class="progress-track">
+   <div id="proteinProgress" class="progress-fill"></div>
+  </div>
+
+ </div>
+
+ <div class="card">
+
+  <h3>Add Food</h3>
+
+  <div class="food-grid">
+
+   <div class="full">
+    <label class="muted">Food / Meal</label>
+    <input id="foodName" type="text"
+           placeholder="Example: Chicken and rice">
+   </div>
+
+   <div>
+    <label class="muted">Calories</label>
+    <input id="foodCalories" type="number" min="0" inputmode="numeric"
+           placeholder="500">
+   </div>
+
+   <div>
+    <label class="muted">Protein (g)</label>
+    <input id="foodProtein" type="number" min="0" step=".1" inputmode="decimal"
+           placeholder="45">
+   </div>
+
+  </div>
+
+  <button class="primary" onclick="addFood()">ADD FOOD</button>
+
+ </div>
+
+ <div class="card">
+
+  <h3>Food Log</h3>
+
+  <div id="foodLog"></div>
+
+ </div>
+
+ <div class="card">
+
+  <h3>Daily Goals 🎯</h3>
+
+  <label class="muted">Calorie Goal</label>
+
+  <div class="goal-row">
+   <input id="calorieGoalInput" type="number" inputmode="numeric" placeholder="2200">
+   <button class="secondary" onclick="saveCalorieGoal()">Save</button>
+  </div>
+
+  <label class="muted">Protein Goal</label>
+
+  <div class="goal-row">
+   <input id="proteinGoalInput" type="number" inputmode="numeric" placeholder="200">
+   <button class="secondary" onclick="saveProteinGoal()">Save</button>
+  </div>
+
+ </div>
+
+ <h2 class="section-title">Previous Logs</h2>
+
+ <div id="nutritionHistory"></div>
+
+</section>
 
 <!-- PROGRESS -->
 
 <section id="progress" class="page">
 
-<h2>Progress</h2>
+ <h2>Progress</h2>
 
-<div class="card">
- <h3>Body Weight</h3>
+ <div class="card">
+  <h3>Body Weight</h3>
 
- <div class="goal-row">
-  <input id="bodyWeight"
-         type="number"
-         step=".1"
-         inputmode="decimal"
-         placeholder="Weight (lb)">
-
-  <button class="secondary" onclick="saveWeight()">
-   Save
-  </button>
+  <div class="goal-row">
+   <input id="bodyWeight" type="number" step=".1" inputmode="decimal"
+          placeholder="Weight (lb)">
+   <button class="secondary" onclick="saveWeight()">Save</button>
+  </div>
  </div>
-</div>
 
+ <div class="card">
 
-<div class="card">
+  <h3>Weight Summary</h3>
 
- <h3>Weight Summary</h3>
+  <div class="stat-grid-4">
+
+   <div class="stat">
+    <div class="muted">Current</div>
+    <div id="currentWeight" class="stat-small">--</div>
+   </div>
+
+   <div class="stat">
+    <div class="muted">Starting</div>
+    <div id="startingWeight" class="stat-small">--</div>
+   </div>
+
+   <div class="stat">
+    <div class="muted">Change</div>
+    <div id="weightChange" class="stat-small">--</div>
+   </div>
+
+   <div class="stat">
+    <div class="muted">To Goal</div>
+    <div id="toGoal" class="stat-small">--</div>
+   </div>
+
+  </div>
+
+ </div>
+
+ <div class="card">
+
+  <h3>Goal Weight 🎯</h3>
+
+  <div class="goal-row">
+   <input id="goalWeightInput" type="number" step=".1" inputmode="decimal"
+          placeholder="Goal weight">
+   <button class="secondary" onclick="saveGoalWeight()">Save Goal</button>
+  </div>
+
+  <div style="margin-top:15px">
+   <span class="muted">Current Goal:</span>
+   <strong id="goalWeightDisplay">250.0 lb</strong>
+  </div>
+
+ </div>
+
+ <div class="card">
+  <h3>Weight Progress</h3>
+  <div class="muted">Body-weight trend</div>
+  <div id="weightChart" class="chart"></div>
+  <div class="chart-help">Touch and drag across the chart for details</div>
+ </div>
+
+ <h2 class="section-title">Strength Progress 🏋️</h2>
+
+ <div id="strengthCards"></div>
+
+ <h2 class="section-title">Chico Progress 🐕</h2>
+
+ <div class="card">
+  <h3>Miles Per Walk</h3>
+  <div class="muted">Distance logged each walk</div>
+  <div id="chicoMilesChart" class="chart"></div>
+  <div class="chart-help">Touch and drag to see distance and date</div>
+ </div>
 
  <div class="stat-grid-4">
 
   <div class="stat">
-   <div class="muted">Current</div>
-   <div id="currentWeight" class="stat-small">--</div>
+   <div class="muted">Total Miles</div>
+   <div id="totalChicoMiles" class="stat-small">0</div>
   </div>
 
   <div class="stat">
-   <div class="muted">Starting</div>
-   <div id="startingWeight" class="stat-small">--</div>
+   <div class="muted">Walks</div>
+   <div id="totalChicoWalks" class="stat-small">0</div>
   </div>
 
   <div class="stat">
-   <div class="muted">Change</div>
-   <div id="weightChange" class="stat-small">--</div>
+   <div class="muted">Avg Miles</div>
+   <div id="averageChicoMiles" class="stat-small">0</div>
   </div>
 
   <div class="stat">
-   <div class="muted">To Goal</div>
-   <div id="toGoal" class="stat-small">--</div>
+   <div class="muted">Longest</div>
+   <div id="longestChicoWalk" class="stat-small">0</div>
   </div>
 
  </div>
 
-</div>
+ <h2 class="section-title">Data</h2>
 
+ <div class="card">
 
-<div class="card">
+  <h3>My Data 🔒</h3>
 
- <h3>Goal Weight 🎯</h3>
+  <p class="muted">
+   Back up your training and nutrition history before major app updates.
+  </p>
 
- <div class="goal-row">
-
-  <input id="goalWeightInput"
-         type="number"
-         step=".1"
-         inputmode="decimal"
-         placeholder="Goal weight">
-
-  <button class="secondary" onclick="saveGoalWeight()">
-   Save Goal
-  </button>
-
- </div>
-
- <div style="margin-top:15px">
-  <span class="muted">Current Goal:</span>
-  <strong id="goalWeightDisplay">250.0 lb</strong>
- </div>
-
-</div>
-
-
-<div class="card">
-
- <h3>Weight Progress</h3>
-
- <div class="muted">
-  Body-weight trend
- </div>
-
- <div id="weightChart" class="chart"></div>
-
- <div class="chart-help">
-  Touch and drag across the chart for details
- </div>
-
-</div>
-
-
-<h2 class="section-title">
- Strength Progress 🏋️
-</h2>
-
-
-<div class="card">
-
- <div class="strength-top">
-
-  <div>
-   <h3>Bench Press</h3>
-   <div class="muted">Heaviest set each session</div>
+  <div class="data-buttons">
+   <button class="secondary" onclick="backupData()">Backup Data</button>
+   <button class="secondary" onclick="openRestore()">Restore Data</button>
   </div>
 
-  <div style="text-align:right">
-   <div id="benchBest" class="strength-number">--</div>
-   <div id="benchReps" class="muted"></div>
+  <input type="file" id="restoreFile" accept=".json,application/json"
+         style="display:none" onchange="restoreData(event)">
+
+  <div class="muted backup-note">
+   Workouts, Chico walks, body weight, goals, nutrition logs and unfinished workouts are included.
   </div>
 
  </div>
-
- <div id="benchChart" class="chart strength-chart"></div>
-
- <div class="chart-help">
-  Touch a point to see weight, reps and date
- </div>
-
-</div>
-
-
-<div class="card">
-
- <div class="strength-top">
-
-  <div>
-   <h3>Squat</h3>
-   <div class="muted">Heaviest set each session</div>
-  </div>
-
-  <div style="text-align:right">
-   <div id="squatBest" class="strength-number">--</div>
-   <div id="squatReps" class="muted"></div>
-  </div>
-
- </div>
-
- <div id="squatChart" class="chart strength-chart"></div>
-
- <div class="chart-help">
-  Touch a point to see weight, reps and date
- </div>
-
-</div>
-
-
-<div class="card">
-
- <div class="strength-top">
-
-  <div>
-   <h3>Barbell Row</h3>
-   <div class="muted">Heaviest set each session</div>
-  </div>
-
-  <div style="text-align:right">
-   <div id="rowBest" class="strength-number">--</div>
-   <div id="rowReps" class="muted"></div>
-  </div>
-
- </div>
-
- <div id="rowChart" class="chart strength-chart"></div>
-
- <div class="chart-help">
-  Touch a point to see weight, reps and date
- </div>
-
-</div>
-
-
-<div class="card">
-
- <div class="strength-top">
-
-  <div>
-   <h3>Romanian Deadlift</h3>
-   <div class="muted">Heaviest set each session</div>
-  </div>
-
-  <div style="text-align:right">
-   <div id="rdlBest" class="strength-number">--</div>
-   <div id="rdlReps" class="muted"></div>
-  </div>
-
- </div>
-
- <div id="rdlChart" class="chart strength-chart"></div>
-
- <div class="chart-help">
-  Touch a point to see weight, reps and date
- </div>
-
-</div>
-
-
-<h2 class="section-title">
- Chico Progress 🐕
-</h2>
-
-
-<div class="card">
-
- <h3>Miles Per Walk</h3>
-
- <div class="muted">
-  Distance logged each walk
- </div>
-
- <div id="chicoMilesChart" class="chart"></div>
-
- <div class="chart-help">
-  Touch and drag to see distance and date
- </div>
-
-</div>
-
-
-<div class="stat-grid-4">
-
- <div class="stat">
-  <div class="muted">Total Miles</div>
-  <div id="totalChicoMiles" class="stat-small">0</div>
- </div>
-
- <div class="stat">
-  <div class="muted">Walks</div>
-  <div id="totalChicoWalks" class="stat-small">0</div>
- </div>
-
- <div class="stat">
-  <div class="muted">Avg Miles</div>
-  <div id="averageChicoMiles" class="stat-small">0</div>
- </div>
-
- <div class="stat">
-  <div class="muted">Longest</div>
-  <div id="longestChicoWalk" class="stat-small">0</div>
- </div>
-
-</div>
-
-
-<h2 class="section-title">Data</h2>
-
-
-<div class="card">
-
- <h3>My Data 🔒</h3>
-
- <p class="muted">
-  Back up your training history before major app updates.
- </p>
-
- <div class="data-buttons">
-
-  <button class="secondary" onclick="backupData()">
-   Backup Data
-  </button>
-
-  <button class="secondary" onclick="openRestore()">
-   Restore Data
-  </button>
-
- </div>
-
- <input type="file"
-        id="restoreFile"
-        accept=".json,application/json"
-        style="display:none"
-        onchange="restoreData(event)">
-
- <div class="muted backup-note">
-  Completed workouts, Chico walks, body weight,
-  goal weight and your unfinished workout are included.
- </div>
-
-</div>
 
 </section>
-
 
 <!-- HISTORY -->
 
@@ -899,9 +741,7 @@ nav button.active{color:#fff}
 
  <h2>Training History 📖</h2>
 
- <p class="muted">
-  Tap any session to see everything you logged.
- </p>
+ <p class="muted">Tap any session to see everything you logged.</p>
 
  <div id="fullHistory"></div>
 
@@ -909,43 +749,37 @@ nav button.active{color:#fff}
 
 </div>
 
-
 <!-- NAV -->
 
 <nav>
-
 <div class="nav-inner">
 
- <button id="nav-home"
-         class="active"
-         onclick="showPage('home')">
+ <button id="nav-home" class="active" onclick="showPage('home')">
   🏠<br>Today
  </button>
 
- <button id="nav-workout"
-         onclick="openLift()">
+ <button id="nav-workout" onclick="openLift()">
   🏋️<br>Lift
  </button>
 
- <button id="nav-walk"
-         onclick="openWalkToday()">
+ <button id="nav-walk" onclick="openWalkToday()">
   🐕<br>Chico
  </button>
 
- <button id="nav-progress"
-         onclick="showPage('progress')">
+ <button id="nav-nutrition" onclick="showPage('nutrition')">
+  🍽️<br>Food
+ </button>
+
+ <button id="nav-progress" onclick="showPage('progress')">
   📈<br>Progress
  </button>
 
- <button id="nav-historyPage"
-         onclick="showPage('historyPage')">
+ <button id="nav-historyPage" onclick="showPage('historyPage')">
   📖<br>History
  </button>
 
 </div>
-
 </nav>
-
 
 <script>
 
@@ -953,8 +787,7 @@ nav button.active{color:#fff}
 PROGRAM
 ========================= */
 
-const program = {
-
+const program={
  push:{
   title:"Push",
   exercises:[
@@ -965,7 +798,6 @@ const program = {
    ["Cable Tricep Pushdowns",2,10,15]
   ]
  },
-
  pull:{
   title:"Pull",
   exercises:[
@@ -976,7 +808,6 @@ const program = {
    ["Dumbbell Curls",3,10,15]
   ]
  },
-
  legs:{
   title:"Legs + Core",
   exercises:[
@@ -987,11 +818,9 @@ const program = {
    ["Plank",2,30,60]
   ]
  }
-
 };
 
-
-const schedule = [
+const schedule=[
  {short:"MON",type:"push",title:"Push"},
  {short:"TUE",type:"walk",title:"Chico"},
  {short:"WED",type:"pull",title:"Pull"},
@@ -1001,2240 +830,1014 @@ const schedule = [
  {short:"SUN",type:"rest",title:"Rest"}
 ];
 
+const ACTIVE_WORKOUT_KEY="lunaActiveWorkout";
 
-const ACTIVE_WORKOUT_KEY = "lunaActiveWorkout";
-
-let currentWorkout = null;
-let selectedTrainingDate = null;
-
+let currentWorkout=null;
+let selectedTrainingDate=null;
+let nutritionDate=localDateString(new Date());
 
 /* =========================
-DATE HELPERS
+HELPERS
 ========================= */
+
+function $(id){return document.getElementById(id)}
 
 function localDateString(date){
-
- const year = date.getFullYear();
- const month = String(date.getMonth()+1).padStart(2,"0");
- const day = String(date.getDate()).padStart(2,"0");
-
- return `${year}-${month}-${day}`;
+ const y=date.getFullYear();
+ const m=String(date.getMonth()+1).padStart(2,"0");
+ const d=String(date.getDate()).padStart(2,"0");
+ return `${y}-${m}-${d}`;
 }
-
 
 function dateFromLocalString(str){
-
- const parts = str.split("-");
-
- return new Date(
-  Number(parts[0]),
-  Number(parts[1])-1,
-  Number(parts[2]),
-  12,0,0
- );
+ const p=str.split("-");
+ return new Date(Number(p[0]),Number(p[1])-1,Number(p[2]),12,0,0);
 }
-
 
 function formatTrainingDate(str){
-
- const date = dateFromLocalString(str);
-
- return date.toLocaleDateString(
-  undefined,
-  {
-   weekday:"long",
-   month:"short",
-   day:"numeric"
-  }
- );
+ return dateFromLocalString(str).toLocaleDateString(undefined,{
+  weekday:"long",month:"short",day:"numeric"
+ });
 }
 
-
-function formatChartDate(dateValue){
-
- const date = new Date(dateValue);
-
- if(isNaN(date.getTime()))
-  return "";
-
- return date.toLocaleDateString(
-  undefined,
-  {
-   month:"short",
-   day:"numeric",
-   year:"numeric"
-  }
- );
+function formatShortDate(str){
+ return dateFromLocalString(str).toLocaleDateString(undefined,{
+  month:"short",day:"numeric",year:"numeric"
+ });
 }
 
-
-function getMondayOfCurrentWeek(){
-
- const today = new Date();
- const day = today.getDay();
-
- const difference =
-  day === 0
-  ? -6
-  : 1-day;
-
- const monday = new Date(today);
-
- monday.setHours(12,0,0,0);
-
- monday.setDate(
-  today.getDate()+difference
- );
-
- return monday;
+function formatChartDate(value){
+ const d=new Date(value);
+ if(isNaN(d.getTime()))return "";
+ return d.toLocaleDateString(undefined,{
+  month:"short",day:"numeric",year:"numeric"
+ });
 }
 
-
-function getWeekDates(){
-
- const monday = getMondayOfCurrentWeek();
-
- return schedule.map(
-  (_,index) => {
-
-   const date = new Date(monday);
-
-   date.setDate(
-    monday.getDate()+index
-   );
-
-   return date;
-  }
- );
+function sessionISOForDate(str){
+ const d=dateFromLocalString(str);
+ const now=new Date();
+ d.setHours(now.getHours(),now.getMinutes(),now.getSeconds());
+ return d.toISOString();
 }
-
-
-function sessionISOForDate(dateString){
-
- const date =
-  dateFromLocalString(dateString);
-
- const now = new Date();
-
- date.setHours(
-  now.getHours(),
-  now.getMinutes(),
-  now.getSeconds(),
-  now.getMilliseconds()
- );
-
- return date.toISOString();
-}
-
-
-/* =========================
-STORAGE
-========================= */
 
 function loadData(key,fallback=[]){
-
  try{
-
-  const stored =
-   localStorage.getItem(key);
-
-  return stored !== null
-   ? JSON.parse(stored)
-   : fallback;
-
+  const v=localStorage.getItem(key);
+  return v!==null?JSON.parse(v):fallback;
  }catch{
-
   return fallback;
  }
 }
 
-
 function saveData(key,data){
-
- localStorage.setItem(
-  key,
-  JSON.stringify(data)
- );
+ localStorage.setItem(key,JSON.stringify(data));
 }
 
+function escapeHTML(value){
+ const d=document.createElement("div");
+ d.textContent=value;
+ return d.innerHTML;
+}
 
 function getActiveWorkout(){
-
- try{
-
-  const saved =
-   localStorage.getItem(
-    ACTIVE_WORKOUT_KEY
-   );
-
-  return saved
-   ? JSON.parse(saved)
-   : null;
-
- }catch{
-
-  return null;
- }
+ return loadData(ACTIVE_WORKOUT_KEY,null);
 }
-
 
 function clearActiveWorkout(){
-
- localStorage.removeItem(
-  ACTIVE_WORKOUT_KEY
- );
+ localStorage.removeItem(ACTIVE_WORKOUT_KEY);
 }
 
-
 /* =========================
-NAVIGATION
+NAV
 ========================= */
 
 function showPage(page){
 
- document
- .querySelectorAll(".page")
- .forEach(
-  p => p.classList.remove("active")
- );
+ document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+ $(page)?.classList.add("active");
 
- const selected =
-  document.getElementById(page);
+ document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
+ $("nav-"+page)?.classList.add("active");
 
- if(selected)
-  selected.classList.add("active");
-
-
- document
- .querySelectorAll("nav button")
- .forEach(
-  b => b.classList.remove("active")
- );
-
-
- const nav =
-  document.getElementById(
-   "nav-" + page
-  );
-
- if(nav)
-  nav.classList.add("active");
-
-
- if(page === "home")
-  buildHome();
-
- if(page === "progress")
-  updateProgress();
-
- if(page === "historyPage")
-  renderFullHistory();
+ if(page==="home")buildHome();
+ if(page==="nutrition")renderNutrition();
+ if(page==="progress")updateProgress();
+ if(page==="historyPage")renderFullHistory();
 }
-
 
 /* =========================
 HOME
 ========================= */
 
+function getMondayOfCurrentWeek(){
+ const today=new Date();
+ const diff=today.getDay()===0?-6:1-today.getDay();
+ const monday=new Date(today);
+ monday.setHours(12,0,0,0);
+ monday.setDate(today.getDate()+diff);
+ return monday;
+}
+
+function getWeekDates(){
+ const monday=getMondayOfCurrentWeek();
+ return schedule.map((_,i)=>{
+  const d=new Date(monday);
+  d.setDate(monday.getDate()+i);
+  return d;
+ });
+}
+
 function buildHome(){
 
- const today = new Date();
+ const today=new Date();
+ const todayString=localDateString(today);
+ const index=today.getDay()===0?6:today.getDay()-1;
+ const plan=schedule[index];
 
- const todayString =
-  localDateString(today);
+ $("todayType").innerText=`${plan.short} • TODAY`;
+ $("todayTitle").innerText=plan.type==="walk"?"🐕 Walk Chico":plan.title;
 
- const jsDay =
-  today.getDay();
+ $("todayDescription").innerText=
+  plan.type==="walk"?"30–45 minute walk":
+  plan.type==="rest"?"Recovery day":
+  "30–45 minute bodybuilding session";
 
- const scheduleIndex =
-  jsDay === 0
-  ? 6
-  : jsDay-1;
+ const active=getActiveWorkout();
 
- const todayPlan =
-  schedule[scheduleIndex];
-
-
- document.getElementById(
-  "todayType"
- ).innerText =
-  todayPlan.short + " • TODAY";
-
-
- document.getElementById(
-  "todayTitle"
- ).innerText =
-  todayPlan.type === "walk"
-  ? "🐕 Walk Chico"
-  : todayPlan.title;
-
-
- let description = "";
-
- if(todayPlan.type === "walk")
-  description = "30–45 minute walk";
-
- else if(todayPlan.type === "rest")
-  description = "Recovery day";
-
- else
-  description =
-   "30–45 minute bodybuilding session";
-
-
- document.getElementById(
-  "todayDescription"
- ).innerText = description;
-
-
- const start =
-  document.getElementById(
-   "startToday"
-  );
-
- const active =
-  getActiveWorkout();
-
-
- if(active && active.type){
-
-  start.disabled = false;
-  start.innerText = "RESUME WORKOUT";
-  start.onclick = () => openLift();
-
+ if(active?.type){
+  $("startToday").disabled=false;
+  $("startToday").innerText="RESUME WORKOUT";
+  $("startToday").onclick=()=>openLift();
+ }else if(plan.type==="walk"){
+  $("startToday").disabled=false;
+  $("startToday").innerText="START WALK";
+  $("startToday").onclick=()=>openWalkForDate(todayString);
+ }else if(plan.type==="rest"){
+  $("startToday").disabled=true;
+  $("startToday").innerText="RECOVERY DAY";
+  $("startToday").onclick=null;
+ }else{
+  $("startToday").disabled=false;
+  $("startToday").innerText="START WORKOUT";
+  $("startToday").onclick=()=>startWorkout(plan.type,todayString);
  }
-
- else if(todayPlan.type === "walk"){
-
-  start.disabled = false;
-  start.innerText = "START WALK";
-
-  start.onclick =
-   () => openWalkForDate(todayString);
-
- }
-
- else if(todayPlan.type === "rest"){
-
-  start.disabled = true;
-  start.innerText = "RECOVERY DAY";
-  start.onclick = null;
-
- }
-
- else{
-
-  start.disabled = false;
-  start.innerText = "START WORKOUT";
-
-  start.onclick =
-   () =>
-    startWorkout(
-     todayPlan.type,
-     todayString
-    );
- }
-
 
  buildWeek();
 
+ const history=loadData("lunaHistory",[]);
+ $("workoutCount").innerText=history.filter(x=>x.type==="lift").length;
+ $("walkCount").innerText=history.filter(x=>x.type==="walk").length;
 
- const history =
-  loadData(
-   "lunaHistory",
-   []
-  );
-
-
- document.getElementById(
-  "workoutCount"
- ).innerText =
-  history.filter(
-   x => x.type === "lift"
-  ).length;
-
-
- document.getElementById(
-  "walkCount"
- ).innerText =
-  history.filter(
-   x => x.type === "walk"
-  ).length;
-
-
- const banner =
-  document.getElementById(
-   "homeDraftBanner"
-  );
-
- const bannerText =
-  document.getElementById(
-   "homeDraftText"
-  );
-
-
- if(active && active.type){
-
-  banner.classList.add("show");
-
-  bannerText.innerText =
-   `${active.title || "Workout"} • ${formatTrainingDate(active.trainingDate)}`;
-
- }
-
- else{
-
-  banner.classList.remove("show");
+ if(active?.type){
+  $("homeDraftBanner").classList.add("show");
+  $("homeDraftText").innerText=
+   `${active.title} • ${formatTrainingDate(active.trainingDate)}`;
+ }else{
+  $("homeDraftBanner").classList.remove("show");
  }
 }
-
-
-/* =========================
-BUILD CLICKABLE WEEK
-========================= */
 
 function buildWeek(){
 
- const dates =
-  getWeekDates();
+ const dates=getWeekDates();
+ const history=loadData("lunaHistory",[]);
+ const today=localDateString(new Date());
 
- const history =
-  loadData(
-   "lunaHistory",
-   []
-  );
+ $("weekDisplay").innerHTML="";
 
- const todayString =
-  localDateString(
-   new Date()
-  );
+ schedule.forEach((plan,index)=>{
 
- const week =
-  document.getElementById(
-   "weekDisplay"
-  );
+  const d=dates[index];
+  const dateString=localDateString(d);
+  const completed=history.some(x=>x.trainingDate===dateString);
 
- week.innerHTML = "";
+  const button=document.createElement("button");
+  button.className="day";
 
+  if(dateString===today)button.classList.add("today");
+  if(completed)button.classList.add("done");
 
- schedule.forEach(
-  (plan,index) => {
+  button.innerHTML=`
+   <strong>${plan.short}</strong><br>
+   ${plan.title}
+   <div class="day-date">${d.getMonth()+1}/${d.getDate()}</div>
+  `;
 
-   const date =
-    dates[index];
-
-   const dateString =
-    localDateString(date);
-
-   const completed =
-    history.some(
-     session =>
-      session.trainingDate ===
-      dateString
-    );
-
-   const div =
-    document.createElement(
-     "button"
-    );
-
-   div.className = "day";
-
-   if(dateString === todayString)
-    div.classList.add("today");
-
-   if(completed)
-    div.classList.add("done");
-
-
-   div.innerHTML = `
-
-    <strong>
-     ${plan.short}
-    </strong>
-
-    <br>
-
-    ${plan.title}
-
-    <div class="day-date">
-     ${date.getMonth()+1}/${date.getDate()}
-    </div>
-
-   `;
-
-
-   div.onclick =
-    () =>
-     selectWeekDay(
-      plan,
-      dateString
-     );
-
-
-   week.appendChild(div);
-
-  }
- );
+  button.onclick=()=>selectWeekDay(plan,dateString);
+  $("weekDisplay").appendChild(button);
+ });
 }
-
-
-/* =========================
-SELECT ANY DAY
-========================= */
 
 function selectWeekDay(plan,dateString){
 
- selectedTrainingDate =
-  dateString;
-
-
- if(plan.type === "rest"){
-
-  alert(
-   `${formatTrainingDate(dateString)} is your scheduled recovery day.`
-  );
-
+ if(plan.type==="rest"){
+  alert(`${formatTrainingDate(dateString)} is your scheduled recovery day.`);
   return;
  }
 
-
- if(plan.type === "walk"){
-
+ if(plan.type==="walk"){
   openWalkForDate(dateString);
-
   return;
  }
 
+ const active=getActiveWorkout();
 
- const active =
-  getActiveWorkout();
-
-
- if(
-  active &&
-  (
-   active.type !== plan.type ||
-   active.trainingDate !== dateString
-  )
- ){
-
-  const resume =
-   confirm(
-    `You already have an unfinished ${active.title} workout for ${formatTrainingDate(active.trainingDate)}.\n\nPress OK to resume it.\n\nPress Cancel to keep it saved and stay on this page.`
-   );
-
-  if(resume)
+ if(active && (active.type!==plan.type || active.trainingDate!==dateString)){
+  if(confirm(`You already have an unfinished ${active.title} workout.\n\nPress OK to resume it.`)){
    openLift();
-
+  }
   return;
  }
 
-
- startWorkout(
-  plan.type,
-  dateString
- );
+ startWorkout(plan.type,dateString);
 }
 
-
 /* =========================
-OPEN LIFT
+WORKOUT
 ========================= */
 
 function openLift(){
 
- const active =
-  getActiveWorkout();
+ const active=getActiveWorkout();
 
-
- if(
-  active &&
-  active.type &&
-  program[active.type]
- ){
-
-  startWorkout(
-   active.type,
-   active.trainingDate,
-   true
-  );
-
+ if(active?.type && program[active.type]){
+  startWorkout(active.type,active.trainingDate);
   return;
  }
 
+ const day=new Date().getDay();
+ let type="push";
 
- const today = new Date();
- const day = today.getDay();
+ if(day===3)type="pull";
+ if(day===5)type="legs";
 
-
- let type =
-  day === 1
-  ? "push"
-  : day === 3
-  ? "pull"
-  : day === 5
-  ? "legs"
-  : "push";
-
-
- startWorkout(
-  type,
-  localDateString(today)
- );
+ startWorkout(type,localDateString(new Date()));
 }
 
+function startWorkout(type,date){
 
-/* =========================
-START WORKOUT
-========================= */
+ if(!program[type])return;
 
-function startWorkout(
- type,
- trainingDate,
- restoring=false
-){
-
- if(!program[type])
-  return;
-
-
- currentWorkout = type;
-
- selectedTrainingDate =
-  trainingDate ||
-  localDateString(
-   new Date()
-  );
-
+ currentWorkout=type;
+ selectedTrainingDate=date||localDateString(new Date());
 
  showPage("workout");
 
+ const workout=program[type];
 
- const workout =
-  program[type];
+ $("workoutTitle").innerText=workout.title;
+ $("selectedWorkoutDate").innerText=formatTrainingDate(selectedTrainingDate);
+ $("exerciseContainer").innerHTML="";
 
+ const active=getActiveWorkout();
 
- document.getElementById(
-  "workoutTitle"
- ).innerText =
-  workout.title;
-
-
- document.getElementById(
-  "selectedWorkoutDate"
- ).innerText =
-  formatTrainingDate(
-   selectedTrainingDate
-  );
-
-
- const container =
-  document.getElementById(
-   "exerciseContainer"
-  );
-
- container.innerHTML = "";
-
-
- const active =
-  getActiveWorkout();
-
-
- const canRestore =
+ const canRestore=
   active &&
-  active.type === type &&
-  active.trainingDate === selectedTrainingDate &&
-  Array.isArray(active.exercises);
+  active.type===type &&
+  active.trainingDate===selectedTrainingDate;
 
+ workout.exercises.forEach((exercise,index)=>{
 
- workout.exercises.forEach(
-  (exercise,exerciseIndex) => {
+  const [name,sets,min,max]=exercise;
+  const previous=getPreviousExercise(name);
 
-   const [
-    name,
-    sets,
-    min,
-    max
-   ] = exercise;
+  const saved=canRestore
+   ?active.exercises?.find(x=>x.name===name)
+   :null;
 
+  let rows="";
 
-   const previous =
-    getPreviousExercise(name);
+  for(let i=0;i<sets;i++){
 
+   const set=saved?.sets?.[i];
 
-   const previousText =
-    previous
-    ? `Last: ${previous}`
-    : "No previous workout";
+   rows+=`
+    <div class="set-row">
 
+     <strong>${i+1}</strong>
 
-   const savedExercise =
-    canRestore
-    ? active.exercises.find(
-       item => item.name === name
-      )
-    : null;
+     <input class="weight"
+      data-exercise="${index}"
+      type="number"
+      inputmode="decimal"
+      value="${set?.weight??""}"
+      placeholder="lb"
+      oninput="saveActiveWorkout()">
 
+     <input class="reps"
+      data-exercise="${index}"
+      type="number"
+      inputmode="numeric"
+      value="${set?.reps??""}"
+      placeholder="reps"
+      oninput="saveActiveWorkout()">
 
-   let rows = "";
-
-
-   for(
-    let set=1;
-    set<=sets;
-    set++
-   ){
-
-    const savedSet =
-     savedExercise
-     ?.sets
-     ?.[set-1];
-
-    const savedWeight =
-     savedSet?.weight ?? "";
-
-    const savedReps =
-     savedSet?.reps ?? "";
-
-    const completed =
-     savedSet?.completed === true;
-
-
-    rows += `
-
-     <div class="set-row">
-
-      <strong>${set}</strong>
-
-      <input
-       class="weight"
-       data-exercise="${exerciseIndex}"
-       type="number"
-       inputmode="decimal"
-       value="${savedWeight}"
-       placeholder="lb"
-       oninput="saveActiveWorkout()">
-
-      <input
-       class="reps"
-       data-exercise="${exerciseIndex}"
-       type="number"
-       inputmode="numeric"
-       value="${savedReps}"
-       placeholder="reps"
-       oninput="saveActiveWorkout()">
-
-      <button
-       class="check ${completed ? "done" : ""}"
-       onclick="completeSet(this)">
-       ✓
-      </button>
-
-     </div>
-
-    `;
-   }
-
-
-   const card =
-    document.createElement(
-     "div"
-    );
-
-   card.className =
-    "card exercise";
-
-
-   card.innerHTML = `
-
-    <div class="exercise-title">
-
-     <h3>${name}</h3>
-
-     <span class="muted">
-      ${sets} × ${min}-${max}
-     </span>
+     <button class="check ${set?.completed?"done":""}"
+      onclick="completeSet(this)">✓</button>
 
     </div>
-
-    <div class="muted"
-         style="font-size:13px">
-     ${previousText}
-    </div>
-
-    ${rows}
-
    `;
-
-
-   container.appendChild(card);
-
   }
- );
 
+  const card=document.createElement("div");
+  card.className="card exercise";
 
- document.getElementById(
-  "workoutDraftNotice"
- ).classList.add("show");
+  card.innerHTML=`
+   <div class="exercise-title">
+    <h3>${name}</h3>
+    <span class="muted">${sets} × ${min}-${max}</span>
+   </div>
 
+   <div class="muted" style="font-size:13px">
+    ${previous?"Last: "+previous:"No previous workout"}
+   </div>
 
- if(!canRestore)
-  saveActiveWorkout();
+   ${rows}
+  `;
+
+  $("exerciseContainer").appendChild(card);
+ });
+
+ $("workoutDraftNotice").classList.add("show");
+
+ if(!canRestore)saveActiveWorkout();
 }
-
-
-/* =========================
-SAVE ACTIVE WORKOUT
-========================= */
 
 function saveActiveWorkout(){
 
- if(!currentWorkout)
-  return;
+ if(!currentWorkout)return;
 
+ const workout=program[currentWorkout];
 
- const workout =
-  program[currentWorkout];
+ const exercises=workout.exercises.map((exercise,index)=>{
 
- if(!workout)
-  return;
+  const [name,sets,min,max]=exercise;
 
+  const weights=document.querySelectorAll(`.weight[data-exercise="${index}"]`);
+  const reps=document.querySelectorAll(`.reps[data-exercise="${index}"]`);
 
- const exercises = [];
+  const setData=[];
 
+  for(let i=0;i<sets;i++){
 
- workout.exercises.forEach(
-  (exercise,index) => {
+   const row=weights[i]?.closest(".set-row");
 
-   const [
-    name,
-    sets,
-    min,
-    max
-   ] = exercise;
-
-
-   const weights =
-    document.querySelectorAll(
-     `.weight[data-exercise="${index}"]`
-    );
-
-
-   const reps =
-    document.querySelectorAll(
-     `.reps[data-exercise="${index}"]`
-    );
-
-
-   const setData = [];
-
-
-   for(
-    let i=0;
-    i<sets;
-    i++
-   ){
-
-    const row =
-     weights[i]
-     ?.closest(".set-row");
-
-    const check =
-     row
-     ?.querySelector(".check");
-
-
-    setData.push({
-
-     weight:
-      weights[i]
-      ? weights[i].value
-      : "",
-
-     reps:
-      reps[i]
-      ? reps[i].value
-      : "",
-
-     completed:
-      check
-      ?.classList
-      .contains("done")
-      || false
-
-    });
-   }
-
-
-   exercises.push({
-    name,
-    min,
-    max,
-    sets:setData
+   setData.push({
+    weight:weights[i]?.value||"",
+    reps:reps[i]?.value||"",
+    completed:row?.querySelector(".check")?.classList.contains("done")||false
    });
-
   }
- );
 
+  return{name,min,max,sets:setData};
+ });
 
- const existing =
-  getActiveWorkout();
+ const existing=getActiveWorkout();
 
-
- const sameDraft =
-  existing &&
-  existing.type === currentWorkout &&
-  existing.trainingDate === selectedTrainingDate;
-
-
- const draft = {
-
+ saveData(ACTIVE_WORKOUT_KEY,{
   type:currentWorkout,
-
   title:workout.title,
-
-  trainingDate:
-   selectedTrainingDate,
-
-  startedAt:
-   sameDraft
-   ? existing.startedAt
-   : new Date().toISOString(),
-
-  updatedAt:
-   new Date().toISOString(),
-
+  trainingDate:selectedTrainingDate,
+  startedAt:existing?.startedAt||new Date().toISOString(),
+  updatedAt:new Date().toISOString(),
   exercises
- };
-
-
- localStorage.setItem(
-  ACTIVE_WORKOUT_KEY,
-  JSON.stringify(draft)
- );
+ });
 }
-
-
-/* =========================
-COMPLETE SET
-========================= */
 
 function completeSet(button){
-
  button.classList.toggle("done");
-
  saveActiveWorkout();
-
- if(button.classList.contains("done"))
-  startRest(90);
+ if(button.classList.contains("done"))startRest(90);
 }
 
-
-/* =========================
-REST TIMER
-========================= */
-
 let restInterval;
-
 
 function startRest(seconds){
 
  clearInterval(restInterval);
 
- let remaining = seconds;
-
+ let remaining=seconds;
  displayRest(remaining);
 
+ restInterval=setInterval(()=>{
 
- restInterval =
-  setInterval(
-   () => {
+  remaining--;
+  displayRest(remaining);
 
-    remaining--;
+  if(remaining<=0){
+   clearInterval(restInterval);
+   if(navigator.vibrate)navigator.vibrate([200,100,200]);
+  }
 
-    displayRest(remaining);
-
-    if(remaining <= 0){
-
-     clearInterval(restInterval);
-
-     if(navigator.vibrate)
-      navigator.vibrate(
-       [200,100,200]
-      );
-    }
-
-   },
-   1000
-  );
+ },1000);
 }
 
-
 function displayRest(seconds){
-
- const min =
-  Math.floor(seconds/60);
-
- const sec =
-  seconds%60;
-
-
- document.getElementById(
-  "restTimer"
- ).innerText =
+ const min=Math.floor(seconds/60);
+ const sec=seconds%60;
+ $("restTimer").innerText=
   `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
 }
 
-
-/* =========================
-FINISH WORKOUT
-========================= */
-
 function finishWorkout(){
-
- if(!currentWorkout)
-  return;
-
 
  saveActiveWorkout();
 
+ const draft=getActiveWorkout();
+ if(!draft)return;
 
- const draft =
-  getActiveWorkout();
+ const results=draft.exercises.map(exercise=>({
+  name:exercise.name,
+  min:exercise.min,
+  max:exercise.max,
+  sets:(exercise.sets||[])
+   .filter(s=>s.weight!==""||s.reps!=="")
+   .map(s=>({
+    weight:Number(s.weight)||0,
+    reps:Number(s.reps)||0
+   }))
+ }));
 
- if(!draft)
-  return;
-
-
- const results =
-  draft.exercises.map(
-   exercise => {
-
-    const validSets =
-     (
-      exercise.sets || []
-     )
-
-     .filter(
-      set =>
-       set.weight !== "" ||
-       set.reps !== ""
-     )
-
-     .map(
-      set => ({
-       weight:Number(set.weight)||0,
-       reps:Number(set.reps)||0
-      })
-     );
-
-
-    return {
-     name:exercise.name,
-     min:exercise.min,
-     max:exercise.max,
-     sets:validSets
-    };
-   }
-  );
-
-
- const hasAnySets =
-  results.some(
-   exercise =>
-    exercise.sets.length > 0
-  );
-
-
- if(!hasAnySets){
-
-  alert(
-   "Enter at least one set before finishing the workout."
-  );
-
+ if(!results.some(x=>x.sets.length)){
+  alert("Enter at least one set before finishing the workout.");
   return;
  }
 
-
- const history =
-  loadData(
-   "lunaHistory",
-   []
-  );
-
+ const history=loadData("lunaHistory",[]);
 
  history.unshift({
-
   id:Date.now(),
-
   type:"lift",
-
   workout:currentWorkout,
-
-  title:
-   program[currentWorkout].title,
-
-  date:
-   sessionISOForDate(
-    draft.trainingDate
-   ),
-
-  trainingDate:
-   draft.trainingDate,
-
-  loggedAt:
-   new Date().toISOString(),
-
-  startedAt:
-   draft.startedAt,
-
+  title:program[currentWorkout].title,
+  date:sessionISOForDate(draft.trainingDate),
+  trainingDate:draft.trainingDate,
+  loggedAt:new Date().toISOString(),
+  startedAt:draft.startedAt,
   exercises:results
-
  });
 
-
- saveData(
-  "lunaHistory",
-  history
- );
-
+ saveData("lunaHistory",history);
 
  clearActiveWorkout();
-
- currentWorkout = null;
- selectedTrainingDate = null;
-
- clearInterval(restInterval);
-
- displayRest(90);
+ currentWorkout=null;
+ selectedTrainingDate=null;
 
  alert("Workout saved 💪");
-
  showPage("home");
 }
-
-
-/* =========================
-CANCEL WORKOUT
-========================= */
 
 function cancelWorkout(){
 
- const active =
-  getActiveWorkout();
-
-
- if(!active){
-
-  showPage("home");
-  return;
- }
-
-
- if(
-  !confirm(
-   "Cancel this workout? Your unfinished sets will be deleted."
-  )
- )
-  return;
-
+ if(!confirm("Cancel this workout? Your unfinished sets will be deleted."))return;
 
  clearActiveWorkout();
-
- currentWorkout = null;
- selectedTrainingDate = null;
-
- clearInterval(restInterval);
-
- displayRest(90);
+ currentWorkout=null;
+ selectedTrainingDate=null;
 
  showPage("home");
 }
 
-
-/* =========================
-PREVIOUS EXERCISE
-========================= */
-
 function getPreviousExercise(name){
 
- const history =
-  loadData(
-   "lunaHistory",
-   []
-  );
-
+ const history=loadData("lunaHistory",[]);
 
  for(const workout of history){
 
-  if(workout.type !== "lift")
-   continue;
+  if(workout.type!=="lift")continue;
 
+  const exercise=workout.exercises?.find(x=>x.name===name);
 
-  const exercise =
-   workout.exercises
-   ?.find(
-    item => item.name === name
-   );
-
-
-  if(
-   exercise &&
-   exercise.sets &&
-   exercise.sets.length
-  ){
-
-   return exercise.sets
-   .map(
-    set =>
-     `${set.weight}×${set.reps}`
-   )
-   .join(", ");
+  if(exercise?.sets?.length){
+   return exercise.sets.map(s=>`${s.weight}×${s.reps}`).join(", ");
   }
  }
-
 
  return null;
 }
 
-
 /* =========================
-WALK
+CHICO
 ========================= */
 
-let walkSeconds = 0;
-let walkInterval = null;
-let walking = false;
-let selectedWalkDate = null;
-
+let walkSeconds=0;
+let walkInterval=null;
+let walking=false;
+let selectedWalkDate=null;
 
 function openWalkToday(){
-
- openWalkForDate(
-  localDateString(
-   new Date()
-  )
- );
+ openWalkForDate(localDateString(new Date()));
 }
 
+function openWalkForDate(date){
 
-function openWalkForDate(dateString){
-
- selectedWalkDate =
-  dateString;
-
-
- document.getElementById(
-  "walkLoggingDate"
- ).innerText =
-  `Logging for ${formatTrainingDate(dateString)}`;
-
-
+ selectedWalkDate=date;
+ $("walkLoggingDate").innerText=`Logging for ${formatTrainingDate(date)}`;
  showPage("walk");
 }
 
-
 function toggleWalk(){
 
- const button =
-  document.getElementById(
-   "walkButton"
-  );
-
-
- if(!selectedWalkDate)
-  selectedWalkDate =
-   localDateString(
-    new Date()
-   );
-
+ if(!selectedWalkDate)selectedWalkDate=localDateString(new Date());
 
  if(!walking){
 
-  walking = true;
+  walking=true;
+  $("walkButton").innerText="STOP WALK";
+  $("walkButton").classList.add("danger");
 
-  button.innerText =
-   "STOP WALK";
+  walkInterval=setInterval(()=>{
+   walkSeconds++;
+   updateWalkTimer();
+  },1000);
 
-  button.classList.add(
-   "danger"
-  );
+ }else{
 
-
-  walkInterval =
-   setInterval(
-    () => {
-
-     walkSeconds++;
-
-     updateWalkTimer();
-
-    },
-    1000
-   );
-
- }
-
- else{
-
-  walking = false;
-
+  walking=false;
   clearInterval(walkInterval);
-
-  button.innerText =
-   "RESUME WALK";
-
-  button.classList.remove(
-   "danger"
-  );
+  $("walkButton").innerText="RESUME WALK";
+  $("walkButton").classList.remove("danger");
  }
 }
 
-
 function updateWalkTimer(){
-
- const min =
-  Math.floor(
-   walkSeconds/60
-  );
-
- const sec =
-  walkSeconds%60;
-
-
- document.getElementById(
-  "walkTimer"
- ).innerText =
+ const min=Math.floor(walkSeconds/60);
+ const sec=walkSeconds%60;
+ $("walkTimer").innerText=
   `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
 }
 
-
 function saveWalk(){
 
- if(!selectedWalkDate)
-  selectedWalkDate =
-   localDateString(
-    new Date()
-   );
+ const manual=Number($("manualWalkMinutes").value)||0;
+ const distance=Number($("walkDistance").value)||0;
+ const duration=manual?manual*60:walkSeconds;
 
-
- const manualMinutes =
-  Number(
-   document.getElementById(
-    "manualWalkMinutes"
-   ).value || 0
-  );
-
-
- const distance =
-  Number(
-   document.getElementById(
-    "walkDistance"
-   ).value || 0
-  );
-
-
- let duration =
-  walkSeconds;
-
-
- if(manualMinutes > 0)
-  duration =
-   manualMinutes*60;
-
-
- if(duration === 0){
-
-  alert(
-   "Enter your walk time or use the timer."
-  );
-
+ if(!duration){
+  alert("Enter your walk time or use the timer.");
   return;
  }
 
+ const date=selectedWalkDate||localDateString(new Date());
+ const history=loadData("lunaHistory",[]);
+
+ history.unshift({
+  id:Date.now(),
+  type:"walk",
+  title:"Walk Chico",
+  date:sessionISOForDate(date),
+  trainingDate:date,
+  loggedAt:new Date().toISOString(),
+  duration,
+  distance
+ });
+
+ saveData("lunaHistory",history);
 
  clearInterval(walkInterval);
 
- walking = false;
-
-
- const history =
-  loadData(
-   "lunaHistory",
-   []
-  );
-
-
- history.unshift({
-
-  id:Date.now(),
-
-  type:"walk",
-
-  title:"Walk Chico",
-
-  date:
-   sessionISOForDate(
-    selectedWalkDate
-   ),
-
-  trainingDate:
-   selectedWalkDate,
-
-  loggedAt:
-   new Date().toISOString(),
-
-  duration,
-  distance
-
- });
-
-
- saveData(
-  "lunaHistory",
-  history
- );
-
-
- walkSeconds = 0;
+ walking=false;
+ walkSeconds=0;
 
  updateWalkTimer();
 
-
- document.getElementById(
-  "manualWalkMinutes"
- ).value = "";
-
-
- document.getElementById(
-  "walkDistance"
- ).value = "";
-
-
- const button =
-  document.getElementById(
-   "walkButton"
-  );
-
-
- button.innerText =
-  "START WALK";
-
- button.classList.remove(
-  "danger"
- );
-
- selectedWalkDate = null;
+ $("manualWalkMinutes").value="";
+ $("walkDistance").value="";
+ $("walkButton").innerText="START WALK";
+ $("walkButton").classList.remove("danger");
 
  alert("Chico walk saved 🐕");
-
  showPage("home");
 }
 
+/* =========================
+NUTRITION
+========================= */
+
+function getNutritionEntries(){
+ return loadData("lunaNutritionEntries",[]);
+}
+
+function getCalorieGoal(){
+ return Number(localStorage.getItem("lunaCalorieGoal"))||2200;
+}
+
+function getProteinGoal(){
+ return Number(localStorage.getItem("lunaProteinGoal"))||200;
+}
+
+function changeNutritionDate(amount){
+
+ const d=dateFromLocalString(nutritionDate);
+ d.setDate(d.getDate()+amount);
+
+ nutritionDate=localDateString(d);
+
+ renderNutrition();
+}
+
+function openNutritionDate(date){
+
+ nutritionDate=date;
+ showPage("nutrition");
+
+ window.scrollTo({
+  top:0,
+  behavior:"smooth"
+ });
+}
+
+function addFood(){
+
+ const name=$("foodName").value.trim();
+ const calories=Number($("foodCalories").value)||0;
+ const protein=Number($("foodProtein").value)||0;
+
+ if(!name){
+  alert("Enter the food or meal name.");
+  return;
+ }
+
+ if(calories<=0 && protein<=0){
+  alert("Enter calories or protein for this food.");
+  return;
+ }
+
+ const entries=getNutritionEntries();
+
+ entries.push({
+  id:Date.now(),
+  date:nutritionDate,
+  name,
+  calories,
+  protein,
+  loggedAt:new Date().toISOString()
+ });
+
+ saveData("lunaNutritionEntries",entries);
+
+ $("foodName").value="";
+ $("foodCalories").value="";
+ $("foodProtein").value="";
+
+ renderNutrition();
+}
+
+function deleteFood(id){
+
+ const entries=getNutritionEntries().filter(x=>String(x.id)!==String(id));
+
+ saveData("lunaNutritionEntries",entries);
+
+ renderNutrition();
+}
+
+function saveCalorieGoal(){
+
+ const value=Number($("calorieGoalInput").value);
+
+ if(value<=0){
+  alert("Enter a valid calorie goal.");
+  return;
+ }
+
+ localStorage.setItem("lunaCalorieGoal",String(value));
+ $("calorieGoalInput").value="";
+
+ renderNutrition();
+}
+
+function saveProteinGoal(){
+
+ const value=Number($("proteinGoalInput").value);
+
+ if(value<=0){
+  alert("Enter a valid protein goal.");
+  return;
+ }
+
+ localStorage.setItem("lunaProteinGoal",String(value));
+ $("proteinGoalInput").value="";
+
+ renderNutrition();
+}
+
+function renderNutrition(){
+
+ const today=localDateString(new Date());
+ const entries=getNutritionEntries();
+
+ const daily=entries.filter(x=>x.date===nutritionDate);
+
+ const calories=daily.reduce((sum,x)=>sum+(Number(x.calories)||0),0);
+ const protein=daily.reduce((sum,x)=>sum+(Number(x.protein)||0),0);
+
+ const calorieGoal=getCalorieGoal();
+ const proteinGoal=getProteinGoal();
+
+ $("nutritionDateTitle").innerText=
+  nutritionDate===today?"Today":formatShortDate(nutritionDate);
+
+ $("nutritionDateSub").innerText=
+  nutritionDate===today
+  ?formatShortDate(nutritionDate)
+  :formatTrainingDate(nutritionDate);
+
+ $("dailyCalories").innerText=Math.round(calories).toLocaleString();
+
+ $("dailyProtein").innerText=
+  `${protein.toFixed(protein%1?1:0)}g`;
+
+ $("calorieGoalLabel").innerText=
+  `of ${calorieGoal.toLocaleString()}`;
+
+ $("proteinGoalLabel").innerText=
+  `of ${proteinGoal}g`;
+
+ const calRemaining=calorieGoal-calories;
+ const proRemaining=proteinGoal-protein;
+
+ $("calorieRemaining").innerText=
+  calRemaining>=0
+  ?`${Math.round(calRemaining).toLocaleString()} remaining`
+  :`${Math.abs(Math.round(calRemaining)).toLocaleString()} over`;
+
+ $("proteinRemaining").innerText=
+  proRemaining>=0
+  ?`${proRemaining.toFixed(proRemaining%1?1:0)}g remaining`
+  :`${Math.abs(proRemaining).toFixed(1)}g over`;
+
+ $("calorieProgress").style.width=
+  `${Math.min((calories/calorieGoal)*100,100)}%`;
+
+ $("proteinProgress").style.width=
+  `${Math.min((protein/proteinGoal)*100,100)}%`;
+
+ $("calorieGoalInput").placeholder=calorieGoal;
+ $("proteinGoalInput").placeholder=proteinGoal;
+
+ if(daily.length){
+
+  $("foodLog").innerHTML=
+   daily
+   .slice()
+   .sort((a,b)=>new Date(a.loggedAt)-new Date(b.loggedAt))
+   .map(item=>`
+
+    <div class="food-entry">
+
+     <div class="food-top">
+
+      <div>
+       <div class="food-name">${escapeHTML(item.name)}</div>
+
+       <div class="food-macros">
+        ${Math.round(Number(item.calories)||0).toLocaleString()} cal
+        •
+        ${(Number(item.protein)||0).toFixed(Number(item.protein)%1?1:0)}g protein
+       </div>
+      </div>
+
+      <button class="danger small-button"
+       onclick="deleteFood('${item.id}')">
+       Delete
+      </button>
+
+     </div>
+
+    </div>
+
+   `).join("");
+
+ }else{
+
+  $("foodLog").innerHTML=`
+   <div class="empty">
+    Nothing logged for this day yet.
+   </div>
+  `;
+ }
+
+ renderNutritionHistory(entries);
+}
+
+function renderNutritionHistory(entries){
+
+ const totals={};
+
+ entries.forEach(item=>{
+
+  if(!totals[item.date]){
+   totals[item.date]={
+    calories:0,
+    protein:0,
+    count:0
+   };
+  }
+
+  totals[item.date].calories+=Number(item.calories)||0;
+  totals[item.date].protein+=Number(item.protein)||0;
+  totals[item.date].count++;
+ });
+
+ const dates=Object.keys(totals).sort().reverse();
+
+ if(!dates.length){
+
+  $("nutritionHistory").innerHTML=`
+   <div class="card empty">
+    Your previous nutrition logs will appear here.
+   </div>
+  `;
+
+  return;
+ }
+
+ $("nutritionHistory").innerHTML=
+  dates.map(date=>{
+
+   const total=totals[date];
+
+   return`
+    <div class="history-day"
+     onclick="openNutritionDate('${date}')">
+
+     <div class="history-day-top">
+      <strong>${formatShortDate(date)}</strong>
+      <span>›</span>
+     </div>
+
+     <div class="history-day-stats">
+      ${Math.round(total.calories).toLocaleString()} cal
+      •
+      ${total.protein.toFixed(total.protein%1?1:0)}g protein
+      •
+      ${total.count} ${total.count===1?"item":"items"}
+     </div>
+
+    </div>
+   `;
+
+  }).join("");
+}
 
 /* =========================
-GOAL WEIGHT
+WEIGHT
 ========================= */
 
 function getGoalWeight(){
-
- const saved =
-  Number(
-   localStorage.getItem(
-    "lunaGoalWeight"
-   )
-  );
-
- return saved > 0
-  ? saved
-  : 250;
+ return Number(localStorage.getItem("lunaGoalWeight"))||250;
 }
-
 
 function saveGoalWeight(){
 
- const value =
-  Number(
-   document.getElementById(
-    "goalWeightInput"
-   ).value
-  );
+ const value=Number($("goalWeightInput").value);
 
-
- if(!value || value <= 0){
-
-  alert(
-   "Enter a valid goal weight."
-  );
-
+ if(value<=0){
+  alert("Enter a valid goal weight.");
   return;
  }
 
+ localStorage.setItem("lunaGoalWeight",String(value));
 
- localStorage.setItem(
-  "lunaGoalWeight",
-  String(value)
- );
-
-
- document.getElementById(
-  "goalWeightInput"
- ).value = "";
-
+ $("goalWeightInput").value="";
 
  updateProgress();
-
- alert(
-  "Goal weight updated 🎯"
- );
 }
-
-
-/* =========================
-BODY WEIGHT
-========================= */
 
 function saveWeight(){
 
- const value =
-  Number(
-   document.getElementById(
-    "bodyWeight"
-   ).value
-  );
+ const value=Number($("bodyWeight").value);
 
-
- if(!value || value <= 0){
-
-  alert(
-   "Enter a valid weight."
-  );
-
+ if(value<=0){
+  alert("Enter a valid weight.");
   return;
  }
 
-
- const weights =
-  loadData(
-   "lunaWeights",
-   []
-  );
-
+ const weights=loadData("lunaWeights",[]);
 
  weights.unshift({
   weight:value,
   date:new Date().toISOString()
  });
 
+ saveData("lunaWeights",weights);
 
- saveData(
-  "lunaWeights",
-  weights
- );
-
-
- document.getElementById(
-  "bodyWeight"
- ).value = "";
-
+ $("bodyWeight").value="";
 
  updateProgress();
 }
 
-
 /* =========================
-WEIGHT PROGRESS
+CHARTS
 ========================= */
 
-function updateWeightProgress(){
-
- const weights =
-  loadData(
-   "lunaWeights",
-   []
-  );
-
- const goal =
-  getGoalWeight();
-
-
- document.getElementById(
-  "goalWeightDisplay"
- ).innerText =
-  goal.toFixed(1) + " lb";
-
-
- document.getElementById(
-  "goalWeightInput"
- ).placeholder =
-  goal.toFixed(1) + " lb";
-
-
- if(weights.length === 0){
-
-  document.getElementById(
-   "currentWeight"
-  ).innerText = "--";
-
-  document.getElementById(
-   "startingWeight"
-  ).innerText = "--";
-
-  document.getElementById(
-   "weightChange"
-  ).innerText = "--";
-
-  document.getElementById(
-   "toGoal"
-  ).innerText = "--";
-
-
-  emptyChart(
-   "weightChart",
-   "Add your first weigh-in to start tracking."
-  );
-
-  return;
- }
-
-
- const current =
-  Number(weights[0].weight);
-
- const starting =
-  Number(
-   weights[
-    weights.length-1
-   ].weight
-  );
-
- const change =
-  current-starting;
-
- const remaining =
-  current-goal;
-
-
- document.getElementById(
-  "currentWeight"
- ).innerText =
-  current.toFixed(1)+" lb";
-
-
- document.getElementById(
-  "startingWeight"
- ).innerText =
-  starting.toFixed(1)+" lb";
-
-
- document.getElementById(
-  "weightChange"
- ).innerText =
-  (change > 0 ? "+" : "")
-  +
-  change.toFixed(1)
-  +
-  " lb";
-
-
- document.getElementById(
-  "toGoal"
- ).innerText =
-  remaining > 0
-  ? remaining.toFixed(1)+" lb"
-  : "Reached 🎉";
-
-
- const data =
-  [...weights]
-  .reverse()
-  .map(
-   x => ({
-    date:x.date,
-    value:Number(x.weight)
-   })
-  );
-
-
- drawGraph(
-  "weightChart",
-  data,
-  goal,
-  "lb",
-  "weight"
- );
-}
-
-
-/* =========================
-STRENGTH
-========================= */
-
-const trackedLifts = [
-
- {
-  name:"Barbell Bench Press",
-  chart:"benchChart",
-  best:"benchBest",
-  reps:"benchReps"
- },
-
- {
-  name:"Barbell Squat",
-  chart:"squatChart",
-  best:"squatBest",
-  reps:"squatReps"
- },
-
- {
-  name:"Barbell Row",
-  chart:"rowChart",
-  best:"rowBest",
-  reps:"rowReps"
- },
-
- {
-  name:"Romanian Deadlift",
-  chart:"rdlChart",
-  best:"rdlBest",
-  reps:"rdlReps"
- }
-
+const trackedLifts=[
+ ["Barbell Bench Press","Bench Press"],
+ ["Barbell Squat","Squat"],
+ ["Barbell Row","Barbell Row"],
+ ["Romanian Deadlift","Romanian Deadlift"]
 ];
 
+function ensureStrengthCards(){
 
-function updateStrengthProgress(){
+ if($("strengthCards").children.length)return;
 
- const history =
-  loadData(
-   "lunaHistory",
-   []
-  );
+ trackedLifts.forEach(([name,title],index)=>{
 
+  $("strengthCards").insertAdjacentHTML("beforeend",`
+   <div class="card">
 
- trackedLifts.forEach(
-  lift => {
+    <div class="strength-top">
 
-   const performances = [];
+     <div>
+      <h3>${title}</h3>
+      <div class="muted">Heaviest set each session</div>
+     </div>
 
+     <div style="text-align:right">
+      <div id="liftBest${index}" class="strength-number">--</div>
+      <div id="liftReps${index}" class="muted"></div>
+     </div>
 
-   history
+    </div>
 
-   .filter(
-    x => x.type === "lift"
-   )
+    <div id="liftChart${index}" class="chart strength-chart"></div>
 
-   .slice()
+    <div class="chart-help">
+     Touch and drag to see weight, reps and date
+    </div>
 
-   .sort(
-    (a,b) =>
-     new Date(a.date)
-     -
-     new Date(b.date)
-   )
-
-   .forEach(
-    workout => {
-
-     const exercise =
-      workout.exercises
-      ?.find(
-       e => e.name === lift.name
-      );
-
-
-     if(
-      !exercise ||
-      !exercise.sets ||
-      !exercise.sets.length
-     )
-      return;
-
-
-     const validSets =
-      exercise.sets.filter(
-       s =>
-        Number(s.weight) > 0
-      );
-
-
-     if(!validSets.length)
-      return;
-
-
-     const heaviest =
-      validSets.reduce(
-       (best,set) =>
-        Number(set.weight)
-        >
-        Number(best.weight)
-        ? set
-        : best
-      );
-
-
-     performances.push({
-
-      date:workout.date,
-
-      value:
-       Number(
-        heaviest.weight
-       ),
-
-      reps:
-       Number(
-        heaviest.reps
-       ) || 0
-
-     });
-
-    }
-   );
-
-
-   if(!performances.length){
-
-    document.getElementById(
-     lift.best
-    ).innerText = "--";
-
-
-    document.getElementById(
-     lift.reps
-    ).innerText =
-     "No data yet";
-
-
-    emptyChart(
-     lift.chart,
-     "Complete this lift to start tracking."
-    );
-
-    return;
-   }
-
-
-   const latest =
-    performances[
-     performances.length-1
-    ];
-
-
-   document.getElementById(
-    lift.best
-   ).innerText =
-    latest.value+" lb";
-
-
-   document.getElementById(
-    lift.reps
-   ).innerText =
-    latest.reps
-    ? `× ${latest.reps} reps`
-    : "";
-
-
-   drawGraph(
-    lift.chart,
-    performances,
-    null,
-    "lb",
-    "strength"
-   );
-
-  }
- );
+   </div>
+  `);
+ });
 }
-
-
-/* =========================
-CHICO PROGRESS
-========================= */
-
-function updateChicoProgress(){
-
- const history =
-  loadData(
-   "lunaHistory",
-   []
-  );
-
-
- const walks =
-  history.filter(
-   x => x.type === "walk"
-  );
-
-
- const walksWithMiles =
-  walks.filter(
-   x =>
-    Number(x.distance) > 0
-  );
-
-
- const totalMiles =
-  walks.reduce(
-   (total,walk) =>
-    total +
-    (
-     Number(walk.distance)
-     || 0
-    ),
-   0
-  );
-
-
- const longest =
-  walksWithMiles.length
-  ? Math.max(
-     ...walksWithMiles.map(
-      x => Number(x.distance)
-     )
-    )
-  : 0;
-
-
- const average =
-  walksWithMiles.length
-  ? totalMiles /
-    walksWithMiles.length
-  : 0;
-
-
- document.getElementById(
-  "totalChicoMiles"
- ).innerText =
-  totalMiles.toFixed(1);
-
-
- document.getElementById(
-  "totalChicoWalks"
- ).innerText =
-  walks.length;
-
-
- document.getElementById(
-  "averageChicoMiles"
- ).innerText =
-  average.toFixed(2);
-
-
- document.getElementById(
-  "longestChicoWalk"
- ).innerText =
-  longest.toFixed(2);
-
-
- if(!walksWithMiles.length){
-
-  emptyChart(
-   "chicoMilesChart",
-   "Log mileage on a Chico walk to start the graph."
-  );
-
-  return;
- }
-
-
- const data =
-  walksWithMiles
-  .slice()
-  .sort(
-   (a,b) =>
-    new Date(a.date)
-    -
-    new Date(b.date)
-  )
-  .map(
-   walk => ({
-    date:walk.date,
-    value:Number(walk.distance)
-   })
-  );
-
-
- drawGraph(
-  "chicoMilesChart",
-  data,
-  null,
-  "mi",
-  "walk"
- );
-}
-
-
-/* =========================
-EMPTY GRAPH
-========================= */
 
 function emptyChart(id,message){
-
- const chart =
-  document.getElementById(id);
-
- if(!chart)
-  return;
-
- chart.innerHTML =
-  `<div class="empty">
-    ${message}
-   </div>`;
+ $(id).innerHTML=`<div class="empty">${message}</div>`;
 }
 
+function drawGraph(id,data,goal=null,type="generic"){
 
-/* =========================
-INTERACTIVE GRAPH
-========================= */
+ const chart=$(id);
+ if(!chart||!data.length)return;
 
-function drawGraph(
- elementId,
- data,
- goal=null,
- unit="",
- chartType=""
-){
+ const W=500,H=210,L=45,R=20,T=25,B=35;
 
- const chart =
-  document.getElementById(
-   elementId
-  );
+ const values=data.map(x=>Number(x.value));
 
+ if(goal!==null)values.push(Number(goal));
 
- if(!chart || !data.length)
-  return;
+ let min=Math.min(...values);
+ let max=Math.max(...values);
 
+ const range=max-min;
+ const padding=range===0?Math.max(max*.1,1):range*.2;
 
- /*
-  SVG coordinates.
-  We keep these fixed and let the browser
-  scale the chart responsively.
- */
+ min=Math.max(0,min-padding);
+ max+=padding;
 
- const width = 500;
- const height = 210;
+ if(max===min)max=min+1;
 
- const left = 45;
- const right = 20;
- const top = 25;
- const bottom = 35;
+ const x=i=>data.length===1?W/2:L+i*(W-L-R)/(data.length-1);
 
+ const y=value=>
+  H-B-
+  (value-min)/(max-min)*(H-T-B);
 
- const values =
-  data.map(
-   x => Number(x.value)
-  );
+ const points=data.map((item,i)=>`${x(i)},${y(item.value)}`).join(" ");
 
+ const circles=data.map((item,i)=>`
+  <circle class="chart-point"
+   data-index="${i}"
+   cx="${x(i)}"
+   cy="${y(item.value)}"
+   r="5"
+   fill="white"
+   stroke="#171719"
+   stroke-width="2">
+  </circle>
+ `).join("");
 
- if(goal !== null)
-  values.push(
-   Number(goal)
-  );
+ let goalLine="";
 
-
- let min =
-  Math.min(...values);
-
- let max =
-  Math.max(...values);
-
-
- const range =
-  max-min;
-
-
- const padding =
-  range === 0
-  ? Math.max(max*.1,1)
-  : range*.2;
-
-
- min =
-  Math.max(
-   0,
-   min-padding
-  );
-
- max =
-  max+padding;
-
-
- if(max === min)
-  max = min+1;
-
-
- function x(index){
-
-  if(data.length === 1)
-   return width/2;
-
-  return left
-   +
-   index
-   *
-   (width-left-right)
-   /
-   (data.length-1);
- }
-
-
- function y(value){
-
-  return height
-   -
-   bottom
-   -
-   (
-    (value-min)
-    /
-    (max-min)
-    *
-    (height-top-bottom)
-   );
- }
-
-
- const points =
-  data.map(
-   (item,index) =>
-    `${x(index)},${y(item.value)}`
-  )
-  .join(" ");
-
-
- /*
-  Every visible dot gets a larger invisible
-  touch target around it. This makes it much
-  easier to use on an iPhone.
- */
-
- const circles =
-  data.map(
-   (item,index) => `
-
-    <circle
-     class="touch-target"
-     data-index="${index}"
-     cx="${x(index)}"
-     cy="${y(item.value)}"
-     r="18"
-     fill="transparent">
-    </circle>
-
-    <circle
-     class="chart-point"
-     data-index="${index}"
-     cx="${x(index)}"
-     cy="${y(item.value)}"
-     r="5"
-     fill="white"
-     stroke="#171719"
-     stroke-width="2">
-    </circle>
-
-   `
-  )
-  .join("");
-
-
- let goalMarkup = "";
-
-
- if(goal !== null){
-
-  const goalY =
-   y(goal);
-
-
-  goalMarkup = `
-
+ if(goal!==null){
+  goalLine=`
    <line
-    x1="${left}"
-    y1="${goalY}"
-    x2="${width-right}"
-    y2="${goalY}"
+    x1="${L}" y1="${y(goal)}"
+    x2="${W-R}" y2="${y(goal)}"
     stroke="#63d471"
     stroke-width="2"
     stroke-dasharray="7 7">
    </line>
-
-   <text
-    x="${left+5}"
-    y="${goalY-7}"
-    fill="#63d471"
-    font-size="12">
-    Goal ${Number(goal).toFixed(1)}
-   </text>
-
   `;
  }
 
+ chart.innerHTML=`
+  <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
 
- /*
-  Vertical selector that appears when
-  the user touches a data point.
- */
-
- const selectorMarkup = `
-
-  <line
-   id="${elementId}-selector"
-   x1="0"
-   y1="${top}"
-   x2="0"
-   y2="${height-bottom}"
-   stroke="#9d9da5"
-   stroke-width="1.5"
-   stroke-dasharray="4 4"
-   opacity="0">
-  </line>
-
- `;
-
-
- chart.innerHTML = `
-
-  <svg
-   viewBox="0 0 ${width} ${height}"
-   preserveAspectRatio="none"
-   width="100%"
-   height="100%">
-
-   <line
-    x1="${left}"
-    y1="${top}"
-    x2="${width-right}"
-    y2="${top}"
-    stroke="#2b2b30">
-   </line>
-
-   <line
-    x1="${left}"
-    y1="${height-bottom}"
-    x2="${width-right}"
-    y2="${height-bottom}"
-    stroke="#2b2b30">
-   </line>
-
-   <text
-    x="3"
-    y="${top+5}"
-    fill="#9d9da5"
-    font-size="11">
-    ${max.toFixed(1)}
-   </text>
-
-   <text
-    x="3"
-    y="${height-bottom+5}"
-    fill="#9d9da5"
-    font-size="11">
-    ${min.toFixed(1)}
-   </text>
-
-   ${goalMarkup}
+   ${goalLine}
 
    <polyline
     points="${points}"
@@ -3245,508 +1848,124 @@ function drawGraph(
     stroke-linejoin="round">
    </polyline>
 
-   ${selectorMarkup}
+   <line id="${id}-selector"
+    x1="0" y1="${T}"
+    x2="0" y2="${H-B}"
+    stroke="#9d9da5"
+    stroke-width="1.5"
+    stroke-dasharray="4 4"
+    opacity="0">
+   </line>
 
    ${circles}
 
   </svg>
 
-  <div
-   id="${elementId}-tooltip"
-   class="chart-tooltip">
-  </div>
-
+  <div id="${id}-tooltip" class="chart-tooltip"></div>
  `;
 
-
- /*
-  Store chart geometry so the touch handler
-  can find the closest point.
- */
-
- chart._chartData = {
-  data,
-  width,
-  height,
-  left,
-  right,
-  top,
-  bottom,
-  x,
-  y,
-  unit,
-  chartType
+ chart._graph={
+  data,W,H,x,y,type
  };
 
-
- setupChartInteraction(
-  chart,
-  elementId
- );
+ setupChartInteraction(chart,id);
 }
 
+function setupChartInteraction(chart,id){
 
-/* =========================
-CHART TOOLTIP
-========================= */
+ const svg=chart.querySelector("svg");
+ const tooltip=$(`${id}-tooltip`);
+ const selector=$(`${id}-selector`);
+ const graph=chart._graph;
 
-function setupChartInteraction(
- chart,
- elementId
-){
+ function closest(clientX){
 
- const svg =
-  chart.querySelector("svg");
+  const rect=svg.getBoundingClientRect();
 
- const tooltip =
-  document.getElementById(
-   `${elementId}-tooltip`
-  );
+  const svgX=(clientX-rect.left)*graph.W/rect.width;
 
- const selector =
-  document.getElementById(
-   `${elementId}-selector`
-  );
+  let index=0;
+  let distance=Infinity;
 
+  graph.data.forEach((item,i)=>{
 
- if(
-  !svg ||
-  !tooltip ||
-  !chart._chartData
- )
-  return;
+   const d=Math.abs(graph.x(i)-svgX);
 
-
- const config =
-  chart._chartData;
-
-
- function getClosestIndex(clientX){
-
-  const rect =
-   svg.getBoundingClientRect();
-
-
-  const relativeX =
-   clientX-rect.left;
-
-
-  const svgX =
-   relativeX
-   *
-   config.width
-   /
-   rect.width;
-
-
-  let closestIndex = 0;
-  let closestDistance = Infinity;
-
-
-  config.data.forEach(
-   (item,index) => {
-
-    const pointX =
-     config.x(index);
-
-    const distance =
-     Math.abs(
-      pointX-svgX
-     );
-
-
-    if(distance < closestDistance){
-
-     closestDistance =
-      distance;
-
-     closestIndex =
-      index;
-    }
-
+   if(d<distance){
+    distance=d;
+    index=i;
    }
-  );
+  });
 
-
-  return closestIndex;
+  return index;
  }
 
+ function show(index){
 
- function showPoint(
-  index
- ){
+  const item=graph.data[index];
+  if(!item)return;
 
-  const item =
-   config.data[index];
+  chart.querySelectorAll(".chart-point").forEach(p=>p.setAttribute("r","5"));
 
+  const point=chart.querySelector(`.chart-point[data-index="${index}"]`);
+  if(point)point.setAttribute("r","8");
 
-  if(!item)
-   return;
+  const px=graph.x(index);
+  const py=graph.y(item.value);
 
+  selector.setAttribute("x1",px);
+  selector.setAttribute("x2",px);
+  selector.setAttribute("opacity","1");
 
-  /*
-   Reset all dots.
-  */
+  let value="";
 
-  chart
-  .querySelectorAll(
-   ".chart-point"
-  )
-  .forEach(
-   point => {
-
-    point.setAttribute(
-     "r",
-     "5"
-    );
-
-    point.setAttribute(
-     "stroke-width",
-     "2"
-    );
-
-   }
-  );
-
-
-  /*
-   Enlarge selected dot.
-  */
-
-  const selectedPoint =
-   chart.querySelector(
-    `.chart-point[data-index="${index}"]`
-   );
-
-
-  if(selectedPoint){
-
-   selectedPoint.setAttribute(
-    "r",
-    "8"
-   );
-
-   selectedPoint.setAttribute(
-    "stroke-width",
-    "3"
-   );
+  if(graph.type==="strength"){
+   value=`${Number(item.value).toFixed(1)} lb`;
+   if(item.reps)value+=` × ${item.reps} reps`;
+  }else if(graph.type==="walk"){
+   value=`${Number(item.value).toFixed(2)} mi`;
+  }else{
+   value=`${Number(item.value).toFixed(1)} lb`;
   }
 
-
-  /*
-   Show selector line.
-  */
-
-  const pointX =
-   config.x(index);
-
-  const pointY =
-   config.y(
-    item.value
-   );
-
-
-  if(selector){
-
-   selector.setAttribute(
-    "x1",
-    pointX
-   );
-
-   selector.setAttribute(
-    "x2",
-    pointX
-   );
-
-   selector.setAttribute(
-    "opacity",
-    "1"
-   );
-  }
-
-
-  /*
-   Build tooltip value.
-  */
-
-  let valueText = "";
-
-
-  if(
-   config.chartType ===
-   "strength"
-  ){
-
-   valueText =
-    `${Number(item.value).toFixed(1)} lb`;
-
-   if(Number(item.reps) > 0)
-    valueText +=
-     ` × ${item.reps} reps`;
-
-  }
-
-  else if(
-   config.chartType ===
-   "walk"
-  ){
-
-   valueText =
-    `${Number(item.value).toFixed(2)} mi`;
-
-  }
-
-  else if(
-   config.chartType ===
-   "weight"
-  ){
-
-   valueText =
-    `${Number(item.value).toFixed(1)} lb`;
-
-  }
-
-  else{
-
-   valueText =
-    `${Number(item.value).toFixed(1)} ${config.unit}`;
-
-  }
-
-
-  const dateText =
-   formatChartDate(
-    item.date
-   );
-
-
-  tooltip.innerHTML = `
-
-   <div class="tooltip-value">
-    ${valueText}
-   </div>
-
-   <div class="tooltip-date">
-    ${dateText}
-   </div>
-
+  tooltip.innerHTML=`
+   <div class="tooltip-value">${value}</div>
+   <div class="tooltip-date">${formatChartDate(item.date)}</div>
   `;
 
+  const svgRect=svg.getBoundingClientRect();
+  const chartRect=chart.getBoundingClientRect();
 
-  /*
-   Convert SVG coordinates into actual
-   chart pixels so tooltip follows point.
-  */
+  let tooltipX=(px/graph.W)*svgRect.width+(svgRect.left-chartRect.left);
+  let tooltipY=(py/graph.H)*svgRect.height+(svgRect.top-chartRect.top);
 
-  const svgRect =
-   svg.getBoundingClientRect();
+  tooltipX=Math.max(60,Math.min(chart.clientWidth-60,tooltipX));
 
-  const chartRect =
-   chart.getBoundingClientRect();
+  tooltip.style.left=`${tooltipX}px`;
+  tooltip.style.top=`${Math.max(55,tooltipY)}px`;
 
-
-  let tooltipX =
-   (
-    pointX
-    /
-    config.width
-   )
-   *
-   svgRect.width
-   +
-   (
-    svgRect.left
-    -
-    chartRect.left
-   );
-
-
-  let tooltipY =
-   (
-    pointY
-    /
-    config.height
-   )
-   *
-   svgRect.height
-   +
-   (
-    svgRect.top
-    -
-    chartRect.top
-   );
-
-
-  /*
-   Prevent tooltip from falling off
-   the left or right edge.
-  */
-
-  const safePadding = 55;
-
-
-  tooltipX =
-   Math.max(
-    safePadding,
-    Math.min(
-     chart.clientWidth-safePadding,
-     tooltipX
-    )
-   );
-
-
-  tooltip.style.left =
-   `${tooltipX}px`;
-
-  tooltip.style.top =
-   `${Math.max(55,tooltipY)}px`;
-
-
-  tooltip.classList.add(
-   "show"
-  );
+  tooltip.classList.add("show");
  }
 
-
- function hidePoint(){
-
-  tooltip.classList.remove(
-   "show"
-  );
-
-
-  if(selector)
-   selector.setAttribute(
-    "opacity",
-    "0"
-   );
-
-
-  chart
-  .querySelectorAll(
-   ".chart-point"
-  )
-  .forEach(
-   point => {
-
-    point.setAttribute(
-     "r",
-     "5"
-    );
-
-    point.setAttribute(
-     "stroke-width",
-     "2"
-    );
-
-   }
-  );
+ function hide(){
+  tooltip.classList.remove("show");
+  selector.setAttribute("opacity","0");
+  chart.querySelectorAll(".chart-point").forEach(p=>p.setAttribute("r","5"));
  }
 
+ chart.addEventListener("mousemove",e=>show(closest(e.clientX)));
+ chart.addEventListener("mouseleave",hide);
 
- /*
-  Mouse / desktop.
- */
+ chart.addEventListener("touchstart",e=>{
+  if(e.touches.length)show(closest(e.touches[0].clientX));
+ },{passive:true});
 
- chart.addEventListener(
-  "mousemove",
-  event => {
+ chart.addEventListener("touchmove",e=>{
+  if(e.touches.length)show(closest(e.touches[0].clientX));
+ },{passive:true});
 
-   const index =
-    getClosestIndex(
-     event.clientX
-    );
-
-   showPoint(index);
-  }
- );
-
-
- chart.addEventListener(
-  "mouseleave",
-  hidePoint
- );
-
-
- /*
-  iPhone / touch.
- */
-
- chart.addEventListener(
-  "touchstart",
-  event => {
-
-   if(!event.touches.length)
-    return;
-
-
-   const touch =
-    event.touches[0];
-
-
-   const index =
-    getClosestIndex(
-     touch.clientX
-    );
-
-
-   showPoint(index);
-
-  },
-  {
-   passive:true
-  }
- );
-
-
- chart.addEventListener(
-  "touchmove",
-  event => {
-
-   if(!event.touches.length)
-    return;
-
-
-   const touch =
-    event.touches[0];
-
-
-   const index =
-    getClosestIndex(
-     touch.clientX
-    );
-
-
-   showPoint(index);
-
-  },
-  {
-   passive:true
-  }
- );
-
-
- chart.addEventListener(
-  "touchend",
-  () => {
-
-   /*
-    Keep the tooltip visible briefly
-    after lifting your finger.
-   */
-
-   setTimeout(
-    hidePoint,
-    1200
-   );
-
-  },
-  {
-   passive:true
-  }
- );
+ chart.addEventListener("touchend",()=>setTimeout(hide,1200),{passive:true});
 }
-
 
 /* =========================
 PROGRESS
@@ -3754,567 +1973,345 @@ PROGRESS
 
 function updateProgress(){
 
- updateWeightProgress();
- updateStrengthProgress();
- updateChicoProgress();
+ ensureStrengthCards();
+
+ const weights=loadData("lunaWeights",[]);
+ const goal=getGoalWeight();
+
+ $("goalWeightDisplay").innerText=goal.toFixed(1)+" lb";
+
+ if(weights.length){
+
+  const current=Number(weights[0].weight);
+  const starting=Number(weights[weights.length-1].weight);
+  const change=current-starting;
+
+  $("currentWeight").innerText=current.toFixed(1)+" lb";
+  $("startingWeight").innerText=starting.toFixed(1)+" lb";
+  $("weightChange").innerText=(change>0?"+":"")+change.toFixed(1)+" lb";
+  $("toGoal").innerText=current>goal?(current-goal).toFixed(1)+" lb":"Reached 🎉";
+
+  drawGraph(
+   "weightChart",
+   [...weights].reverse().map(x=>({
+    date:x.date,
+    value:Number(x.weight)
+   })),
+   goal,
+   "weight"
+  );
+
+ }else{
+  $("currentWeight").innerText="--";
+  $("startingWeight").innerText="--";
+  $("weightChange").innerText="--";
+  $("toGoal").innerText="--";
+  emptyChart("weightChart","Add your first weigh-in to start tracking.");
+ }
+
+ const history=loadData("lunaHistory",[]);
+
+ trackedLifts.forEach(([name],index)=>{
+
+  const performances=[];
+
+  history
+   .filter(x=>x.type==="lift")
+   .slice()
+   .sort((a,b)=>new Date(a.date)-new Date(b.date))
+   .forEach(workout=>{
+
+    const exercise=workout.exercises?.find(x=>x.name===name);
+    const sets=exercise?.sets?.filter(x=>Number(x.weight)>0)||[];
+
+    if(!sets.length)return;
+
+    const best=sets.reduce((a,b)=>Number(b.weight)>Number(a.weight)?b:a);
+
+    performances.push({
+     date:workout.date,
+     value:Number(best.weight),
+     reps:Number(best.reps)||0
+    });
+   });
+
+  if(performances.length){
+
+   const latest=performances[performances.length-1];
+
+   $(`liftBest${index}`).innerText=latest.value+" lb";
+   $(`liftReps${index}`).innerText=latest.reps?`× ${latest.reps} reps`:"";
+
+   drawGraph(`liftChart${index}`,performances,null,"strength");
+
+  }else{
+   $(`liftBest${index}`).innerText="--";
+   $(`liftReps${index}`).innerText="No data yet";
+   emptyChart(`liftChart${index}`,"Complete this lift to start tracking.");
+  }
+ });
+
+ const walks=history.filter(x=>x.type==="walk");
+ const withMiles=walks.filter(x=>Number(x.distance)>0);
+
+ const total=walks.reduce((sum,x)=>sum+(Number(x.distance)||0),0);
+
+ $("totalChicoMiles").innerText=total.toFixed(1);
+ $("totalChicoWalks").innerText=walks.length;
+ $("averageChicoMiles").innerText=
+  (withMiles.length?total/withMiles.length:0).toFixed(2);
+ $("longestChicoWalk").innerText=
+  (withMiles.length?Math.max(...withMiles.map(x=>Number(x.distance))):0).toFixed(2);
+
+ if(withMiles.length){
+
+  drawGraph(
+   "chicoMilesChart",
+   withMiles
+    .slice()
+    .sort((a,b)=>new Date(a.date)-new Date(b.date))
+    .map(x=>({
+     date:x.date,
+     value:Number(x.distance)
+    })),
+   null,
+   "walk"
+  );
+
+ }else{
+  emptyChart("chicoMilesChart","Log mileage to start the graph.");
+ }
 }
 
-
 /* =========================
-HISTORY
+TRAINING HISTORY
 ========================= */
 
 function renderFullHistory(){
 
- const history =
-  loadData(
-   "lunaHistory",
-   []
-  )
+ const history=loadData("lunaHistory",[])
   .slice()
-  .sort(
-   (a,b) =>
-    new Date(b.date)
-    -
-    new Date(a.date)
-  );
-
-
- const container =
-  document.getElementById(
-   "fullHistory"
-  );
-
-
- container.innerHTML = "";
-
+  .sort((a,b)=>new Date(b.date)-new Date(a.date));
 
  if(!history.length){
-
-  container.innerHTML =
-
-   `<div class="card empty">
-     No sessions logged yet.
-    </div>`;
-
+  $("fullHistory").innerHTML=`
+   <div class="card empty">No sessions logged yet.</div>
+  `;
   return;
  }
 
+ $("fullHistory").innerHTML=history.map((session,index)=>{
 
- history.forEach(
-  (session,index) => {
+  const date=new Date(session.date).toLocaleDateString(undefined,{
+   weekday:"short",month:"short",day:"numeric",year:"numeric"
+  });
 
-   const card =
-    document.createElement(
-     "div"
-    );
+  let title="";
+  let details="";
 
-   card.className =
-    "card history-card";
+  if(session.type==="walk"){
 
+   title="🐕 Walk Chico";
 
-   const date =
-    new Date(
-     session.date
-    );
-
-
-   const dateText =
-    date.toLocaleDateString(
-     undefined,
-     {
-      weekday:"short",
-      month:"short",
-      day:"numeric",
-      year:"numeric"
-     }
-    );
-
-
-   let title = "";
-   let summary = "";
-   let details = "";
-
-
-   if(session.type === "walk"){
-
-    title =
-     "🐕 Walk Chico";
-
-
-    const minutes =
-     Math.round(
-      (
-       Number(
-        session.duration
-       ) || 0
-      ) / 60
-     );
-
-
-    const miles =
-     Number(
-      session.distance
-     ) || 0;
-
-
-    summary =
-     `${minutes} min`;
-
-
-    if(miles > 0)
-     summary +=
-      ` • ${miles.toFixed(2)} mi`;
-
-
-    details = `
-
-     <div class="stat-grid">
-
-      <div class="stat">
-
-       <div class="muted">
-        Duration
-       </div>
-
-       <div class="stat-small">
-        ${minutes} min
-       </div>
-
-      </div>
-
-      <div class="stat">
-
-       <div class="muted">
-        Distance
-       </div>
-
-       <div class="stat-small">
-        ${miles.toFixed(2)} mi
-       </div>
-
-      </div>
-
+   details=`
+    <div class="stat-grid">
+     <div class="stat">
+      <div class="muted">Duration</div>
+      <div class="stat-small">${Math.round((Number(session.duration)||0)/60)} min</div>
      </div>
 
-    `;
-   }
+     <div class="stat">
+      <div class="muted">Distance</div>
+      <div class="stat-small">${(Number(session.distance)||0).toFixed(2)} mi</div>
+     </div>
+    </div>
+   `;
 
+  }else{
 
-   else if(session.type === "lift"){
+   title="🏋️ "+(session.title||"Workout");
 
-    title =
-     "🏋️ "
-     +
-     (
-      session.title ||
-      "Workout"
-     );
+   details=(session.exercises||[])
+    .filter(x=>x.sets?.length)
+    .map(exercise=>`
+     <div class="history-exercise">
+      <strong>${exercise.name}</strong>
+      <div class="history-sets">
+       ${exercise.sets.map((set,i)=>
+        `Set ${i+1}: ${Number(set.weight)||0} lb × ${Number(set.reps)||0}`
+       ).join("<br>")}
+      </div>
+     </div>
+    `).join("");
+  }
 
+  return`
+   <div class="card history-card">
 
-    const completedExercises =
-     (
-      session.exercises || []
-     )
-     .filter(
-      exercise =>
-       exercise.sets &&
-       exercise.sets.length
-     );
-
-
-    summary =
-     `${completedExercises.length} exercises`;
-
-
-    details =
-     completedExercises.map(
-      exercise => {
-
-       const sets =
-        exercise.sets.map(
-         (set,setIndex) =>
-          `Set ${setIndex+1}: ${Number(set.weight)||0} lb × ${Number(set.reps)||0}`
-        )
-        .join("<br>");
-
-
-       return `
-
-        <div class="history-exercise">
-
-         <strong>
-          ${exercise.name}
-         </strong>
-
-         <div class="history-sets">
-          ${sets}
-         </div>
-
-        </div>
-
-       `;
-
-      }
-     )
-     .join("");
-   }
-
-
-   card.innerHTML = `
-
-    <div
-     class="history-header"
-     onclick="toggleHistory(${index})">
-
+    <div class="history-header" onclick="toggleHistory(${index})">
      <div>
-
-      <div class="history-title">
-       ${title}
-      </div>
-
-      <div class="muted">
-       ${dateText}
-      </div>
-
-      <div class="muted"
-           style="margin-top:4px">
-       ${summary}
-      </div>
-
+      <div class="history-title">${title}</div>
+      <div class="muted">${date}</div>
      </div>
-
-     <div
-      id="historyArrow-${index}"
-      style="font-size:20px">
-      ›
-     </div>
-
+     <div>›</div>
     </div>
 
-    <div
-     id="historyDetail-${index}"
-     class="history-detail">
+    <div id="historyDetail-${index}" class="history-detail">
 
      ${details}
 
      <div class="history-actions">
-
-      <button
-       class="danger small-button"
+      <button class="danger small-button"
        onclick="deleteSession(event,'${session.id}')">
-
        Delete Session
-
       </button>
-
      </div>
 
     </div>
 
-   `;
+   </div>
+  `;
 
-
-   container.appendChild(card);
-
-  }
- );
+ }).join("");
 }
-
 
 function toggleHistory(index){
-
- const detail =
-  document.getElementById(
-   `historyDetail-${index}`
-  );
-
-
- const arrow =
-  document.getElementById(
-   `historyArrow-${index}`
-  );
-
-
- detail.classList.toggle(
-  "open"
- );
-
-
- arrow.innerText =
-  detail.classList.contains("open")
-  ? "⌄"
-  : "›";
+ $(`historyDetail-${index}`).classList.toggle("open");
 }
-
 
 function deleteSession(event,id){
 
  event.stopPropagation();
 
+ if(!confirm("Delete this training session?"))return;
 
- if(
-  !confirm(
-   "Delete this training session?"
-  )
- )
-  return;
+ const history=loadData("lunaHistory",[])
+  .filter(x=>String(x.id)!==String(id));
 
+ saveData("lunaHistory",history);
 
- let history =
-  loadData(
-   "lunaHistory",
-   []
-  );
-
-
- history =
-  history.filter(
-   session =>
-    String(session.id) !==
-    String(id)
-  );
-
-
- saveData(
-  "lunaHistory",
-  history
- );
-
-
- buildHome();
  renderFullHistory();
+ buildHome();
  updateProgress();
 }
 
-
 /* =========================
-BACKUP
+BACKUP / RESTORE
 ========================= */
 
 function backupData(){
 
- const backup = {
-
+ const backup={
   app:"Luna Training",
+  version:7,
+  exportedAt:new Date().toISOString(),
 
-  version:6,
+  lunaHistory:loadData("lunaHistory",[]),
+  lunaWeights:loadData("lunaWeights",[]),
+  lunaGoalWeight:getGoalWeight(),
+  lunaActiveWorkout:getActiveWorkout(),
 
-  exportedAt:
-   new Date().toISOString(),
-
-  lunaHistory:
-   loadData(
-    "lunaHistory",
-    []
-   ),
-
-  lunaWeights:
-   loadData(
-    "lunaWeights",
-    []
-   ),
-
-  lunaGoalWeight:
-   getGoalWeight(),
-
-  lunaActiveWorkout:
-   getActiveWorkout()
-
+  lunaNutritionEntries:getNutritionEntries(),
+  lunaCalorieGoal:getCalorieGoal(),
+  lunaProteinGoal:getProteinGoal()
  };
 
+ const blob=new Blob(
+  [JSON.stringify(backup,null,2)],
+  {type:"application/json"}
+ );
 
- const json =
-  JSON.stringify(
-   backup,
-   null,
-   2
-  );
+ const url=URL.createObjectURL(blob);
+ const link=document.createElement("a");
 
-
- const blob =
-  new Blob(
-   [json],
-   {
-    type:"application/json"
-   }
-  );
-
-
- const url =
-  URL.createObjectURL(blob);
-
-
- const link =
-  document.createElement("a");
-
-
- const date =
-  new Date()
-  .toISOString()
-  .slice(0,10);
-
-
- link.href = url;
-
- link.download =
-  `luna-training-backup-${date}.json`;
-
+ link.href=url;
+ link.download=`luna-training-backup-${localDateString(new Date())}.json`;
 
  document.body.appendChild(link);
-
  link.click();
-
  link.remove();
 
-
- setTimeout(
-  () =>
-   URL.revokeObjectURL(url),
-  1000
- );
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
-
-
-/* =========================
-RESTORE
-========================= */
 
 function openRestore(){
-
- document.getElementById(
-  "restoreFile"
- ).click();
+ $("restoreFile").click();
 }
-
 
 function restoreData(event){
 
- const file =
-  event.target.files[0];
+ const file=event.target.files[0];
+ if(!file)return;
 
- if(!file)
-  return;
+ const reader=new FileReader();
 
+ reader.onload=()=>{
 
- const reader =
-  new FileReader();
+  try{
 
+   const backup=JSON.parse(reader.result);
 
- reader.onload =
-  function(){
-
-   try{
-
-    const backup =
-     JSON.parse(
-      reader.result
-     );
-
-
-    if(
-     !backup ||
-     backup.app !==
-     "Luna Training"
-    ){
-
-     alert(
-      "This doesn't look like a Luna Training backup."
-     );
-
-     return;
-    }
-
-
-    if(
-     !confirm(
-      "Restore this backup? This replaces the Luna Training data currently stored on this device."
-     )
-    )
-     return;
-
-
-    saveData(
-     "lunaHistory",
-     Array.isArray(
-      backup.lunaHistory
-     )
-     ? backup.lunaHistory
-     : []
-    );
-
-
-    saveData(
-     "lunaWeights",
-     Array.isArray(
-      backup.lunaWeights
-     )
-     ? backup.lunaWeights
-     : []
-    );
-
-
-    if(
-     Number(
-      backup.lunaGoalWeight
-     ) > 0
-    ){
-
-     localStorage.setItem(
-      "lunaGoalWeight",
-      String(
-       backup.lunaGoalWeight
-      )
-     );
-    }
-
-
-    if(
-     backup.lunaActiveWorkout &&
-     backup.lunaActiveWorkout.type
-    ){
-
-     localStorage.setItem(
-      ACTIVE_WORKOUT_KEY,
-      JSON.stringify(
-       backup.lunaActiveWorkout
-      )
-     );
-
-    }else{
-
-     clearActiveWorkout();
-    }
-
-
-    currentWorkout = null;
-    selectedTrainingDate = null;
-
-
-    buildHome();
-    updateProgress();
-    renderFullHistory();
-
-
-    alert(
-     "Luna Training restored successfully 💪"
-    );
-
-   }catch(error){
-
-    alert(
-     "I couldn't read that backup file."
-    );
+   if(backup.app!=="Luna Training"){
+    alert("Not a Luna Training backup.");
+    return;
    }
 
+   if(!confirm("Restore this backup? Current app data will be replaced."))return;
 
-   event.target.value = "";
-  };
+   saveData(
+    "lunaHistory",
+    Array.isArray(backup.lunaHistory)?backup.lunaHistory:[]
+   );
 
+   saveData(
+    "lunaWeights",
+    Array.isArray(backup.lunaWeights)?backup.lunaWeights:[]
+   );
+
+   if(Number(backup.lunaGoalWeight)>0){
+    localStorage.setItem("lunaGoalWeight",backup.lunaGoalWeight);
+   }
+
+   if(backup.lunaActiveWorkout?.type){
+    saveData(ACTIVE_WORKOUT_KEY,backup.lunaActiveWorkout);
+   }else{
+    clearActiveWorkout();
+   }
+
+   /*
+    Older backups won't contain nutrition.
+    We only replace nutrition if the backup
+    actually includes nutrition data.
+   */
+
+   if(Array.isArray(backup.lunaNutritionEntries)){
+    saveData("lunaNutritionEntries",backup.lunaNutritionEntries);
+   }
+
+   if(Number(backup.lunaCalorieGoal)>0){
+    localStorage.setItem("lunaCalorieGoal",backup.lunaCalorieGoal);
+   }
+
+   if(Number(backup.lunaProteinGoal)>0){
+    localStorage.setItem("lunaProteinGoal",backup.lunaProteinGoal);
+   }
+
+   buildHome();
+   renderNutrition();
+   updateProgress();
+   renderFullHistory();
+
+   alert("Luna Training restored successfully 💪");
+
+  }catch{
+   alert("I couldn't read that backup file.");
+  }
+
+  event.target.value="";
+ };
 
  reader.readAsText(file);
 }
-
 
 /* =========================
 START
