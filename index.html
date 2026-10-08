@@ -1,2325 +1,765 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b0b0c">
 <title>Luna Training</title>
-
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{
- --bg:#0b0b0c;
- --card:#171719;
- --card2:#202024;
- --text:#fff;
- --muted:#9d9da5;
- --border:#2b2b30;
- --success:#63d471;
- --danger:#ff5d5d;
- --warning:#ffb84d;
-}
-body{
- margin:0;
- font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
- background:var(--bg);
- color:var(--text);
- padding-bottom:110px;
-}
-.app{max-width:600px;margin:auto;padding:24px 18px}
-h1{font-size:30px;margin:0}
-h2{font-size:22px;margin-top:0}
-h3{margin:0 0 8px}
-.muted{color:var(--muted)}
-.header{margin:12px 0 25px}
-
-.card{
- background:var(--card);
- border:1px solid var(--border);
- border-radius:18px;
- padding:18px;
- margin-bottom:14px;
-}
-
-.hero{padding:24px 20px}
-.hero-type{
- font-size:13px;
- font-weight:700;
- letter-spacing:1px;
- color:var(--muted);
- margin-bottom:8px;
-}
-.hero-title{font-size:30px;font-weight:800;margin-bottom:5px}
-
-button{
- border:none;
- border-radius:13px;
- padding:14px;
- font-size:16px;
- font-weight:700;
- cursor:pointer;
-}
-.primary{width:100%;background:#fff;color:#000;margin-top:18px}
-.secondary{background:var(--card2);color:#fff;border:1px solid var(--border)}
-.danger{background:var(--danger);color:#fff}
-.small-button{padding:8px 11px;font-size:12px}
-
-input{
- width:100%;
- background:var(--card2);
- border:1px solid var(--border);
- color:#fff;
- padding:11px 8px;
- border-radius:10px;
- font-size:16px;
- text-align:center;
-}
-label{display:block;margin-top:14px;margin-bottom:6px}
-
-.week{
- display:grid;
- grid-template-columns:repeat(7,1fr);
- gap:5px;
-}
-.day{
- text-align:center;
- background:var(--card2);
- padding:10px 2px;
- border-radius:10px;
- font-size:11px;
- border:1px solid transparent;
- cursor:pointer;
- color:#fff;
-}
-.day.today{border:1px solid #fff}
-.day-date{font-size:10px;margin-top:3px;opacity:.7}
-.day.done{box-shadow:inset 0 -3px 0 var(--success)}
-
-.stat-grid,.stat-grid-4{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
-}
-.stat{
- background:var(--card2);
- border-radius:14px;
- padding:15px;
-}
-.stat-value{font-size:25px;font-weight:800}
-.stat-small{font-size:19px;font-weight:800;margin-top:4px}
-
-.goal-row{
- display:grid;
- grid-template-columns:1fr auto;
- gap:8px;
- margin-top:10px;
-}
-
-.exercise{margin-bottom:18px}
-.exercise-title,.strength-top,.history-header{
- display:flex;
- justify-content:space-between;
- gap:10px;
- align-items:center;
-}
-.set-row{
- display:grid;
- grid-template-columns:35px 1fr 1fr 45px;
- gap:7px;
- align-items:center;
- margin-top:8px;
-}
-.check{
- height:42px;
- padding:0;
- background:var(--card2);
- color:#fff;
-}
-.check.done{background:var(--success);color:#000}
-
-.workout-date{
- background:var(--card2);
- padding:12px 14px;
- border-radius:13px;
- margin-bottom:14px;
-}
-
-.timer{
- font-size:44px;
- font-weight:800;
- text-align:center;
- margin:20px 0;
- font-variant-numeric:tabular-nums;
-}
-.timer-buttons{display:flex;gap:8px}
-.timer-buttons button{flex:1}
-.walk-icon{font-size:45px}
-
-.manual-divider{
- text-align:center;
- color:var(--muted);
- margin:8px 0 16px;
- font-size:13px;
-}
-
-/* CHARTS */
-
-.chart{
- width:100%;
- height:220px;
- margin-top:10px;
- position:relative;
- overflow:hidden;
- touch-action:pan-y;
- user-select:none;
- -webkit-user-select:none;
-}
-.strength-chart{height:190px}
-.chart svg{display:block;width:100%;height:100%}
-
-.chart-tooltip{
- position:absolute;
- z-index:20;
- pointer-events:none;
- background:rgba(255,255,255,.97);
- color:#000;
- padding:9px 11px;
- border-radius:10px;
- font-size:12px;
- font-weight:700;
- line-height:1.35;
- box-shadow:0 5px 18px rgba(0,0,0,.35);
- transform:translate(-50%,-115%);
- white-space:nowrap;
- display:none;
-}
-.chart-tooltip.show{display:block}
-.tooltip-value{font-size:14px;font-weight:800}
-.tooltip-date{color:#555;font-size:11px;margin-top:2px}
-.chart-help{
- font-size:11px;
- color:var(--muted);
- margin-top:7px;
- text-align:center;
-}
-.strength-number{font-size:27px;font-weight:800}
-
-/* NUTRITION */
-
-.date-nav{
- display:grid;
- grid-template-columns:50px 1fr 50px;
- align-items:center;
- gap:8px;
-}
-.date-nav-title{text-align:center}
-.date-nav-title strong{font-size:17px}
-
-.progress-label{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin-bottom:7px;
-}
-.progress-track{
- width:100%;
- height:13px;
- background:var(--card2);
- border-radius:20px;
- overflow:hidden;
-}
-.progress-fill{
- height:100%;
- border-radius:20px;
- background:var(--success);
- width:0%;
- transition:width .25s ease;
-}
-.progress-fill.calories{background:var(--warning)}
-
-.nutrition-big{
- font-size:30px;
- font-weight:800;
-}
-.nutrition-unit{
- font-size:13px;
- color:var(--muted);
-}
-
-.food-grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:9px;
-}
-.food-grid .full{grid-column:1/-1}
-
-.food-entry{
- padding:13px 0;
- border-bottom:1px solid var(--border);
-}
-.food-entry:last-child{border-bottom:none}
-.food-top{
- display:flex;
- justify-content:space-between;
- gap:12px;
- align-items:flex-start;
-}
-.food-name{font-weight:800;font-size:16px}
-.food-macros{
- color:var(--muted);
- margin-top:4px;
- font-size:13px;
-}
-
-.history-day{
- background:var(--card2);
- border-radius:14px;
- padding:14px;
- margin-top:9px;
- cursor:pointer;
-}
-.history-day-top{
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:10px;
-}
-.history-day-stats{
- color:var(--muted);
- margin-top:5px;
- font-size:13px;
-}
-
-/* HISTORY */
-
-.history-card{cursor:pointer}
-.history-title{font-size:18px;font-weight:800}
-.history-detail{
- display:none;
- margin-top:15px;
- border-top:1px solid var(--border);
- padding-top:15px;
-}
-.history-detail.open{display:block}
-.history-exercise{margin-bottom:15px}
-.history-sets{color:var(--muted);line-height:1.6}
-.history-actions{margin-top:15px;display:flex;gap:8px}
-
-.data-buttons{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:8px;
- margin-top:15px;
-}
-.backup-note{font-size:12px;margin-top:12px;line-height:1.5}
-.section-title{margin-top:26px}
-.empty{color:var(--muted);text-align:center;padding:25px 10px}
-
-.draft-banner{
- background:var(--card2);
- border:1px solid var(--border);
- border-radius:14px;
- padding:12px 14px;
- margin-bottom:14px;
- display:none;
-}
-.draft-banner.show{display:block}
-
-/* NAV */
-
-nav{
- position:fixed;
- bottom:0;
- left:0;
- right:0;
- background:rgba(15,15,16,.97);
- border-top:1px solid var(--border);
- display:flex;
- justify-content:center;
- padding-bottom:env(safe-area-inset-bottom);
- z-index:100;
-}
-.nav-inner{
- width:100%;
- max-width:600px;
- display:grid;
- grid-template-columns:repeat(6,1fr);
-}
-nav button{
- background:transparent;
- color:var(--muted);
- font-size:10px;
- padding:13px 1px;
-}
+:root{--bg:#0b0b0c;--card:#171719;--card2:#202024;--text:#fff;--muted:#9d9da5;--border:#2b2b30;--green:#63d471;--red:#ff5d5d}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:105px}
+.app{max-width:600px;margin:auto;padding:22px 17px}
+h1{font-size:29px;margin:3px 0}h2{font-size:22px;margin:8px 0 17px}h3{margin:0 0 12px}
+.muted,small{color:var(--muted)}
+.header{display:flex;justify-content:space-between;align-items:center;margin:8px 0 25px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px;margin-bottom:14px}
+.hero{padding:24px 20px}.hero-title{font-size:29px;font-weight:800;margin:8px 0}
+button{border:0;border-radius:12px;padding:13px;font-size:15px;font-weight:700;cursor:pointer}
+.primary{background:#fff;color:#000;width:100%;margin-top:15px}
+.secondary{background:var(--card2);color:white;border:1px solid var(--border)}
+.danger{background:var(--red);color:white}
+.small{font-size:12px;padding:8px 10px}
+input,select{width:100%;background:var(--card2);color:#fff;border:1px solid var(--border);border-radius:10px;padding:11px;font-size:16px;min-width:0}
+label{display:block;color:var(--muted);font-size:13px;margin:12px 0 6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.full{grid-column:1/-1}
+.stat{background:var(--card2);border-radius:13px;padding:14px;min-width:0}
+.stat strong{display:block;font-size:25px;margin-top:5px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.gap{margin-top:16px}.section{margin-top:27px}
+.page{display:none}.page.active{display:block}
+nav{position:fixed;bottom:0;left:0;right:0;background:#101012;border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom);z-index:10}
+.nav{max-width:600px;margin:auto;display:grid;grid-template-columns:repeat(6,1fr)}
+nav button{background:none;color:var(--muted);font-size:10px;padding:13px 1px}
 nav button.active{color:#fff}
-.page{display:none}
-.page.active{display:block}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.day{background:var(--card2);color:white;padding:10px 1px;font-size:10px;border:1px solid transparent}
+.day.today{border-color:white}.day.done{box-shadow:inset 0 -3px var(--green)}
+.day span{display:block;margin-top:5px;color:var(--muted)}
+.set{display:grid;grid-template-columns:25px 1fr 1fr 42px;gap:6px;align-items:center;margin:8px 0}
+.set input{text-align:center}
+.check{background:var(--card2);color:white;height:43px;padding:0}
+.check.done{background:var(--green);color:black}
+.exercise{margin-bottom:13px}
+.timer{font-size:42px;font-weight:800;text-align:center;margin:17px 0;font-variant-numeric:tabular-nums}
+.progress{height:12px;border-radius:20px;background:var(--card2);overflow:hidden;margin:7px 0 18px}
+.fill{height:100%;background:var(--green);width:0}
+.food-item{padding:13px 0;border-bottom:1px solid var(--border)}
+.food-item:last-child{border:0}
+.food-name{font-weight:800;overflow-wrap:anywhere}
+.food-meta{color:var(--muted);font-size:12px;line-height:1.7;margin-top:5px}
+.date-nav{display:grid;grid-template-columns:45px 1fr 45px;align-items:center;text-align:center;gap:10px}
+.log-day{background:var(--card2);border-radius:13px;padding:14px;margin-bottom:9px;cursor:pointer}
+.chart{height:205px;position:relative;margin-top:12px;touch-action:pan-y}
+.chart svg{width:100%;height:100%;display:block}
+.tip{position:absolute;display:none;pointer-events:none;background:white;color:black;padding:8px;border-radius:8px;font-size:12px;transform:translate(-50%,-115%);white-space:nowrap;z-index:2}
+.empty{text-align:center;color:var(--muted);padding:20px 5px}
+.history-detail{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.history-detail.open{display:block}
+.avatar{background:white;color:black;border-radius:50%;width:44px;height:44px;display:grid;place-items:center;font-size:20px;font-weight:900}
+.note{font-size:12px;line-height:1.6;color:var(--muted)}
 </style>
 </head>
-
 <body>
-
 <div class="app">
+<header class="header">
+<div><small id="greeting">WELCOME</small><h1>Luna Training</h1></div>
+<button class="secondary" onclick="show('profile')" aria-label="Profile"><span class="avatar" id="avatar">L</span></button>
+</header>
 
-<div class="header">
- <div class="muted">MARCOS</div>
- <h1>Luna Training</h1>
+<section class="page active" id="home">
+<div class="card hero">
+<small id="todayType"></small>
+<div class="hero-title" id="todayTitle"></div>
+<div class="muted" id="todayDescription"></div>
+<button class="primary" id="startToday">START</button>
+</div>
+<div class="card" id="draftBanner" style="display:none">
+<strong>🏋️ Workout in progress</strong>
+<p class="muted" id="draftText"></p>
+<button class="primary" onclick="openLift()">RESUME WORKOUT</button>
+</div>
+<h2>This Week</h2>
+<div class="week" id="week"></div>
+<div class="grid gap">
+<div class="stat"><small>Workouts</small><strong id="workoutCount">0</strong></div>
+<div class="stat"><small>Chico Walks</small><strong id="walkCount">0</strong></div>
+</div>
+<button class="secondary gap" style="width:100%" onclick="show('profile')">⚙️ Profile & Goals</button>
+</section>
+
+<section class="page" id="workout">
+<h2 id="workoutTitle">Workout</h2>
+<div class="card"><small>LOGGING FOR</small><div id="workoutDate"></div></div>
+<div id="exercises"></div>
+<div class="card">
+<h3>Rest Timer</h3>
+<div class="timer" id="restTimer">01:30</div>
+<div class="grid">
+<button class="secondary" onclick="startRest(60)">60 sec</button>
+<button class="secondary" onclick="startRest(90)">90 sec</button>
+<button class="secondary full" onclick="startRest(120)">2 min</button>
+</div>
+</div>
+<button class="primary" onclick="finishWorkout()">FINISH WORKOUT</button>
+<button class="secondary gap" style="width:100%" onclick="cancelWorkout()">CANCEL WORKOUT</button>
+</section>
+
+<section class="page" id="walk">
+<div class="card" style="text-align:center">
+<div style="font-size:45px">🐕</div>
+<h2>Walk Chico</h2>
+<small id="walkDate"></small>
+<div class="timer" id="walkTimer">00:00</div>
+<button class="primary" id="walkButton" onclick="toggleWalk()">START WALK</button>
+</div>
+<div class="card">
+<h3>Walk Stats</h3>
+<label>Duration in minutes (optional if using timer)</label>
+<input id="walkMinutes" type="number" min="0" placeholder="35">
+<label>Distance in miles</label>
+<input id="walkMiles" type="number" min="0" step=".01" placeholder="1.75">
+<button class="primary" onclick="saveWalk()">SAVE CHICO WALK 🐕</button>
+</div>
+</section>
+
+<section class="page" id="nutrition">
+<h2>Nutrition 🍽️</h2>
+<div class="card date-nav">
+<button class="secondary" onclick="moveFoodDate(-1)">‹</button>
+<div><strong id="foodDateTitle"></strong><div><small id="foodDateSub"></small></div></div>
+<button class="secondary" onclick="moveFoodDate(1)">›</button>
+</div>
+<div class="grid" id="macroStats"></div>
+<div class="card gap" id="macroBars"></div>
+<div class="card">
+<h3>Add Food</h3>
+<label>Food or meal</label>
+<input id="foodName" placeholder="Chicken and rice">
+<div class="grid">
+<div><label>Calories</label><input id="foodCalories" type="number" min="0" placeholder="500"></div>
+<div><label>Protein (g)</label><input id="foodProtein" type="number" min="0" step=".1" placeholder="45"></div>
+<div><label>Carbs (g)</label><input id="foodCarbs" type="number" min="0" step=".1" placeholder="50"></div>
+<div><label>Fat (g)</label><input id="foodFat" type="number" min="0" step=".1" placeholder="15"></div>
+</div>
+<button class="primary" onclick="addFood()">ADD FOOD</button>
+</div>
+<div class="card"><h3>Food Log</h3><div id="foodLog"></div></div>
+<div class="card"><h3>Daily Goals 🎯</h3><div class="grid" id="macroGoalInputs"></div><button class="primary" onclick="saveMacroGoals()">SAVE GOALS</button></div>
+<h2 class="section">Previous Logs</h2>
+<div id="foodHistory"></div>
+</section>
+
+<section class="page" id="progress">
+<h2>Progress 📈</h2>
+<div class="card">
+<h3>Body Weight</h3>
+<div class="grid">
+<input id="weightInput" type="number" min="0" step=".1" placeholder="Weight (lb)">
+<button class="secondary" onclick="saveWeight()">Save Weight</button>
+</div>
+</div>
+<div class="grid">
+<div class="stat"><small>Current</small><strong id="currentWeight">--</strong></div>
+<div class="stat"><small>Starting</small><strong id="startingWeight">--</strong></div>
+<div class="stat"><small>Change</small><strong id="weightChange">--</strong></div>
+<div class="stat"><small>To Goal</small><strong id="toGoal">--</strong></div>
+</div>
+<div class="card gap">
+<h3>Goal Weight 🎯</h3>
+<div class="grid">
+<input id="goalWeightInput" type="number" step=".1" min="0" placeholder="Goal weight">
+<button class="secondary" onclick="saveGoalWeight()">Save Goal</button>
+</div>
+<p class="muted">Current goal: <strong id="goalWeightDisplay"></strong></p>
+</div>
+<div class="card">
+<h3>Weight Progress</h3>
+<div class="chart" id="weightChart"></div>
+<small>Touch the graph to inspect your progress.</small>
+</div>
+<h2 class="section">Strength Progress 🏋️</h2>
+<div id="strengthCards"></div>
+<h2 class="section">Chico Progress 🐕</h2>
+<div class="card">
+<h3>Miles Per Walk</h3>
+<div class="chart" id="walkChart"></div>
+</div>
+<div class="grid">
+<div class="stat"><small>Total Miles</small><strong id="totalMiles">0</strong></div>
+<div class="stat"><small>Walks</small><strong id="totalWalks">0</strong></div>
+<div class="stat"><small>Avg Miles</small><strong id="averageMiles">0</strong></div>
+<div class="stat"><small>Longest</small><strong id="longestWalk">0</strong></div>
+</div>
+<h2 class="section">My Data 🔒</h2>
+<div class="card">
+<p class="muted">Save a backup before major updates. Your information is currently stored on this device.</p>
+<div class="grid">
+<button class="secondary" onclick="backupData()">Backup Data</button>
+<button class="secondary" onclick="$('restoreFile').click()">Restore Data</button>
+</div>
+<input type="file" id="restoreFile" accept=".json" style="display:none" onchange="restoreData(event)">
+</div>
+</section>
+
+<section class="page" id="historyPage">
+<h2>Training History 📖</h2>
+<p class="muted">Tap a session to see its details.</p>
+<div id="fullHistory"></div>
+</section>
+
+<section class="page" id="profile">
+<h2>My Profile 👤</h2>
+<div class="card">
+<h3>Personal Information</h3>
+<div class="grid">
+<div class="full"><label>Display Name</label><input id="profileName" placeholder="Your name"></div>
+<div><label>Height (inches)</label><input id="profileHeight" type="number" min="0" placeholder="75"></div>
+<div><label>Starting Weight (lb)</label><input id="profileWeight" type="number" min="0" step=".1" placeholder="270"></div>
+<div class="full"><label>Primary Goal</label>
+<select id="profileGoal">
+<option value="lose">Lose Weight</option>
+<option value="muscle">Build Muscle</option>
+<option value="maintain">Maintain Fitness</option>
+<option value="endurance">Improve Endurance</option>
+</select></div>
+<div class="full"><label>Experience Level</label>
+<select id="profileLevel">
+<option value="beginner">Beginner</option>
+<option value="intermediate">Intermediate</option>
+<option value="advanced">Advanced</option>
+</select></div>
+</div>
+<button class="primary" onclick="saveProfile()">SAVE PROFILE</button>
+</div>
+<div class="card">
+<h3>Account Status</h3>
+<p class="note">This is a local profile, not an online account. Secure sign-in and cloud synchronization will be added in a future version. Do not use this profile as a shared multi-user account.</p>
+</div>
+</section>
 </div>
 
-<!-- TODAY -->
-
-<section id="home" class="page active">
-
- <div class="card hero">
-  <div id="todayType" class="hero-type"></div>
-  <div id="todayTitle" class="hero-title"></div>
-  <div id="todayDescription" class="muted"></div>
-  <button id="startToday" class="primary">START</button>
- </div>
-
- <div id="homeDraftBanner" class="draft-banner">
-  <strong>🏋️ Workout in progress</strong>
-  <div id="homeDraftText" class="muted" style="margin-top:4px"></div>
-  <button class="secondary" style="width:100%;margin-top:10px" onclick="openLift()">
-   RESUME WORKOUT
-  </button>
- </div>
-
- <h2>This Week</h2>
- <div class="muted" style="margin:-8px 0 12px;font-size:13px">
-  Tap any day to log that day's training.
- </div>
-
- <div class="week" id="weekDisplay"></div>
-
- <br>
-
- <div class="stat-grid">
-  <div class="stat">
-   <div class="muted">Workouts</div>
-   <div id="workoutCount" class="stat-value">0</div>
-  </div>
-
-  <div class="stat">
-   <div class="muted">Chico Walks</div>
-   <div id="walkCount" class="stat-value">0</div>
-  </div>
- </div>
-
-</section>
-
-<!-- WORKOUT -->
-
-<section id="workout" class="page">
-
- <h2 id="workoutTitle">Workout</h2>
-
- <div class="workout-date">
-  <div class="muted" style="font-size:12px">LOGGING FOR</div>
-  <strong id="selectedWorkoutDate">--</strong>
- </div>
-
- <div id="workoutDraftNotice" class="draft-banner">
-  <strong>Workout saved automatically</strong>
-  <div class="muted" style="margin-top:4px">
-   You can leave this page and come back without losing your entries.
-  </div>
- </div>
-
- <div id="exerciseContainer"></div>
-
- <div class="card">
-  <h3>Rest Timer</h3>
-  <div id="restTimer" class="timer">01:30</div>
-
-  <div class="timer-buttons">
-   <button class="secondary" onclick="startRest(60)">60 sec</button>
-   <button class="secondary" onclick="startRest(90)">90 sec</button>
-   <button class="secondary" onclick="startRest(120)">2 min</button>
-  </div>
- </div>
-
- <button class="primary" onclick="finishWorkout()">FINISH WORKOUT</button>
- <button class="secondary" style="width:100%;margin-top:10px" onclick="cancelWorkout()">
-  CANCEL WORKOUT
- </button>
-
-</section>
-
-<!-- CHICO -->
-
-<section id="walk" class="page">
-
- <div class="card hero" style="text-align:center">
-  <div class="walk-icon">🐕</div>
-  <h2>Walk Chico</h2>
-  <div class="muted">Goal: 30–45 minutes</div>
-  <div id="walkLoggingDate" style="margin-top:10px;font-weight:700"></div>
-  <div id="walkTimer" class="timer">00:00</div>
-  <button id="walkButton" class="primary" onclick="toggleWalk()">START WALK</button>
- </div>
-
- <div class="manual-divider">OR LOG YOUR WALK MANUALLY</div>
-
- <div class="card">
-  <h3>Walk Stats</h3>
-
-  <label class="muted">Duration</label>
-  <input id="manualWalkMinutes" type="number" min="1" inputmode="numeric"
-         placeholder="Minutes — Example: 35">
-
-  <label class="muted">Distance</label>
-  <input id="walkDistance" type="number" step=".01" min="0" inputmode="decimal"
-         placeholder="Miles — Example: 1.75">
-
-  <button class="primary" onclick="saveWalk()">SAVE CHICO WALK 🐕</button>
- </div>
-
-</section>
-
-<!-- NUTRITION -->
-
-<section id="nutrition" class="page">
-
- <h2>Nutrition 🍽️</h2>
-
- <div class="card">
-
-  <div class="date-nav">
-
-   <button class="secondary" onclick="changeNutritionDate(-1)">‹</button>
-
-   <div class="date-nav-title">
-    <strong id="nutritionDateTitle">Today</strong>
-    <div id="nutritionDateSub" class="muted" style="font-size:12px"></div>
-   </div>
-
-   <button class="secondary" onclick="changeNutritionDate(1)">›</button>
-
-  </div>
-
- </div>
-
- <div class="stat-grid">
-
-  <div class="stat">
-   <div class="muted">Calories</div>
-   <div id="dailyCalories" class="nutrition-big">0</div>
-   <div id="calorieGoalLabel" class="nutrition-unit">of 2,200</div>
-  </div>
-
-  <div class="stat">
-   <div class="muted">Protein</div>
-   <div id="dailyProtein" class="nutrition-big">0g</div>
-   <div id="proteinGoalLabel" class="nutrition-unit">of 200g</div>
-  </div>
-
- </div>
-
- <div class="card" style="margin-top:14px">
-
-  <div class="progress-label">
-   <strong>Calories</strong>
-   <span id="calorieRemaining" class="muted"></span>
-  </div>
-
-  <div class="progress-track">
-   <div id="calorieProgress" class="progress-fill calories"></div>
-  </div>
-
-  <div class="progress-label" style="margin-top:18px">
-   <strong>Protein</strong>
-   <span id="proteinRemaining" class="muted"></span>
-  </div>
-
-  <div class="progress-track">
-   <div id="proteinProgress" class="progress-fill"></div>
-  </div>
-
- </div>
-
- <div class="card">
-
-  <h3>Add Food</h3>
-
-  <div class="food-grid">
-
-   <div class="full">
-    <label class="muted">Food / Meal</label>
-    <input id="foodName" type="text"
-           placeholder="Example: Chicken and rice">
-   </div>
-
-   <div>
-    <label class="muted">Calories</label>
-    <input id="foodCalories" type="number" min="0" inputmode="numeric"
-           placeholder="500">
-   </div>
-
-   <div>
-    <label class="muted">Protein (g)</label>
-    <input id="foodProtein" type="number" min="0" step=".1" inputmode="decimal"
-           placeholder="45">
-   </div>
-
-  </div>
-
-  <button class="primary" onclick="addFood()">ADD FOOD</button>
-
- </div>
-
- <div class="card">
-
-  <h3>Food Log</h3>
-
-  <div id="foodLog"></div>
-
- </div>
-
- <div class="card">
-
-  <h3>Daily Goals 🎯</h3>
-
-  <label class="muted">Calorie Goal</label>
-
-  <div class="goal-row">
-   <input id="calorieGoalInput" type="number" inputmode="numeric" placeholder="2200">
-   <button class="secondary" onclick="saveCalorieGoal()">Save</button>
-  </div>
-
-  <label class="muted">Protein Goal</label>
-
-  <div class="goal-row">
-   <input id="proteinGoalInput" type="number" inputmode="numeric" placeholder="200">
-   <button class="secondary" onclick="saveProteinGoal()">Save</button>
-  </div>
-
- </div>
-
- <h2 class="section-title">Previous Logs</h2>
-
- <div id="nutritionHistory"></div>
-
-</section>
-
-<!-- PROGRESS -->
-
-<section id="progress" class="page">
-
- <h2>Progress</h2>
-
- <div class="card">
-  <h3>Body Weight</h3>
-
-  <div class="goal-row">
-   <input id="bodyWeight" type="number" step=".1" inputmode="decimal"
-          placeholder="Weight (lb)">
-   <button class="secondary" onclick="saveWeight()">Save</button>
-  </div>
- </div>
-
- <div class="card">
-
-  <h3>Weight Summary</h3>
-
-  <div class="stat-grid-4">
-
-   <div class="stat">
-    <div class="muted">Current</div>
-    <div id="currentWeight" class="stat-small">--</div>
-   </div>
-
-   <div class="stat">
-    <div class="muted">Starting</div>
-    <div id="startingWeight" class="stat-small">--</div>
-   </div>
-
-   <div class="stat">
-    <div class="muted">Change</div>
-    <div id="weightChange" class="stat-small">--</div>
-   </div>
-
-   <div class="stat">
-    <div class="muted">To Goal</div>
-    <div id="toGoal" class="stat-small">--</div>
-   </div>
-
-  </div>
-
- </div>
-
- <div class="card">
-
-  <h3>Goal Weight 🎯</h3>
-
-  <div class="goal-row">
-   <input id="goalWeightInput" type="number" step=".1" inputmode="decimal"
-          placeholder="Goal weight">
-   <button class="secondary" onclick="saveGoalWeight()">Save Goal</button>
-  </div>
-
-  <div style="margin-top:15px">
-   <span class="muted">Current Goal:</span>
-   <strong id="goalWeightDisplay">250.0 lb</strong>
-  </div>
-
- </div>
-
- <div class="card">
-  <h3>Weight Progress</h3>
-  <div class="muted">Body-weight trend</div>
-  <div id="weightChart" class="chart"></div>
-  <div class="chart-help">Touch and drag across the chart for details</div>
- </div>
-
- <h2 class="section-title">Strength Progress 🏋️</h2>
-
- <div id="strengthCards"></div>
-
- <h2 class="section-title">Chico Progress 🐕</h2>
-
- <div class="card">
-  <h3>Miles Per Walk</h3>
-  <div class="muted">Distance logged each walk</div>
-  <div id="chicoMilesChart" class="chart"></div>
-  <div class="chart-help">Touch and drag to see distance and date</div>
- </div>
-
- <div class="stat-grid-4">
-
-  <div class="stat">
-   <div class="muted">Total Miles</div>
-   <div id="totalChicoMiles" class="stat-small">0</div>
-  </div>
-
-  <div class="stat">
-   <div class="muted">Walks</div>
-   <div id="totalChicoWalks" class="stat-small">0</div>
-  </div>
-
-  <div class="stat">
-   <div class="muted">Avg Miles</div>
-   <div id="averageChicoMiles" class="stat-small">0</div>
-  </div>
-
-  <div class="stat">
-   <div class="muted">Longest</div>
-   <div id="longestChicoWalk" class="stat-small">0</div>
-  </div>
-
- </div>
-
- <h2 class="section-title">Data</h2>
-
- <div class="card">
-
-  <h3>My Data 🔒</h3>
-
-  <p class="muted">
-   Back up your training and nutrition history before major app updates.
-  </p>
-
-  <div class="data-buttons">
-   <button class="secondary" onclick="backupData()">Backup Data</button>
-   <button class="secondary" onclick="openRestore()">Restore Data</button>
-  </div>
-
-  <input type="file" id="restoreFile" accept=".json,application/json"
-         style="display:none" onchange="restoreData(event)">
-
-  <div class="muted backup-note">
-   Workouts, Chico walks, body weight, goals, nutrition logs and unfinished workouts are included.
-  </div>
-
- </div>
-
-</section>
-
-<!-- HISTORY -->
-
-<section id="historyPage" class="page">
-
- <h2>Training History 📖</h2>
-
- <p class="muted">Tap any session to see everything you logged.</p>
-
- <div id="fullHistory"></div>
-
-</section>
-
-</div>
-
-<!-- NAV -->
-
-<nav>
-<div class="nav-inner">
-
- <button id="nav-home" class="active" onclick="showPage('home')">
-  🏠<br>Today
- </button>
-
- <button id="nav-workout" onclick="openLift()">
-  🏋️<br>Lift
- </button>
-
- <button id="nav-walk" onclick="openWalkToday()">
-  🐕<br>Chico
- </button>
-
- <button id="nav-nutrition" onclick="showPage('nutrition')">
-  🍽️<br>Food
- </button>
-
- <button id="nav-progress" onclick="showPage('progress')">
-  📈<br>Progress
- </button>
-
- <button id="nav-historyPage" onclick="showPage('historyPage')">
-  📖<br>History
- </button>
-
-</div>
-</nav>
+<nav><div class="nav">
+<button id="nav-home" class="active" onclick="show('home')">🏠<br>Today</button>
+<button id="nav-workout" onclick="openLift()">🏋️<br>Lift</button>
+<button id="nav-walk" onclick="openWalkToday()">🐕<br>Chico</button>
+<button id="nav-nutrition" onclick="show('nutrition')">🍽️<br>Food</button>
+<button id="nav-progress" onclick="show('progress')">📈<br>Progress</button>
+<button id="nav-historyPage" onclick="show('historyPage')">📖<br>History</button>
+</div></nav>
 
 <script>
-
-/* =========================
-PROGRAM
-========================= */
-
+"use strict";
+const $=id=>document.getElementById(id);
+const load=(key,fallback)=>{try{const v=localStorage.getItem(key);return v===null?fallback:JSON.parse(v)}catch{return fallback}};
+const save=(key,value)=>localStorage.setItem(key,JSON.stringify(value));
+const num=x=>Number.isFinite(Number(x))?Number(x):0;
+const safe=x=>{const e=document.createElement("div");e.textContent=String(x??"");return e.innerHTML};
+const uid=()=>Date.now()+"-"+Math.random().toString(36).slice(2,9);
+function localDate(d=new Date()){return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-")}
+function fromDate(s){const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d,12)}
+function fmt(s){return fromDate(s).toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"})}
+function trainingFmt(s){return fromDate(s).toLocaleDateString(undefined,{weekday:"long",month:"short",day:"numeric"})}
+function sessionDate(s){const d=fromDate(s),now=new Date();d.setHours(now.getHours(),now.getMinutes(),now.getSeconds());return d.toISOString()}
+function today(){return localDate()}
+const ACTIVE="lunaActiveWorkout";
 const program={
- push:{
-  title:"Push",
-  exercises:[
-   ["Barbell Bench Press",3,6,10],
-   ["Incline Dumbbell Press",3,8,12],
-   ["Shoulder Press",3,8,12],
-   ["Lateral Raises",2,12,15],
-   ["Cable Tricep Pushdowns",2,10,15]
-  ]
- },
- pull:{
-  title:"Pull",
-  exercises:[
-   ["Barbell Row",3,6,10],
-   ["Cable Lat Pulldown",3,8,12],
-   ["One-Arm Dumbbell Row",2,10,12],
-   ["Rear-Delt Fly",2,12,15],
-   ["Dumbbell Curls",3,10,15]
-  ]
- },
- legs:{
-  title:"Legs + Core",
-  exercises:[
-   ["Barbell Squat",3,6,10],
-   ["Romanian Deadlift",3,8,12],
-   ["Dumbbell Walking Lunges",2,10,12],
-   ["Calf Raises",2,15,20],
-   ["Plank",2,30,60]
-  ]
- }
+push:{title:"Push",exercises:[["Barbell Bench Press",3,6,10],["Incline Dumbbell Press",3,8,12],["Shoulder Press",3,8,12],["Lateral Raises",2,12,15],["Cable Tricep Pushdowns",2,10,15]]},
+pull:{title:"Pull",exercises:[["Barbell Row",3,6,10],["Cable Lat Pulldown",3,8,12],["One-Arm Dumbbell Row",2,10,12],["Rear-Delt Fly",2,12,15],["Dumbbell Curls",3,10,15]]},
+legs:{title:"Legs + Core",exercises:[["Barbell Squat",3,6,10],["Romanian Deadlift",3,8,12],["Dumbbell Walking Lunges",2,10,12],["Calf Raises",2,15,20],["Plank",2,30,60]]}
 };
-
 const schedule=[
- {short:"MON",type:"push",title:"Push"},
- {short:"TUE",type:"walk",title:"Chico"},
- {short:"WED",type:"pull",title:"Pull"},
- {short:"THU",type:"walk",title:"Chico"},
- {short:"FRI",type:"legs",title:"Legs"},
- {short:"SAT",type:"walk",title:"Chico"},
- {short:"SUN",type:"rest",title:"Rest"}
+["MON","push","Push"],["TUE","walk","Chico"],["WED","pull","Pull"],
+["THU","walk","Chico"],["FRI","legs","Legs"],["SAT","walk","Chico"],["SUN","rest","Rest"]
 ];
+let currentWorkout=null,trainingDate=null,foodDate=today(),walkDate=today();
+let walking=false,walkSeconds=0,walkInterval=null,walkStart=0,restInterval=null;
 
-const ACTIVE_WORKOUT_KEY="lunaActiveWorkout";
-
-let currentWorkout=null;
-let selectedTrainingDate=null;
-let nutritionDate=localDateString(new Date());
-
-/* =========================
-HELPERS
-========================= */
-
-function $(id){return document.getElementById(id)}
-
-function localDateString(date){
- const y=date.getFullYear();
- const m=String(date.getMonth()+1).padStart(2,"0");
- const d=String(date.getDate()).padStart(2,"0");
- return `${y}-${m}-${d}`;
+function show(page){
+document.querySelectorAll(".page").forEach(e=>e.classList.toggle("active",e.id===page));
+document.querySelectorAll("nav button").forEach(e=>e.classList.toggle("active",e.id==="nav-"+page));
+if(page==="home")buildHome();
+if(page==="nutrition")renderNutrition();
+if(page==="progress")renderProgress();
+if(page==="historyPage")renderHistory();
+if(page==="profile")renderProfile();
+window.scrollTo(0,0);
 }
 
-function dateFromLocalString(str){
- const p=str.split("-");
- return new Date(Number(p[0]),Number(p[1])-1,Number(p[2]),12,0,0);
+/* PROFILE */
+function profile(){return load("lunaProfile",{})}
+function renderProfile(){
+const p=profile();
+$("profileName").value=p.name||"";
+$("profileHeight").value=p.height||"";
+$("profileWeight").value=p.startWeight||"";
+$("profileGoal").value=p.goal||"lose";
+$("profileLevel").value=p.level||"beginner";
+}
+function saveProfile(){
+const p={
+name:$("profileName").value.trim().slice(0,60),
+height:num($("profileHeight").value)||null,
+startWeight:num($("profileWeight").value)||null,
+goal:$("profileGoal").value,
+level:$("profileLevel").value
+};
+if(p.height!==null&&p.height<=0||p.startWeight!==null&&p.startWeight<=0){alert("Enter valid measurements.");return}
+save("lunaProfile",p);
+alert("Profile saved!");
+show("home");
+}
+function updateGreeting(){
+const name=profile().name||"";
+$("greeting").textContent=name?"WELCOME, "+name.toUpperCase():"WELCOME";
+$("avatar").textContent=name?name[0].toUpperCase():"L";
 }
 
-function formatTrainingDate(str){
- return dateFromLocalString(str).toLocaleDateString(undefined,{
-  weekday:"long",month:"short",day:"numeric"
- });
+/* HOME */
+function getWeek(){
+const d=fromDate(today()),diff=d.getDay()===0?-6:1-d.getDay();
+d.setDate(d.getDate()+diff);
+return schedule.map((_,i)=>{const x=new Date(d);x.setDate(d.getDate()+i);return x});
 }
-
-function formatShortDate(str){
- return dateFromLocalString(str).toLocaleDateString(undefined,{
-  month:"short",day:"numeric",year:"numeric"
- });
-}
-
-function formatChartDate(value){
- const d=new Date(value);
- if(isNaN(d.getTime()))return "";
- return d.toLocaleDateString(undefined,{
-  month:"short",day:"numeric",year:"numeric"
- });
-}
-
-function sessionISOForDate(str){
- const d=dateFromLocalString(str);
- const now=new Date();
- d.setHours(now.getHours(),now.getMinutes(),now.getSeconds());
- return d.toISOString();
-}
-
-function loadData(key,fallback=[]){
- try{
-  const v=localStorage.getItem(key);
-  return v!==null?JSON.parse(v):fallback;
- }catch{
-  return fallback;
- }
-}
-
-function saveData(key,data){
- localStorage.setItem(key,JSON.stringify(data));
-}
-
-function escapeHTML(value){
- const d=document.createElement("div");
- d.textContent=value;
- return d.innerHTML;
-}
-
-function getActiveWorkout(){
- return loadData(ACTIVE_WORKOUT_KEY,null);
-}
-
-function clearActiveWorkout(){
- localStorage.removeItem(ACTIVE_WORKOUT_KEY);
-}
-
-/* =========================
-NAV
-========================= */
-
-function showPage(page){
-
- document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
- $(page)?.classList.add("active");
-
- document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
- $("nav-"+page)?.classList.add("active");
-
- if(page==="home")buildHome();
- if(page==="nutrition")renderNutrition();
- if(page==="progress")updateProgress();
- if(page==="historyPage")renderFullHistory();
-}
-
-/* =========================
-HOME
-========================= */
-
-function getMondayOfCurrentWeek(){
- const today=new Date();
- const diff=today.getDay()===0?-6:1-today.getDay();
- const monday=new Date(today);
- monday.setHours(12,0,0,0);
- monday.setDate(today.getDate()+diff);
- return monday;
-}
-
-function getWeekDates(){
- const monday=getMondayOfCurrentWeek();
- return schedule.map((_,i)=>{
-  const d=new Date(monday);
-  d.setDate(monday.getDate()+i);
-  return d;
- });
-}
-
 function buildHome(){
-
- const today=new Date();
- const todayString=localDateString(today);
- const index=today.getDay()===0?6:today.getDay()-1;
- const plan=schedule[index];
-
- $("todayType").innerText=`${plan.short} • TODAY`;
- $("todayTitle").innerText=plan.type==="walk"?"🐕 Walk Chico":plan.title;
-
- $("todayDescription").innerText=
-  plan.type==="walk"?"30–45 minute walk":
-  plan.type==="rest"?"Recovery day":
-  "30–45 minute bodybuilding session";
-
- const active=getActiveWorkout();
-
- if(active?.type){
-  $("startToday").disabled=false;
-  $("startToday").innerText="RESUME WORKOUT";
-  $("startToday").onclick=()=>openLift();
- }else if(plan.type==="walk"){
-  $("startToday").disabled=false;
-  $("startToday").innerText="START WALK";
-  $("startToday").onclick=()=>openWalkForDate(todayString);
- }else if(plan.type==="rest"){
-  $("startToday").disabled=true;
-  $("startToday").innerText="RECOVERY DAY";
-  $("startToday").onclick=null;
- }else{
-  $("startToday").disabled=false;
-  $("startToday").innerText="START WORKOUT";
-  $("startToday").onclick=()=>startWorkout(plan.type,todayString);
- }
-
- buildWeek();
-
- const history=loadData("lunaHistory",[]);
- $("workoutCount").innerText=history.filter(x=>x.type==="lift").length;
- $("walkCount").innerText=history.filter(x=>x.type==="walk").length;
-
- if(active?.type){
-  $("homeDraftBanner").classList.add("show");
-  $("homeDraftText").innerText=
-   `${active.title} • ${formatTrainingDate(active.trainingDate)}`;
- }else{
-  $("homeDraftBanner").classList.remove("show");
- }
+updateGreeting();
+const i=new Date().getDay()===0?6:new Date().getDay()-1;
+const plan=schedule[i],active=load(ACTIVE,null);
+$("todayType").textContent=plan[0]+" • TODAY";
+$("todayTitle").textContent=plan[1]==="walk"?"🐕 Walk Chico":plan[2];
+$("todayDescription").textContent=plan[1]==="rest"?"Recovery day":plan[1]==="walk"?"30–45 minute walk":"30–45 minute training session";
+const start=$("startToday");
+start.disabled=false;
+if(active?.type){
+start.textContent="RESUME WORKOUT";
+start.onclick=openLift;
+}else if(plan[1]==="rest"){
+start.textContent="RECOVERY DAY";start.disabled=true;
+}else if(plan[1]==="walk"){
+start.textContent="START WALK";start.onclick=()=>openWalkForDate(today());
+}else{
+start.textContent="START WORKOUT";start.onclick=()=>startWorkout(plan[1],today());
+}
+$("draftBanner").style.display=active?.type?"block":"none";
+if(active?.type)$("draftText").textContent=(active.title||"Workout")+" • "+fmt(active.trainingDate);
+const history=load("lunaHistory",[]);
+$("workoutCount").textContent=history.filter(x=>x.type==="lift").length;
+$("walkCount").textContent=history.filter(x=>x.type==="walk").length;
+$("week").innerHTML="";
+getWeek().forEach((d,i)=>{
+const date=localDate(d),plan=schedule[i],button=document.createElement("button");
+button.className="day"+(date===today()?" today":"")+(history.some(x=>x.trainingDate===date)?" done":"");
+button.innerHTML="<b>"+plan[0]+"</b><br>"+plan[2]+"<span>"+(d.getMonth()+1)+"/"+d.getDate()+"</span>";
+button.onclick=()=>{
+if(plan[1]==="rest"){alert("Scheduled recovery day.");return}
+if(plan[1]==="walk"){openWalkForDate(date);return}
+const a=load(ACTIVE,null);
+if(a&&(a.type!==plan[1]||a.trainingDate!==date)){
+if(confirm("You have an unfinished workout. Resume it?"))openLift();
+return;
+}
+startWorkout(plan[1],date);
+};
+$("week").appendChild(button);
+});
 }
 
-function buildWeek(){
-
- const dates=getWeekDates();
- const history=loadData("lunaHistory",[]);
- const today=localDateString(new Date());
-
- $("weekDisplay").innerHTML="";
-
- schedule.forEach((plan,index)=>{
-
-  const d=dates[index];
-  const dateString=localDateString(d);
-  const completed=history.some(x=>x.trainingDate===dateString);
-
-  const button=document.createElement("button");
-  button.className="day";
-
-  if(dateString===today)button.classList.add("today");
-  if(completed)button.classList.add("done");
-
-  button.innerHTML=`
-   <strong>${plan.short}</strong><br>
-   ${plan.title}
-   <div class="day-date">${d.getMonth()+1}/${d.getDate()}</div>
-  `;
-
-  button.onclick=()=>selectWeekDay(plan,dateString);
-  $("weekDisplay").appendChild(button);
- });
-}
-
-function selectWeekDay(plan,dateString){
-
- if(plan.type==="rest"){
-  alert(`${formatTrainingDate(dateString)} is your scheduled recovery day.`);
-  return;
- }
-
- if(plan.type==="walk"){
-  openWalkForDate(dateString);
-  return;
- }
-
- const active=getActiveWorkout();
-
- if(active && (active.type!==plan.type || active.trainingDate!==dateString)){
-  if(confirm(`You already have an unfinished ${active.title} workout.\n\nPress OK to resume it.`)){
-   openLift();
-  }
-  return;
- }
-
- startWorkout(plan.type,dateString);
-}
-
-/* =========================
-WORKOUT
-========================= */
-
+/* WORKOUT */
 function openLift(){
-
- const active=getActiveWorkout();
-
- if(active?.type && program[active.type]){
-  startWorkout(active.type,active.trainingDate);
-  return;
- }
-
- const day=new Date().getDay();
- let type="push";
-
- if(day===3)type="pull";
- if(day===5)type="legs";
-
- startWorkout(type,localDateString(new Date()));
+const a=load(ACTIVE,null);
+if(a?.type&&program[a.type]){startWorkout(a.type,a.trainingDate);return}
+const day=new Date().getDay();
+startWorkout(day===3?"pull":day===5?"legs":"push",today());
 }
-
+function previousExercise(name){
+for(const session of load("lunaHistory",[])){
+if(session.type!=="lift")continue;
+const e=session.exercises?.find(x=>x.name===name);
+if(e?.sets?.length)return e.sets.map(s=>num(s.weight)+"×"+num(s.reps)).join(", ");
+}
+return null;
+}
 function startWorkout(type,date){
-
- if(!program[type])return;
-
- currentWorkout=type;
- selectedTrainingDate=date||localDateString(new Date());
-
- showPage("workout");
-
- const workout=program[type];
-
- $("workoutTitle").innerText=workout.title;
- $("selectedWorkoutDate").innerText=formatTrainingDate(selectedTrainingDate);
- $("exerciseContainer").innerHTML="";
-
- const active=getActiveWorkout();
-
- const canRestore=
-  active &&
-  active.type===type &&
-  active.trainingDate===selectedTrainingDate;
-
- workout.exercises.forEach((exercise,index)=>{
-
-  const [name,sets,min,max]=exercise;
-  const previous=getPreviousExercise(name);
-
-  const saved=canRestore
-   ?active.exercises?.find(x=>x.name===name)
-   :null;
-
-  let rows="";
-
-  for(let i=0;i<sets;i++){
-
-   const set=saved?.sets?.[i];
-
-   rows+=`
-    <div class="set-row">
-
-     <strong>${i+1}</strong>
-
-     <input class="weight"
-      data-exercise="${index}"
-      type="number"
-      inputmode="decimal"
-      value="${set?.weight??""}"
-      placeholder="lb"
-      oninput="saveActiveWorkout()">
-
-     <input class="reps"
-      data-exercise="${index}"
-      type="number"
-      inputmode="numeric"
-      value="${set?.reps??""}"
-      placeholder="reps"
-      oninput="saveActiveWorkout()">
-
-     <button class="check ${set?.completed?"done":""}"
-      onclick="completeSet(this)">✓</button>
-
-    </div>
-   `;
-  }
-
-  const card=document.createElement("div");
-  card.className="card exercise";
-
-  card.innerHTML=`
-   <div class="exercise-title">
-    <h3>${name}</h3>
-    <span class="muted">${sets} × ${min}-${max}</span>
-   </div>
-
-   <div class="muted" style="font-size:13px">
-    ${previous?"Last: "+previous:"No previous workout"}
-   </div>
-
-   ${rows}
-  `;
-
-  $("exerciseContainer").appendChild(card);
- });
-
- $("workoutDraftNotice").classList.add("show");
-
- if(!canRestore)saveActiveWorkout();
+if(!program[type])return;
+currentWorkout=type;trainingDate=date;
+const p=program[type],draft=load(ACTIVE,null);
+const restore=draft?.type===type&&draft.trainingDate===date;
+show("workout");
+$("workoutTitle").textContent=p.title;
+$("workoutDate").textContent=trainingFmt(date);
+$("exercises").innerHTML="";
+p.exercises.forEach(([name,count,min,max],index)=>{
+const old=restore?draft.exercises?.find(x=>x.name===name):null;
+const card=document.createElement("div");card.className="card exercise";
+card.innerHTML="<div class='row'><h3>"+safe(name)+"</h3><small>"+count+" × "+min+"–"+max+"</small></div><small>"+safe(previousExercise(name)||"No previous workout")+"</small>";
+for(let i=0;i<count;i++){
+const s=old?.sets?.[i]||{};
+const row=document.createElement("div");row.className="set";
+row.innerHTML="<b>"+(i+1)+"</b><input class='weight' type='number' min='0' step='any' placeholder='lb' value='"+safe(s.weight??"")+"'><input class='reps' type='number' min='0' placeholder='reps' value='"+safe(s.reps??"")+"'><button class='check"+(s.completed?" done":"")+"'>✓</button>";
+row.querySelectorAll("input").forEach(el=>el.addEventListener("input",saveDraft));
+row.querySelector(".check").onclick=e=>{
+e.currentTarget.classList.toggle("done");saveDraft();
+if(e.currentTarget.classList.contains("done"))startRest(90);
+};
+card.appendChild(row);
 }
-
-function saveActiveWorkout(){
-
- if(!currentWorkout)return;
-
- const workout=program[currentWorkout];
-
- const exercises=workout.exercises.map((exercise,index)=>{
-
-  const [name,sets,min,max]=exercise;
-
-  const weights=document.querySelectorAll(`.weight[data-exercise="${index}"]`);
-  const reps=document.querySelectorAll(`.reps[data-exercise="${index}"]`);
-
-  const setData=[];
-
-  for(let i=0;i<sets;i++){
-
-   const row=weights[i]?.closest(".set-row");
-
-   setData.push({
-    weight:weights[i]?.value||"",
-    reps:reps[i]?.value||"",
-    completed:row?.querySelector(".check")?.classList.contains("done")||false
-   });
-  }
-
-  return{name,min,max,sets:setData};
- });
-
- const existing=getActiveWorkout();
-
- saveData(ACTIVE_WORKOUT_KEY,{
-  type:currentWorkout,
-  title:workout.title,
-  trainingDate:selectedTrainingDate,
-  startedAt:existing?.startedAt||new Date().toISOString(),
-  updatedAt:new Date().toISOString(),
-  exercises
- });
+$("exercises").appendChild(card);
+});
+if(!restore)saveDraft();
 }
-
-function completeSet(button){
- button.classList.toggle("done");
- saveActiveWorkout();
- if(button.classList.contains("done"))startRest(90);
+function saveDraft(){
+if(!currentWorkout)return;
+const p=program[currentWorkout],old=load(ACTIVE,null);
+const exercises=[...$("exercises").children].map((card,i)=>{
+const [name,,min,max]=p.exercises[i];
+return{name,min,max,sets:[...card.querySelectorAll(".set")].map(row=>({
+weight:row.querySelector(".weight").value,
+reps:row.querySelector(".reps").value,
+completed:row.querySelector(".check").classList.contains("done")
+}))};
+});
+save(ACTIVE,{type:currentWorkout,title:p.title,trainingDate,
+startedAt:old?.type===currentWorkout&&old.trainingDate===trainingDate?old.startedAt:new Date().toISOString(),
+updatedAt:new Date().toISOString(),exercises});
 }
-
-let restInterval;
-
 function startRest(seconds){
-
- clearInterval(restInterval);
-
- let remaining=seconds;
- displayRest(remaining);
-
- restInterval=setInterval(()=>{
-
-  remaining--;
-  displayRest(remaining);
-
-  if(remaining<=0){
-   clearInterval(restInterval);
-   if(navigator.vibrate)navigator.vibrate([200,100,200]);
-  }
-
- },1000);
+clearInterval(restInterval);
+let remaining=seconds;
+const display=()=>{$("restTimer").textContent=String(Math.floor(remaining/60)).padStart(2,"0")+":"+String(remaining%60).padStart(2,"0")};
+display();
+restInterval=setInterval(()=>{
+remaining--;display();
+if(remaining<=0){clearInterval(restInterval);navigator.vibrate?.([200,100,200])}
+},1000);
 }
-
-function displayRest(seconds){
- const min=Math.floor(seconds/60);
- const sec=seconds%60;
- $("restTimer").innerText=
-  `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
-}
-
 function finishWorkout(){
-
- saveActiveWorkout();
-
- const draft=getActiveWorkout();
- if(!draft)return;
-
- const results=draft.exercises.map(exercise=>({
-  name:exercise.name,
-  min:exercise.min,
-  max:exercise.max,
-  sets:(exercise.sets||[])
-   .filter(s=>s.weight!==""||s.reps!=="")
-   .map(s=>({
-    weight:Number(s.weight)||0,
-    reps:Number(s.reps)||0
-   }))
- }));
-
- if(!results.some(x=>x.sets.length)){
-  alert("Enter at least one set before finishing the workout.");
-  return;
- }
-
- const history=loadData("lunaHistory",[]);
-
- history.unshift({
-  id:Date.now(),
-  type:"lift",
-  workout:currentWorkout,
-  title:program[currentWorkout].title,
-  date:sessionISOForDate(draft.trainingDate),
-  trainingDate:draft.trainingDate,
-  loggedAt:new Date().toISOString(),
-  startedAt:draft.startedAt,
-  exercises:results
- });
-
- saveData("lunaHistory",history);
-
- clearActiveWorkout();
- currentWorkout=null;
- selectedTrainingDate=null;
-
- alert("Workout saved 💪");
- showPage("home");
+saveDraft();
+const draft=load(ACTIVE,null);
+if(!draft)return;
+const exercises=draft.exercises.map(e=>({
+name:e.name,min:e.min,max:e.max,
+sets:e.sets.filter(s=>s.weight!==""||s.reps!=="").map(s=>({weight:num(s.weight),reps:num(s.reps)}))
+}));
+if(!exercises.some(e=>e.sets.length)){alert("Log at least one set.");return}
+const history=load("lunaHistory",[]);
+history.unshift({id:uid(),type:"lift",workout:currentWorkout,title:draft.title,
+date:sessionDate(draft.trainingDate),trainingDate:draft.trainingDate,
+loggedAt:new Date().toISOString(),startedAt:draft.startedAt,exercises});
+save("lunaHistory",history);
+localStorage.removeItem(ACTIVE);currentWorkout=null;trainingDate=null;
+clearInterval(restInterval);
+alert("Workout saved 💪");show("home");
 }
-
 function cancelWorkout(){
-
- if(!confirm("Cancel this workout? Your unfinished sets will be deleted."))return;
-
- clearActiveWorkout();
- currentWorkout=null;
- selectedTrainingDate=null;
-
- showPage("home");
+if(!confirm("Delete your unfinished workout?"))return;
+localStorage.removeItem(ACTIVE);currentWorkout=null;trainingDate=null;
+clearInterval(restInterval);show("home");
 }
 
-function getPreviousExercise(name){
-
- const history=loadData("lunaHistory",[]);
-
- for(const workout of history){
-
-  if(workout.type!=="lift")continue;
-
-  const exercise=workout.exercises?.find(x=>x.name===name);
-
-  if(exercise?.sets?.length){
-   return exercise.sets.map(s=>`${s.weight}×${s.reps}`).join(", ");
-  }
- }
-
- return null;
-}
-
-/* =========================
-CHICO
-========================= */
-
-let walkSeconds=0;
-let walkInterval=null;
-let walking=false;
-let selectedWalkDate=null;
-
-function openWalkToday(){
- openWalkForDate(localDateString(new Date()));
-}
-
+/* CHICO */
+function openWalkToday(){openWalkForDate(today())}
 function openWalkForDate(date){
-
- selectedWalkDate=date;
- $("walkLoggingDate").innerText=`Logging for ${formatTrainingDate(date)}`;
- showPage("walk");
+walkDate=date;$("walkDate").textContent="Logging for "+trainingFmt(date);show("walk");
 }
-
-function toggleWalk(){
-
- if(!selectedWalkDate)selectedWalkDate=localDateString(new Date());
-
- if(!walking){
-
-  walking=true;
-  $("walkButton").innerText="STOP WALK";
-  $("walkButton").classList.add("danger");
-
-  walkInterval=setInterval(()=>{
-   walkSeconds++;
-   updateWalkTimer();
-  },1000);
-
- }else{
-
-  walking=false;
-  clearInterval(walkInterval);
-  $("walkButton").innerText="RESUME WALK";
-  $("walkButton").classList.remove("danger");
- }
-}
-
 function updateWalkTimer(){
- const min=Math.floor(walkSeconds/60);
- const sec=walkSeconds%60;
- $("walkTimer").innerText=
-  `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
+$("walkTimer").textContent=String(Math.floor(walkSeconds/60)).padStart(2,"0")+":"+String(walkSeconds%60).padStart(2,"0");
 }
-
+function toggleWalk(){
+if(!walking){
+walking=true;walkStart=Date.now()-walkSeconds*1000;
+$("walkButton").textContent="STOP WALK";$("walkButton").classList.add("danger");
+walkInterval=setInterval(()=>{walkSeconds=Math.floor((Date.now()-walkStart)/1000);updateWalkTimer()},500);
+}else{
+walking=false;clearInterval(walkInterval);
+$("walkButton").textContent="RESUME WALK";$("walkButton").classList.remove("danger");
+}
+}
 function saveWalk(){
-
- const manual=Number($("manualWalkMinutes").value)||0;
- const distance=Number($("walkDistance").value)||0;
- const duration=manual?manual*60:walkSeconds;
-
- if(!duration){
-  alert("Enter your walk time or use the timer.");
-  return;
- }
-
- const date=selectedWalkDate||localDateString(new Date());
- const history=loadData("lunaHistory",[]);
-
- history.unshift({
-  id:Date.now(),
-  type:"walk",
-  title:"Walk Chico",
-  date:sessionISOForDate(date),
-  trainingDate:date,
-  loggedAt:new Date().toISOString(),
-  duration,
-  distance
- });
-
- saveData("lunaHistory",history);
-
- clearInterval(walkInterval);
-
- walking=false;
- walkSeconds=0;
-
- updateWalkTimer();
-
- $("manualWalkMinutes").value="";
- $("walkDistance").value="";
- $("walkButton").innerText="START WALK";
- $("walkButton").classList.remove("danger");
-
- alert("Chico walk saved 🐕");
- showPage("home");
+const manual=num($("walkMinutes").value),miles=num($("walkMiles").value);
+const duration=manual>0?manual*60:walkSeconds;
+if(duration<=0||miles<0){alert("Enter a valid walk duration and distance.");return}
+const history=load("lunaHistory",[]);
+history.unshift({id:uid(),type:"walk",title:"Walk Chico",date:sessionDate(walkDate),
+trainingDate:walkDate,loggedAt:new Date().toISOString(),duration,distance:miles});
+save("lunaHistory",history);
+clearInterval(walkInterval);walking=false;walkSeconds=0;updateWalkTimer();
+$("walkMinutes").value="";$("walkMiles").value="";
+$("walkButton").textContent="START WALK";$("walkButton").classList.remove("danger");
+alert("Chico walk saved 🐕");show("home");
 }
 
-/* =========================
-NUTRITION
-========================= */
-
-function getNutritionEntries(){
- return loadData("lunaNutritionEntries",[]);
-}
-
-function getCalorieGoal(){
- return Number(localStorage.getItem("lunaCalorieGoal"))||2200;
-}
-
-function getProteinGoal(){
- return Number(localStorage.getItem("lunaProteinGoal"))||200;
-}
-
-function changeNutritionDate(amount){
-
- const d=dateFromLocalString(nutritionDate);
- d.setDate(d.getDate()+amount);
-
- nutritionDate=localDateString(d);
-
- renderNutrition();
-}
-
-function openNutritionDate(date){
-
- nutritionDate=date;
- showPage("nutrition");
-
- window.scrollTo({
-  top:0,
-  behavior:"smooth"
- });
-}
-
-function addFood(){
-
- const name=$("foodName").value.trim();
- const calories=Number($("foodCalories").value)||0;
- const protein=Number($("foodProtein").value)||0;
-
- if(!name){
-  alert("Enter the food or meal name.");
-  return;
- }
-
- if(calories<=0 && protein<=0){
-  alert("Enter calories or protein for this food.");
-  return;
- }
-
- const entries=getNutritionEntries();
-
- entries.push({
-  id:Date.now(),
-  date:nutritionDate,
-  name,
-  calories,
-  protein,
-  loggedAt:new Date().toISOString()
- });
-
- saveData("lunaNutritionEntries",entries);
-
- $("foodName").value="";
- $("foodCalories").value="";
- $("foodProtein").value="";
-
- renderNutrition();
-}
-
-function deleteFood(id){
-
- const entries=getNutritionEntries().filter(x=>String(x.id)!==String(id));
-
- saveData("lunaNutritionEntries",entries);
-
- renderNutrition();
-}
-
-function saveCalorieGoal(){
-
- const value=Number($("calorieGoalInput").value);
-
- if(value<=0){
-  alert("Enter a valid calorie goal.");
-  return;
- }
-
- localStorage.setItem("lunaCalorieGoal",String(value));
- $("calorieGoalInput").value="";
-
- renderNutrition();
-}
-
-function saveProteinGoal(){
-
- const value=Number($("proteinGoalInput").value);
-
- if(value<=0){
-  alert("Enter a valid protein goal.");
-  return;
- }
-
- localStorage.setItem("lunaProteinGoal",String(value));
- $("proteinGoalInput").value="";
-
- renderNutrition();
-}
-
-function renderNutrition(){
-
- const today=localDateString(new Date());
- const entries=getNutritionEntries();
-
- const daily=entries.filter(x=>x.date===nutritionDate);
-
- const calories=daily.reduce((sum,x)=>sum+(Number(x.calories)||0),0);
- const protein=daily.reduce((sum,x)=>sum+(Number(x.protein)||0),0);
-
- const calorieGoal=getCalorieGoal();
- const proteinGoal=getProteinGoal();
-
- $("nutritionDateTitle").innerText=
-  nutritionDate===today?"Today":formatShortDate(nutritionDate);
-
- $("nutritionDateSub").innerText=
-  nutritionDate===today
-  ?formatShortDate(nutritionDate)
-  :formatTrainingDate(nutritionDate);
-
- $("dailyCalories").innerText=Math.round(calories).toLocaleString();
-
- $("dailyProtein").innerText=
-  `${protein.toFixed(protein%1?1:0)}g`;
-
- $("calorieGoalLabel").innerText=
-  `of ${calorieGoal.toLocaleString()}`;
-
- $("proteinGoalLabel").innerText=
-  `of ${proteinGoal}g`;
-
- const calRemaining=calorieGoal-calories;
- const proRemaining=proteinGoal-protein;
-
- $("calorieRemaining").innerText=
-  calRemaining>=0
-  ?`${Math.round(calRemaining).toLocaleString()} remaining`
-  :`${Math.abs(Math.round(calRemaining)).toLocaleString()} over`;
-
- $("proteinRemaining").innerText=
-  proRemaining>=0
-  ?`${proRemaining.toFixed(proRemaining%1?1:0)}g remaining`
-  :`${Math.abs(proRemaining).toFixed(1)}g over`;
-
- $("calorieProgress").style.width=
-  `${Math.min((calories/calorieGoal)*100,100)}%`;
-
- $("proteinProgress").style.width=
-  `${Math.min((protein/proteinGoal)*100,100)}%`;
-
- $("calorieGoalInput").placeholder=calorieGoal;
- $("proteinGoalInput").placeholder=proteinGoal;
-
- if(daily.length){
-
-  $("foodLog").innerHTML=
-   daily
-   .slice()
-   .sort((a,b)=>new Date(a.loggedAt)-new Date(b.loggedAt))
-   .map(item=>`
-
-    <div class="food-entry">
-
-     <div class="food-top">
-
-      <div>
-       <div class="food-name">${escapeHTML(item.name)}</div>
-
-       <div class="food-macros">
-        ${Math.round(Number(item.calories)||0).toLocaleString()} cal
-        •
-        ${(Number(item.protein)||0).toFixed(Number(item.protein)%1?1:0)}g protein
-       </div>
-      </div>
-
-      <button class="danger small-button"
-       onclick="deleteFood('${item.id}')">
-       Delete
-      </button>
-
-     </div>
-
-    </div>
-
-   `).join("");
-
- }else{
-
-  $("foodLog").innerHTML=`
-   <div class="empty">
-    Nothing logged for this day yet.
-   </div>
-  `;
- }
-
- renderNutritionHistory(entries);
-}
-
-function renderNutritionHistory(entries){
-
- const totals={};
-
- entries.forEach(item=>{
-
-  if(!totals[item.date]){
-   totals[item.date]={
-    calories:0,
-    protein:0,
-    count:0
-   };
-  }
-
-  totals[item.date].calories+=Number(item.calories)||0;
-  totals[item.date].protein+=Number(item.protein)||0;
-  totals[item.date].count++;
- });
-
- const dates=Object.keys(totals).sort().reverse();
-
- if(!dates.length){
-
-  $("nutritionHistory").innerHTML=`
-   <div class="card empty">
-    Your previous nutrition logs will appear here.
-   </div>
-  `;
-
-  return;
- }
-
- $("nutritionHistory").innerHTML=
-  dates.map(date=>{
-
-   const total=totals[date];
-
-   return`
-    <div class="history-day"
-     onclick="openNutritionDate('${date}')">
-
-     <div class="history-day-top">
-      <strong>${formatShortDate(date)}</strong>
-      <span>›</span>
-     </div>
-
-     <div class="history-day-stats">
-      ${Math.round(total.calories).toLocaleString()} cal
-      •
-      ${total.protein.toFixed(total.protein%1?1:0)}g protein
-      •
-      ${total.count} ${total.count===1?"item":"items"}
-     </div>
-
-    </div>
-   `;
-
-  }).join("");
-}
-
-/* =========================
-WEIGHT
-========================= */
-
-function getGoalWeight(){
- return Number(localStorage.getItem("lunaGoalWeight"))||250;
-}
-
-function saveGoalWeight(){
-
- const value=Number($("goalWeightInput").value);
-
- if(value<=0){
-  alert("Enter a valid goal weight.");
-  return;
- }
-
- localStorage.setItem("lunaGoalWeight",String(value));
-
- $("goalWeightInput").value="";
-
- updateProgress();
-}
-
-function saveWeight(){
-
- const value=Number($("bodyWeight").value);
-
- if(value<=0){
-  alert("Enter a valid weight.");
-  return;
- }
-
- const weights=loadData("lunaWeights",[]);
-
- weights.unshift({
-  weight:value,
-  date:new Date().toISOString()
- });
-
- saveData("lunaWeights",weights);
-
- $("bodyWeight").value="";
-
- updateProgress();
-}
-
-/* =========================
-CHARTS
-========================= */
-
-const trackedLifts=[
- ["Barbell Bench Press","Bench Press"],
- ["Barbell Squat","Squat"],
- ["Barbell Row","Barbell Row"],
- ["Romanian Deadlift","Romanian Deadlift"]
+/* NUTRITION */
+const macros=[
+{key:"calories",label:"Calories",unit:"",goalKey:"lunaCalorieGoal",defaultGoal:2200,color:"#ffb84d"},
+{key:"protein",label:"Protein",unit:"g",goalKey:"lunaProteinGoal",defaultGoal:200,color:"#63d471"},
+{key:"carbs",label:"Carbs",unit:"g",goalKey:"lunaCarbGoal",defaultGoal:220,color:"#6dbaff"},
+{key:"fat",label:"Fat",unit:"g",goalKey:"lunaFatGoal",defaultGoal:75,color:"#bba0ff"}
 ];
-
-function ensureStrengthCards(){
-
- if($("strengthCards").children.length)return;
-
- trackedLifts.forEach(([name,title],index)=>{
-
-  $("strengthCards").insertAdjacentHTML("beforeend",`
-   <div class="card">
-
-    <div class="strength-top">
-
-     <div>
-      <h3>${title}</h3>
-      <div class="muted">Heaviest set each session</div>
-     </div>
-
-     <div style="text-align:right">
-      <div id="liftBest${index}" class="strength-number">--</div>
-      <div id="liftReps${index}" class="muted"></div>
-     </div>
-
-    </div>
-
-    <div id="liftChart${index}" class="chart strength-chart"></div>
-
-    <div class="chart-help">
-     Touch and drag to see weight, reps and date
-    </div>
-
-   </div>
-  `);
- });
+function entries(){return load("lunaNutritionEntries",[])}
+function goal(m){return num(localStorage.getItem(m.goalKey))||m.defaultGoal}
+function fmtNum(x){return Number(num(x).toFixed(1)).toLocaleString()}
+function moveFoodDate(delta){
+const d=fromDate(foodDate);d.setDate(d.getDate()+delta);foodDate=localDate(d);renderNutrition();
+}
+function openFoodDate(date){foodDate=date;show("nutrition")}
+function addFood(){
+const name=$("foodName").value.trim();
+if(!name){alert("Enter a food name.");return}
+const food={id:uid(),date:foodDate,name,loggedAt:new Date().toISOString()};
+let any=false;
+for(const m of macros){
+const input=$("food"+m.label);
+const value=Number(input.value||0);
+if(!Number.isFinite(value)||value<0){alert("Enter valid nonnegative nutrition values.");return}
+food[m.key]=value;if(value>0)any=true;
+}
+if(!any){alert("Enter at least one nutrition value.");return}
+const all=entries();all.push(food);save("lunaNutritionEntries",all);
+$("foodName").value="";
+macros.forEach(m=>$("food"+m.label).value="");
+renderNutrition();
+}
+function deleteFood(id){
+if(!confirm("Delete this food entry?"))return;
+save("lunaNutritionEntries",entries().filter(e=>String(e.id)!==String(id)));
+renderNutrition();
+}
+function saveMacroGoals(){
+for(const m of macros){
+const value=Number($("goal-"+m.key).value);
+if(!Number.isFinite(value)||value<=0){alert("Enter a valid "+m.label+" goal.");return}
+}
+macros.forEach(m=>localStorage.setItem(m.goalKey,$("goal-"+m.key).value));
+renderNutrition();alert("Nutrition goals saved.");
+}
+function renderNutrition(){
+$("foodDateTitle").textContent=foodDate===today()?"Today":fmt(foodDate);
+$("foodDateSub").textContent=trainingFmt(foodDate);
+const all=entries(),daily=all.filter(e=>e.date===foodDate);
+const totals={};
+macros.forEach(m=>totals[m.key]=daily.reduce((s,e)=>s+num(e[m.key]),0));
+$("macroStats").innerHTML=macros.map(m=>"<div class='stat'><small>"+m.label+"</small><strong>"+fmtNum(totals[m.key])+m.unit+"</strong><small>of "+fmtNum(goal(m))+m.unit+"</small></div>").join("");
+$("macroBars").innerHTML=macros.map(m=>{
+const amount=totals[m.key],g=goal(m),remaining=g-amount;
+return "<div class='row'><strong>"+m.label+"</strong><small>"+fmtNum(Math.abs(remaining))+m.unit+(remaining>=0?" remaining":" over")+"</small></div><div class='progress'><div class='fill' style='width:"+Math.min(amount/g*100,100)+"%;background:"+m.color+"'></div></div>";
+}).join("");
+$("macroGoalInputs").innerHTML=macros.map(m=>"<div><label>"+m.label+" Goal"+(m.unit?" ("+m.unit+")":"")+"</label><input id='goal-"+m.key+"' type='number' min='1' step='any' value='"+goal(m)+"'></div>").join("");
+$("foodLog").innerHTML=daily.length?"":"<div class='empty'>Nothing logged for this day.</div>";
+daily.slice().sort((a,b)=>new Date(a.loggedAt)-new Date(b.loggedAt)).forEach(e=>{
+const div=document.createElement("div");div.className="food-item";
+div.innerHTML="<div class='row'><div><div class='food-name'>"+safe(e.name)+"</div><div class='food-meta'>"+fmtNum(e.calories)+" cal • "+fmtNum(e.protein)+"g protein<br>"+fmtNum(e.carbs)+"g carbs • "+fmtNum(e.fat)+"g fat</div></div><button class='danger small'>Delete</button></div>";
+div.querySelector("button").onclick=()=>deleteFood(e.id);
+$("foodLog").appendChild(div);
+});
+const days={};
+all.forEach(e=>{
+if(!days[e.date])days[e.date]={count:0,calories:0,protein:0,carbs:0,fat:0};
+days[e.date].count++;
+macros.forEach(m=>days[e.date][m.key]+=num(e[m.key]));
+});
+$("foodHistory").innerHTML="";
+const dates=Object.keys(days).sort().reverse();
+if(!dates.length)$("foodHistory").innerHTML="<div class='card empty'>Your nutrition history will appear here.</div>";
+dates.forEach(date=>{
+const d=days[date],div=document.createElement("div");div.className="log-day";
+div.innerHTML="<div class='row'><strong>"+fmt(date)+"</strong><span>›</span></div><div class='food-meta'>"+fmtNum(d.calories)+" cal • "+fmtNum(d.protein)+"g protein<br>"+fmtNum(d.carbs)+"g carbs • "+fmtNum(d.fat)+"g fat • "+d.count+" items</div>";
+div.onclick=()=>openFoodDate(date);$("foodHistory").appendChild(div);
+});
 }
 
-function emptyChart(id,message){
- $(id).innerHTML=`<div class="empty">${message}</div>`;
+/* WEIGHT AND CHARTS */
+function weightGoal(){return num(localStorage.getItem("lunaGoalWeight"))||250}
+function saveGoalWeight(){
+const v=Number($("goalWeightInput").value);
+if(!Number.isFinite(v)||v<=0){alert("Enter a valid goal weight.");return}
+localStorage.setItem("lunaGoalWeight",v);$("goalWeightInput").value="";renderProgress();
+}
+function saveWeight(){
+const v=Number($("weightInput").value);
+if(!Number.isFinite(v)||v<=0){alert("Enter a valid weight.");return}
+const weights=load("lunaWeights",[]);
+weights.unshift({weight:v,date:new Date().toISOString()});
+save("lunaWeights",weights);$("weightInput").value="";renderProgress();
+}
+function chart(id,data,goalValue=null,type="weight"){
+const el=$(id);
+if(!data.length){el.innerHTML="<div class='empty'>No data yet.</div>";return}
+const W=500,H=200,L=35,R=15,T=20,B=30;
+const values=data.map(x=>num(x.value));
+if(goalValue!==null)values.push(goalValue);
+let min=Math.min(...values),max=Math.max(...values);
+const padding=Math.max((max-min)*.2,Math.abs(max)*.05,1);
+min=Math.max(0,min-padding);max+=padding;
+const x=i=>data.length===1?W/2:L+i*(W-L-R)/(data.length-1);
+const y=v=>H-B-(v-min)/(max-min)*(H-T-B);
+const points=data.map((d,i)=>x(i)+","+y(d.value)).join(" ");
+el.innerHTML="<svg viewBox='0 0 500 200' preserveAspectRatio='none'>"+
+(goalValue===null?"":"<line x1='"+L+"' x2='"+(W-R)+"' y1='"+y(goalValue)+"' y2='"+y(goalValue)+"' stroke='#63d471' stroke-dasharray='6 6' stroke-width='2'/>")+
+"<polyline points='"+points+"' fill='none' stroke='white' stroke-width='3'/>"+
+data.map((d,i)=>"<circle cx='"+x(i)+"' cy='"+y(d.value)+"' r='5' fill='white'/>").join("")+
+"<line class='selector' x1='0' x2='0' y1='"+T+"' y2='"+(H-B)+"' stroke='#aaa' stroke-dasharray='4 4' opacity='0'/></svg><div class='tip'></div>";
+const svg=el.querySelector("svg"),tip=el.querySelector(".tip"),selector=el.querySelector(".selector");
+function inspect(clientX){
+const rect=svg.getBoundingClientRect(),px=(clientX-rect.left)*W/rect.width;
+let nearest=0;
+data.forEach((_,i)=>{if(Math.abs(x(i)-px)<Math.abs(x(nearest)-px))nearest=i});
+const item=data[nearest],cx=x(nearest);
+selector.setAttribute("x1",cx);selector.setAttribute("x2",cx);selector.setAttribute("opacity","1");
+const value=type==="walk"?fmtNum(item.value)+" mi":fmtNum(item.value)+" lb"+(item.reps?" × "+item.reps+" reps":"");
+tip.innerHTML="<b>"+value+"</b><br>"+new Date(item.date).toLocaleDateString();
+tip.style.left=Math.max(55,Math.min(el.clientWidth-55,cx/W*el.clientWidth))+"px";
+tip.style.top=Math.max(55,y(item.value)/H*el.clientHeight)+"px";tip.style.display="block";
+}
+function hide(){tip.style.display="none";selector.setAttribute("opacity","0")}
+svg.addEventListener("mousemove",e=>inspect(e.clientX));
+svg.addEventListener("mouseleave",hide);
+svg.addEventListener("touchstart",e=>inspect(e.touches[0].clientX),{passive:true});
+svg.addEventListener("touchmove",e=>inspect(e.touches[0].clientX),{passive:true});
+svg.addEventListener("touchend",()=>setTimeout(hide,1200),{passive:true});
+}
+const tracked=[
+["Barbell Bench Press","Bench Press"],["Barbell Squat","Squat"],
+["Barbell Row","Barbell Row"],["Romanian Deadlift","Romanian Deadlift"]
+];
+function renderProgress(){
+const weights=load("lunaWeights",[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
+const goal=weightGoal();
+$("goalWeightDisplay").textContent=goal.toFixed(1)+" lb";
+if(weights.length){
+const current=num(weights[0].weight),start=num(weights[weights.length-1].weight),change=current-start;
+$("currentWeight").textContent=current.toFixed(1)+" lb";
+$("startingWeight").textContent=start.toFixed(1)+" lb";
+$("weightChange").textContent=(change>0?"+":"")+change.toFixed(1)+" lb";
+$("toGoal").textContent=current>goal?(current-goal).toFixed(1)+" lb":"Reached 🎉";
+chart("weightChart",weights.slice().reverse().map(w=>({date:w.date,value:num(w.weight)})),goal);
+}else{
+["currentWeight","startingWeight","weightChange","toGoal"].forEach(id=>$(id).textContent="--");
+$("weightChart").innerHTML="<div class='empty'>Add your first weigh-in.</div>";
+}
+const history=load("lunaHistory",[]);
+$("strengthCards").innerHTML="";
+tracked.forEach(([name,title],i)=>{
+const div=document.createElement("div");div.className="card";
+div.innerHTML="<h3>"+title+"</h3><small>Heaviest set each session</small><div class='chart' id='strength-"+i+"'></div>";
+$("strengthCards").appendChild(div);
+const data=[];
+history.filter(s=>s.type==="lift").slice().sort((a,b)=>new Date(a.date)-new Date(b.date)).forEach(s=>{
+const e=s.exercises?.find(e=>e.name===name);
+const sets=e?.sets?.filter(set=>num(set.weight)>0)||[];
+if(sets.length){
+const best=sets.reduce((a,b)=>num(b.weight)>num(a.weight)?b:a);
+data.push({date:s.date,value:num(best.weight),reps:num(best.reps)});
+}
+});
+chart("strength-"+i,data,null,"strength");
+});
+const walks=history.filter(s=>s.type==="walk"),measured=walks.filter(s=>num(s.distance)>0);
+const total=walks.reduce((s,w)=>s+num(w.distance),0);
+$("totalMiles").textContent=total.toFixed(1);
+$("totalWalks").textContent=walks.length;
+$("averageMiles").textContent=(measured.length?total/measured.length:0).toFixed(2);
+$("longestWalk").textContent=(measured.length?Math.max(...measured.map(w=>num(w.distance))):0).toFixed(2);
+chart("walkChart",measured.slice().sort((a,b)=>new Date(a.date)-new Date(b.date)).map(w=>({date:w.date,value:num(w.distance)})),null,"walk");
 }
 
-function drawGraph(id,data,goal=null,type="generic"){
-
- const chart=$(id);
- if(!chart||!data.length)return;
-
- const W=500,H=210,L=45,R=20,T=25,B=35;
-
- const values=data.map(x=>Number(x.value));
-
- if(goal!==null)values.push(Number(goal));
-
- let min=Math.min(...values);
- let max=Math.max(...values);
-
- const range=max-min;
- const padding=range===0?Math.max(max*.1,1):range*.2;
-
- min=Math.max(0,min-padding);
- max+=padding;
-
- if(max===min)max=min+1;
-
- const x=i=>data.length===1?W/2:L+i*(W-L-R)/(data.length-1);
-
- const y=value=>
-  H-B-
-  (value-min)/(max-min)*(H-T-B);
-
- const points=data.map((item,i)=>`${x(i)},${y(item.value)}`).join(" ");
-
- const circles=data.map((item,i)=>`
-  <circle class="chart-point"
-   data-index="${i}"
-   cx="${x(i)}"
-   cy="${y(item.value)}"
-   r="5"
-   fill="white"
-   stroke="#171719"
-   stroke-width="2">
-  </circle>
- `).join("");
-
- let goalLine="";
-
- if(goal!==null){
-  goalLine=`
-   <line
-    x1="${L}" y1="${y(goal)}"
-    x2="${W-R}" y2="${y(goal)}"
-    stroke="#63d471"
-    stroke-width="2"
-    stroke-dasharray="7 7">
-   </line>
-  `;
- }
-
- chart.innerHTML=`
-  <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
-
-   ${goalLine}
-
-   <polyline
-    points="${points}"
-    fill="none"
-    stroke="white"
-    stroke-width="4"
-    stroke-linecap="round"
-    stroke-linejoin="round">
-   </polyline>
-
-   <line id="${id}-selector"
-    x1="0" y1="${T}"
-    x2="0" y2="${H-B}"
-    stroke="#9d9da5"
-    stroke-width="1.5"
-    stroke-dasharray="4 4"
-    opacity="0">
-   </line>
-
-   ${circles}
-
-  </svg>
-
-  <div id="${id}-tooltip" class="chart-tooltip"></div>
- `;
-
- chart._graph={
-  data,W,H,x,y,type
- };
-
- setupChartInteraction(chart,id);
+/* TRAINING HISTORY */
+function renderHistory(){
+const history=load("lunaHistory",[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
+$("fullHistory").innerHTML="";
+if(!history.length){$("fullHistory").innerHTML="<div class='card empty'>No sessions logged yet.</div>";return}
+history.forEach(s=>{
+const card=document.createElement("div");card.className="card";
+const title=s.type==="walk"?"🐕 Walk Chico":"🏋️ "+safe(s.title||"Workout");
+const date=new Date(s.date).toLocaleDateString();
+card.innerHTML="<div class='row'><div><strong>"+title+"</strong><br><small>"+date+"</small></div><span>›</span></div><div class='history-detail'></div>";
+const detail=card.querySelector(".history-detail");
+if(s.type==="walk"){
+detail.innerHTML="<p>"+Math.round(num(s.duration)/60)+" minutes • "+num(s.distance).toFixed(2)+" miles</p>";
+}else{
+detail.innerHTML=(s.exercises||[]).filter(e=>e.sets?.length).map(e=>
+"<p><strong>"+safe(e.name)+"</strong><br><small>"+e.sets.map((set,i)=>"Set "+(i+1)+": "+num(set.weight)+" lb × "+num(set.reps)).join("<br>")+"</small></p>"
+).join("");
+}
+const del=document.createElement("button");del.className="danger small";del.textContent="Delete Session";
+del.onclick=e=>{
+e.stopPropagation();
+if(!confirm("Delete this session?"))return;
+save("lunaHistory",load("lunaHistory",[]).filter(x=>String(x.id)!==String(s.id)));
+renderHistory();
+};
+detail.appendChild(del);
+card.querySelector(".row").onclick=()=>detail.classList.toggle("open");
+$("fullHistory").appendChild(card);
+});
 }
 
-function setupChartInteraction(chart,id){
-
- const svg=chart.querySelector("svg");
- const tooltip=$(`${id}-tooltip`);
- const selector=$(`${id}-selector`);
- const graph=chart._graph;
-
- function closest(clientX){
-
-  const rect=svg.getBoundingClientRect();
-
-  const svgX=(clientX-rect.left)*graph.W/rect.width;
-
-  let index=0;
-  let distance=Infinity;
-
-  graph.data.forEach((item,i)=>{
-
-   const d=Math.abs(graph.x(i)-svgX);
-
-   if(d<distance){
-    distance=d;
-    index=i;
-   }
-  });
-
-  return index;
- }
-
- function show(index){
-
-  const item=graph.data[index];
-  if(!item)return;
-
-  chart.querySelectorAll(".chart-point").forEach(p=>p.setAttribute("r","5"));
-
-  const point=chart.querySelector(`.chart-point[data-index="${index}"]`);
-  if(point)point.setAttribute("r","8");
-
-  const px=graph.x(index);
-  const py=graph.y(item.value);
-
-  selector.setAttribute("x1",px);
-  selector.setAttribute("x2",px);
-  selector.setAttribute("opacity","1");
-
-  let value="";
-
-  if(graph.type==="strength"){
-   value=`${Number(item.value).toFixed(1)} lb`;
-   if(item.reps)value+=` × ${item.reps} reps`;
-  }else if(graph.type==="walk"){
-   value=`${Number(item.value).toFixed(2)} mi`;
-  }else{
-   value=`${Number(item.value).toFixed(1)} lb`;
-  }
-
-  tooltip.innerHTML=`
-   <div class="tooltip-value">${value}</div>
-   <div class="tooltip-date">${formatChartDate(item.date)}</div>
-  `;
-
-  const svgRect=svg.getBoundingClientRect();
-  const chartRect=chart.getBoundingClientRect();
-
-  let tooltipX=(px/graph.W)*svgRect.width+(svgRect.left-chartRect.left);
-  let tooltipY=(py/graph.H)*svgRect.height+(svgRect.top-chartRect.top);
-
-  tooltipX=Math.max(60,Math.min(chart.clientWidth-60,tooltipX));
-
-  tooltip.style.left=`${tooltipX}px`;
-  tooltip.style.top=`${Math.max(55,tooltipY)}px`;
-
-  tooltip.classList.add("show");
- }
-
- function hide(){
-  tooltip.classList.remove("show");
-  selector.setAttribute("opacity","0");
-  chart.querySelectorAll(".chart-point").forEach(p=>p.setAttribute("r","5"));
- }
-
- chart.addEventListener("mousemove",e=>show(closest(e.clientX)));
- chart.addEventListener("mouseleave",hide);
-
- chart.addEventListener("touchstart",e=>{
-  if(e.touches.length)show(closest(e.touches[0].clientX));
- },{passive:true});
-
- chart.addEventListener("touchmove",e=>{
-  if(e.touches.length)show(closest(e.touches[0].clientX));
- },{passive:true});
-
- chart.addEventListener("touchend",()=>setTimeout(hide,1200),{passive:true});
-}
-
-/* =========================
-PROGRESS
-========================= */
-
-function updateProgress(){
-
- ensureStrengthCards();
-
- const weights=loadData("lunaWeights",[]);
- const goal=getGoalWeight();
-
- $("goalWeightDisplay").innerText=goal.toFixed(1)+" lb";
-
- if(weights.length){
-
-  const current=Number(weights[0].weight);
-  const starting=Number(weights[weights.length-1].weight);
-  const change=current-starting;
-
-  $("currentWeight").innerText=current.toFixed(1)+" lb";
-  $("startingWeight").innerText=starting.toFixed(1)+" lb";
-  $("weightChange").innerText=(change>0?"+":"")+change.toFixed(1)+" lb";
-  $("toGoal").innerText=current>goal?(current-goal).toFixed(1)+" lb":"Reached 🎉";
-
-  drawGraph(
-   "weightChart",
-   [...weights].reverse().map(x=>({
-    date:x.date,
-    value:Number(x.weight)
-   })),
-   goal,
-   "weight"
-  );
-
- }else{
-  $("currentWeight").innerText="--";
-  $("startingWeight").innerText="--";
-  $("weightChange").innerText="--";
-  $("toGoal").innerText="--";
-  emptyChart("weightChart","Add your first weigh-in to start tracking.");
- }
-
- const history=loadData("lunaHistory",[]);
-
- trackedLifts.forEach(([name],index)=>{
-
-  const performances=[];
-
-  history
-   .filter(x=>x.type==="lift")
-   .slice()
-   .sort((a,b)=>new Date(a.date)-new Date(b.date))
-   .forEach(workout=>{
-
-    const exercise=workout.exercises?.find(x=>x.name===name);
-    const sets=exercise?.sets?.filter(x=>Number(x.weight)>0)||[];
-
-    if(!sets.length)return;
-
-    const best=sets.reduce((a,b)=>Number(b.weight)>Number(a.weight)?b:a);
-
-    performances.push({
-     date:workout.date,
-     value:Number(best.weight),
-     reps:Number(best.reps)||0
-    });
-   });
-
-  if(performances.length){
-
-   const latest=performances[performances.length-1];
-
-   $(`liftBest${index}`).innerText=latest.value+" lb";
-   $(`liftReps${index}`).innerText=latest.reps?`× ${latest.reps} reps`:"";
-
-   drawGraph(`liftChart${index}`,performances,null,"strength");
-
-  }else{
-   $(`liftBest${index}`).innerText="--";
-   $(`liftReps${index}`).innerText="No data yet";
-   emptyChart(`liftChart${index}`,"Complete this lift to start tracking.");
-  }
- });
-
- const walks=history.filter(x=>x.type==="walk");
- const withMiles=walks.filter(x=>Number(x.distance)>0);
-
- const total=walks.reduce((sum,x)=>sum+(Number(x.distance)||0),0);
-
- $("totalChicoMiles").innerText=total.toFixed(1);
- $("totalChicoWalks").innerText=walks.length;
- $("averageChicoMiles").innerText=
-  (withMiles.length?total/withMiles.length:0).toFixed(2);
- $("longestChicoWalk").innerText=
-  (withMiles.length?Math.max(...withMiles.map(x=>Number(x.distance))):0).toFixed(2);
-
- if(withMiles.length){
-
-  drawGraph(
-   "chicoMilesChart",
-   withMiles
-    .slice()
-    .sort((a,b)=>new Date(a.date)-new Date(b.date))
-    .map(x=>({
-     date:x.date,
-     value:Number(x.distance)
-    })),
-   null,
-   "walk"
-  );
-
- }else{
-  emptyChart("chicoMilesChart","Log mileage to start the graph.");
- }
-}
-
-/* =========================
-TRAINING HISTORY
-========================= */
-
-function renderFullHistory(){
-
- const history=loadData("lunaHistory",[])
-  .slice()
-  .sort((a,b)=>new Date(b.date)-new Date(a.date));
-
- if(!history.length){
-  $("fullHistory").innerHTML=`
-   <div class="card empty">No sessions logged yet.</div>
-  `;
-  return;
- }
-
- $("fullHistory").innerHTML=history.map((session,index)=>{
-
-  const date=new Date(session.date).toLocaleDateString(undefined,{
-   weekday:"short",month:"short",day:"numeric",year:"numeric"
-  });
-
-  let title="";
-  let details="";
-
-  if(session.type==="walk"){
-
-   title="🐕 Walk Chico";
-
-   details=`
-    <div class="stat-grid">
-     <div class="stat">
-      <div class="muted">Duration</div>
-      <div class="stat-small">${Math.round((Number(session.duration)||0)/60)} min</div>
-     </div>
-
-     <div class="stat">
-      <div class="muted">Distance</div>
-      <div class="stat-small">${(Number(session.distance)||0).toFixed(2)} mi</div>
-     </div>
-    </div>
-   `;
-
-  }else{
-
-   title="🏋️ "+(session.title||"Workout");
-
-   details=(session.exercises||[])
-    .filter(x=>x.sets?.length)
-    .map(exercise=>`
-     <div class="history-exercise">
-      <strong>${exercise.name}</strong>
-      <div class="history-sets">
-       ${exercise.sets.map((set,i)=>
-        `Set ${i+1}: ${Number(set.weight)||0} lb × ${Number(set.reps)||0}`
-       ).join("<br>")}
-      </div>
-     </div>
-    `).join("");
-  }
-
-  return`
-   <div class="card history-card">
-
-    <div class="history-header" onclick="toggleHistory(${index})">
-     <div>
-      <div class="history-title">${title}</div>
-      <div class="muted">${date}</div>
-     </div>
-     <div>›</div>
-    </div>
-
-    <div id="historyDetail-${index}" class="history-detail">
-
-     ${details}
-
-     <div class="history-actions">
-      <button class="danger small-button"
-       onclick="deleteSession(event,'${session.id}')">
-       Delete Session
-      </button>
-     </div>
-
-    </div>
-
-   </div>
-  `;
-
- }).join("");
-}
-
-function toggleHistory(index){
- $(`historyDetail-${index}`).classList.toggle("open");
-}
-
-function deleteSession(event,id){
-
- event.stopPropagation();
-
- if(!confirm("Delete this training session?"))return;
-
- const history=loadData("lunaHistory",[])
-  .filter(x=>String(x.id)!==String(id));
-
- saveData("lunaHistory",history);
-
- renderFullHistory();
- buildHome();
- updateProgress();
-}
-
-/* =========================
-BACKUP / RESTORE
-========================= */
-
+/* BACKUP / RESTORE */
 function backupData(){
-
- const backup={
-  app:"Luna Training",
-  version:7,
-  exportedAt:new Date().toISOString(),
-
-  lunaHistory:loadData("lunaHistory",[]),
-  lunaWeights:loadData("lunaWeights",[]),
-  lunaGoalWeight:getGoalWeight(),
-  lunaActiveWorkout:getActiveWorkout(),
-
-  lunaNutritionEntries:getNutritionEntries(),
-  lunaCalorieGoal:getCalorieGoal(),
-  lunaProteinGoal:getProteinGoal()
- };
-
- const blob=new Blob(
-  [JSON.stringify(backup,null,2)],
-  {type:"application/json"}
- );
-
- const url=URL.createObjectURL(blob);
- const link=document.createElement("a");
-
- link.href=url;
- link.download=`luna-training-backup-${localDateString(new Date())}.json`;
-
- document.body.appendChild(link);
- link.click();
- link.remove();
-
- setTimeout(()=>URL.revokeObjectURL(url),1000);
+const data={
+app:"Luna Training",version:8,exportedAt:new Date().toISOString(),
+lunaHistory:load("lunaHistory",[]),
+lunaWeights:load("lunaWeights",[]),
+lunaGoalWeight:weightGoal(),
+lunaActiveWorkout:load(ACTIVE,null),
+lunaNutritionEntries:entries(),
+lunaProfile:profile()
+};
+macros.forEach(m=>data[m.goalKey]=goal(m));
+if(localStorage.getItem("lunaProteinEntries")!==null)data.lunaProteinEntries=load("lunaProteinEntries",[]);
+const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+const url=URL.createObjectURL(blob),a=document.createElement("a");
+a.href=url;a.download="luna-training-backup-"+today()+".json";
+document.body.appendChild(a);a.click();a.remove();
+setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
-
-function openRestore(){
- $("restoreFile").click();
-}
-
 function restoreData(event){
-
- const file=event.target.files[0];
- if(!file)return;
-
- const reader=new FileReader();
-
- reader.onload=()=>{
-
-  try{
-
-   const backup=JSON.parse(reader.result);
-
-   if(backup.app!=="Luna Training"){
-    alert("Not a Luna Training backup.");
-    return;
-   }
-
-   if(!confirm("Restore this backup? Current app data will be replaced."))return;
-
-   saveData(
-    "lunaHistory",
-    Array.isArray(backup.lunaHistory)?backup.lunaHistory:[]
-   );
-
-   saveData(
-    "lunaWeights",
-    Array.isArray(backup.lunaWeights)?backup.lunaWeights:[]
-   );
-
-   if(Number(backup.lunaGoalWeight)>0){
-    localStorage.setItem("lunaGoalWeight",backup.lunaGoalWeight);
-   }
-
-   if(backup.lunaActiveWorkout?.type){
-    saveData(ACTIVE_WORKOUT_KEY,backup.lunaActiveWorkout);
-   }else{
-    clearActiveWorkout();
-   }
-
-   /*
-    Older backups won't contain nutrition.
-    We only replace nutrition if the backup
-    actually includes nutrition data.
-   */
-
-   if(Array.isArray(backup.lunaNutritionEntries)){
-    saveData("lunaNutritionEntries",backup.lunaNutritionEntries);
-   }
-
-   if(Number(backup.lunaCalorieGoal)>0){
-    localStorage.setItem("lunaCalorieGoal",backup.lunaCalorieGoal);
-   }
-
-   if(Number(backup.lunaProteinGoal)>0){
-    localStorage.setItem("lunaProteinGoal",backup.lunaProteinGoal);
-   }
-
-   buildHome();
-   renderNutrition();
-   updateProgress();
-   renderFullHistory();
-
-   alert("Luna Training restored successfully 💪");
-
-  }catch{
-   alert("I couldn't read that backup file.");
-  }
-
-  event.target.value="";
- };
-
- reader.readAsText(file);
+const file=event.target.files[0];if(!file)return;
+const reader=new FileReader();
+reader.onload=()=>{
+try{
+const d=JSON.parse(reader.result);
+if(d.app!=="Luna Training"||!Array.isArray(d.lunaHistory)||!Array.isArray(d.lunaWeights)){
+alert("This is not a valid Luna Training backup.");return;
+}
+if(!confirm("Restore backup? Existing training and weight records will be replaced."))return;
+save("lunaHistory",d.lunaHistory);save("lunaWeights",d.lunaWeights);
+if(num(d.lunaGoalWeight)>0)localStorage.setItem("lunaGoalWeight",d.lunaGoalWeight);
+if(d.lunaActiveWorkout?.type)save(ACTIVE,d.lunaActiveWorkout);
+else localStorage.removeItem(ACTIVE);
+if(Array.isArray(d.lunaNutritionEntries))save("lunaNutritionEntries",d.lunaNutritionEntries);
+if(Array.isArray(d.lunaProteinEntries))save("lunaProteinEntries",d.lunaProteinEntries);
+if(d.lunaProfile&&typeof d.lunaProfile==="object")save("lunaProfile",d.lunaProfile);
+macros.forEach(m=>{if(num(d[m.goalKey])>0)localStorage.setItem(m.goalKey,d[m.goalKey])});
+alert("Backup restored!");show("home");
+}catch(e){alert("Could not read backup file.")}
+event.target.value="";
+};
+reader.readAsText(file);
 }
 
-/* =========================
-START
-========================= */
+/* LEGACY PROTEIN ENTRIES */
+function migrateProtein(){
+if(localStorage.getItem("lunaProteinMigrationV8")==="done")return;
+const old=load("lunaProteinEntries",[]);
+const all=entries();
+if(Array.isArray(old)){
+old.forEach(e=>{
+if(!e.date)return;
+const id="legacy-protein-"+String(e.id??e.loggedAt??e.date+"-"+e.food);
+if(all.some(x=>String(x.id)===id))return;
+all.push({id,date:e.date,name:String(e.food||e.name||"Protein entry"),
+calories:0,protein:num(e.grams??e.protein),carbs:0,fat:0,
+loggedAt:e.loggedAt||new Date().toISOString()});
+});
+save("lunaNutritionEntries",all);
+}
+localStorage.setItem("lunaProteinMigrationV8","done");
+}
 
+migrateProtein();
 buildHome();
-
 </script>
-
 </body>
 </html>
